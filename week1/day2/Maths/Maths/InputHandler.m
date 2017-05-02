@@ -26,8 +26,8 @@
     return parsedInputString;
 }
 
-- (instancetype)initAndGetUserInput
-{
+- (instancetype)initAndGetUserInput {
+
     self = [super init];
     if (self) {
         NSString *string = [InputHandler getInputString];
@@ -35,5 +35,4 @@
     }
     return self;
 }
-
 @end
