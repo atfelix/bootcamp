@@ -27,8 +27,8 @@ int float_cmp (const void *a, const void *b) {
 
 -(instancetype)initWithHeight:(float)height Width:(float)width andLength:(float)length {
 
-    if ((height < 0) || (width < 0) || (length < 0)) {
-        NSLog(@"All parameters must be non-negative.");
+    if ((height <= 0) || (width <= 0) || (length <= 0)) {
+        NSLog(@"All parameters must be positive.");
         NSLog(@"Initialization failed.");
         NSLog(@"RETURNED: nil");
         return nil;
