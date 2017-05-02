@@ -22,11 +22,16 @@ int readline(char *string, int numChars) {
     char ch;
     int numReadChars = 0;
 
-    while ((ch = getc(stdin)) != EOF && (ch != '\n')) {
+    while ((ch = getchar()) != EOF && (ch != '\n')) {
         if (numReadChars < numChars) {
             string[numReadChars++] = ch;
         }
     }
+
+    if (ch == EOF) {
+        return EOF;
+    }
+
     string[numReadChars] = '\0';
     return numReadChars;
 }
@@ -90,7 +95,7 @@ int main(int argc, const char * argv[]) {
 
             printf("Input a string: ");
 
-            if (readline(inputChars, MAX_CHARS - 1) == 0) {
+            if (readline(inputChars, MAX_CHARS - 1) == EOF) {
                 printf("There was an error in reading.\n");
                 exit(EXIT_FAILURE);
             }
@@ -99,7 +104,7 @@ int main(int argc, const char * argv[]) {
             NSString *inputString = [NSString stringWithUTF8String:inputChars];
 
             char operationString[2];
-            int operationNumber;
+            int operationNumber = 0;
 
             printf("========================================================\n");
             printf("\n1: Uppercase (prints uppercase version of your string)\n");
@@ -121,9 +126,11 @@ int main(int argc, const char * argv[]) {
             double convertedNumber;
             
             switch (operationNumber) {
-                case 1: NSLog(@"%@", [inputString uppercaseString]); break;
+                case 1: NSLog(@"%@", [inputString uppercaseString]);
+                    break;
 
-                case 2: NSLog(@"%@", [inputString lowercaseString]); break;
+                case 2: NSLog(@"%@", [inputString lowercaseString]);
+                    break;
 
                 case 3:
                     if (convertStringToNumber(inputString, &convertedNumber)) {
@@ -134,7 +141,8 @@ int main(int argc, const char * argv[]) {
                     }
                     break;
 
-                case 4: NSLog(@"%@", [inputString stringByAppendingString:@", eh?"]); break;
+                case 4: NSLog(@"%@", [inputString stringByAppendingString:@", eh?"]);
+                    break;
 
                 case 5:
                     if ([inputString hasSuffix:@"?"]) {
@@ -149,7 +157,9 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"%@", [inputString stringByReplacingOccurrencesOfString:@" "
                                                                         withString:@"-"]);
                     break;
-                default: NSLog(@"Invalid codebreak"); break;
+                default:
+                    NSLog(@"Invalid codebreak");
+                    break;
             }
         }
     }
