@@ -9,24 +9,58 @@
 #import <Foundation/Foundation.h>
 
 #import "Die.h"
+#import "InputCollector.h"
+#import "GameController.h"
 
+#define NUM_CHARS 255
 #define NUM_DICE 6
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
-        NSMutableArray<Die *> *dice = [[NSMutableArray alloc] init];
+        InputCollector *inputCollector = [[InputCollector alloc] init];
+        GameController *gameController = [[GameController alloc] init];
 
-        for (int i = 0; i < NUM_DICE; i++) {
-            Die *die = [[Die alloc] init];
-            [die rollDie];
-            [dice addObject:die];
-        }
+        while (1) {
 
-        NSLog(@"%@ %@ %@ %@ %@ %@", dice[0], dice[1], dice[2], dice[3], dice[4], dice[5]);
+            NSLog(@"%@", gameController);
 
-        while (0) {
+            NSLog(@"============================");
+            NSLog(@"Type quit to leave hold menu");
 
+            while (1) {
+                NSString *promptString = [NSString stringWithFormat:@"Would you like to toggle any die (1-%d or quit)?", NUM_DICE];
+                NSString *userInput = [inputCollector inputFromPrompt:promptString];
+
+                if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
+                    break;
+                }
+
+                if (![InputCollector isValidInteger:userInput]) {
+                    NSLog(@"length: %lu  string: %@", userInput.length, userInput);
+                    NSLog(@"Invalid input.  Please try again.");
+                    continue;
+                }
+
+                int index = [userInput intValue];
+
+                if (index < 1 || index > NUM_DICE) {
+                    NSLog(@"Invalid index.  Please try again.");
+                    continue;
+                }
+
+                [gameController toggleDie:index - 1];
+            }
+
+            NSString *userInput = [inputCollector inputFromPrompt:@""];
+
+            if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
+                break;
+            }
+
+            if ([userInput caseInsensitiveCompare:@"roll"] == NSOrderedSame) {
+                [gameController rollDice];
+            }
         }
 
     }
