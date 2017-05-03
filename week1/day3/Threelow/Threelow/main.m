@@ -57,9 +57,11 @@ int main(int argc, const char * argv[]) {
             if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
                 break;
             }
-
-            if ([userInput caseInsensitiveCompare:@"roll"] == NSOrderedSame) {
+            else if ([userInput caseInsensitiveCompare:@"roll"] == NSOrderedSame) {
                 [gameController rollDice];
+            }
+            else if ([userInput caseInsensitiveCompare:@"reset"] == NSOrderedSame) {
+                [gameController resetDice];
             }
         }
 

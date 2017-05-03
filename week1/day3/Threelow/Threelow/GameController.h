@@ -17,5 +17,6 @@
 
 -(void) toggleDie:(int) index;
 -(void) rollDice;
+-(void) resetDice;
 
 @end

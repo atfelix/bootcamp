@@ -71,4 +71,8 @@
     }
 }
 
+-(void) resetDice {
+    [self.heldDice removeAllObjects];
+}
+
 @end
