@@ -33,13 +33,10 @@
     return self;
 }
 
-- (BOOL)isEqual:(id)other {
+-(BOOL)isEqualTo:(id)other {
 
     if (other == self) {
         return YES;
-    }
-    else if (![super isEqual:other]) {
-        return NO;
     }
     else if (![other isKindOfClass:[PhoneNumber class]]) {
         return NO;
@@ -50,6 +47,19 @@
     else {
         return YES;
     }
+}
+
+-(BOOL)labelHasSubstring:(NSString *)string {
+    return [self.label rangeOfString:string].location != NSNotFound;
+}
+
+-(BOOL)searchForString:(NSString *)string {
+    return [self labelHasSubstring:string];
+}
+
+-(NSString *)description {
+    NSString *desc = [NSString stringWithFormat:@"\nLabel:       %@\nPhonenumber: %@\n", self.label, self.number];
+    return desc;
 }
 
 @end

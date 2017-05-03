@@ -34,40 +34,31 @@
 }
 
 +(BOOL) isValidEmail:(NSString *) emailInputString {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]"
-                                                                           options:0
-                                                                             error:nil];
-
-    NSUInteger numMatches = [regex numberOfMatchesInString:emailInputString
-                                                   options:0
-                                                     range:NSMakeRange(0, emailInputString.length)];
-
-    return numMatches == 1;
+    return [InputCollector isString:emailInputString
+              aMatchForRegexPattern:@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]"];
 }
 
 +(BOOL) isValidInteger:(NSString *) inputString {
-
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\d+$"
-                                                                           options:0
-                                                                             error:nil];
-
-    NSUInteger numMatches = [regex numberOfMatchesInString:inputString
-                                                   options:0
-                                                     range:NSMakeRange(0, inputString.length)];
-
-    return numMatches == 1;
+    return [InputCollector isString:inputString
+              aMatchForRegexPattern:@"^\\d+$"];
 }
 
 +(BOOL)isValidPhoneNumber:(NSString *)inputString {
+    return [InputCollector isString:inputString
+              aMatchForRegexPattern:@"^[0-9]{3}-[0-9]{3}-[0-9]{4}$"];
+}
 
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
++(BOOL)isString:(NSString *)string aMatchForRegexPattern:(NSString *)pattern {
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
                                                                            options:0
                                                                              error:nil];
 
-    NSUInteger numMatches = [regex numberOfMatchesInString:inputString
+    NSUInteger numMatches = [regex numberOfMatchesInString:string
                                                    options:0
-                                                     range:NSMakeRange(0, inputString.length)];
+                                                     range:NSMakeRange(0, string.length)];
 
     return numMatches == 1;
 }
+
 @end

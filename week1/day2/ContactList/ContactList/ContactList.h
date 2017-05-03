@@ -13,5 +13,6 @@
 @property (nonatomic, readonly) NSArray *contacts;
 
 -(void) addContact: (Contact *) newContact;
+-(NSArray <Contact *> *) queryItemsMatchingString:(NSString *)string;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "Contact.h"
 
+@class PhoneNumber;
+
 @interface Contact()
 
 @property (nonatomic, copy) NSMutableArray<PhoneNumber *> *mutableArray;
@@ -44,7 +46,7 @@
 
 -(void)addPhoneNumber:(PhoneNumber *)phoneNumber {
     for (PhoneNumber *phone in self.phoneNumbers) {
-        if ([phone isEqual:phoneNumber]) {
+        if ([phone isEqualTo:phoneNumber]) {
             NSLog(@"Phone Number is already added");
             return;
         }
@@ -52,35 +54,39 @@
     [self.mutableArray addObject:phoneNumber];
 }
 
-
 -(NSString *)description {
 
     NSMutableString *desc = [NSMutableString stringWithFormat:@"\n\nFull Name: %@\nEmail: %@\n", self.fullname, self.email];
 
     if (self.phoneNumbers.count != 0) {
-        [desc appendString:@"PHONE NUMBERS:\n\n"];
+        [desc appendString:@"PHONE NUMBERS:\n"];
     }
 
     for (PhoneNumber *phone in self.phoneNumbers) {
-        [desc appendFormat:@"Label: %@\nPhone Number:%@\n", phone.label, phone.number];
+        [desc appendFormat:@"%@", phone];
     }
     return desc;
 }
 
 -(BOOL)searchForString:(NSString *)string {
+    if ([self.fullname rangeOfString:string].location != NSNotFound) {
+        return YES;
+    }
     if ([self.email rangeOfString:string].location != NSNotFound) {
         return YES;
+    }
+    for (PhoneNumber *phonenumber in self.phoneNumbers) {
+        if ([phonenumber searchForString:string]) {
+            return YES;
+        }
     }
     return NO;
 }
 
--(BOOL)isEqual:(id)object {
+-(BOOL)isEqualTo:(id)object {
 
     if (self == object) {
         return YES;
-    }
-    else if (![super isEqual:object]){
-        return NO;
     }
     else if (![object isKindOfClass:[Contact class]]) {
         return NO;

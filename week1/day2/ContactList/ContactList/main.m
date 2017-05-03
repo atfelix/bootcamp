@@ -10,8 +10,9 @@
 
 #import "Contact.h"
 #import "ContactList.h"
-#import "InputCollector.h"
-#import "PhoneNumber.h"
+
+@class InputCollector;
+@class PhoneNumber;
 
 void enqueue(NSMutableArray <NSString *> *queue, NSString *item) {
     queue[2] = queue[1];
@@ -28,7 +29,7 @@ int main(int argc, const char * argv[]) {
         [promptString appendString:@"\t\tshow (#) - Display Contact #\n"];
         [promptString appendString:@"\t\tfind string - Display all contacts with string in name or email\n"];
         [promptString appendString:@"\t\tadd - Add a Phone number to a contact\n"];
-        [promptString appendString:@"\t\thistory - See last (at most) 3 commands"];
+        [promptString appendString:@"\t\thistory - See last (at most) 3 commands\n"];
         [promptString appendString:@"\t\tquit - Exit Application\n"];
 
         InputCollector *input = [[InputCollector alloc] init];
@@ -77,10 +78,8 @@ int main(int argc, const char * argv[]) {
             else if ([inputString hasPrefix:@"find "]) {
                 NSString *splice = [inputString substringFromIndex:5];
 
-                for (Contact *contact in contactsList.contacts) {
-                    if ([contact searchForString:splice]) {
-                        NSLog(@"%@", contact);
-                    }
+                for (Contact *contact in [contactsList queryItemsMatchingString:splice]) {
+                    NSLog(@"%@", contact);
                 }
             }
             else if ([inputString isEqualToString:@"add"]) {

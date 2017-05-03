@@ -40,6 +40,17 @@
     [self.mutableArray addObject:newContact];
 }
 
+-(NSArray<Contact *> *)queryItemsMatchingString:(NSString *)string {
+    NSMutableArray <Contact *> *matches = [[NSMutableArray alloc] init];
+
+    for (Contact *contact in self.contacts) {
+        if ([contact searchForString:string]) {
+            [matches addObject:contact];
+        }
+    }
+    return [matches copy];
+}
+
 -(NSString *)description {
     return [self.mutableArray description];
 }
