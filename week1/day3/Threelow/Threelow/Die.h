@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define NUM_DICE 6
+#define NUM_DICE 5
 
 @interface Die : NSObject
 

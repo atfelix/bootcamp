@@ -18,5 +18,6 @@
 -(void) toggleDie:(int) index;
 -(void) rollDice;
 -(void) resetDice;
+-(NSUInteger) getScore;
 
 @end

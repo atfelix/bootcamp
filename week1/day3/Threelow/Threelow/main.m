@@ -12,11 +12,13 @@
 #import "InputCollector.h"
 #import "GameController.h"
 
-#define NUM_CHARS 255
-#define NUM_DICE 6
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+
+        NSLog(@"================================");
+        NSLog(@"------------THREELOW------------");
+        NSLog(@"================================");
+
 
         InputCollector *inputCollector = [[InputCollector alloc] init];
         GameController *gameController = [[GameController alloc] init];
@@ -24,12 +26,10 @@ int main(int argc, const char * argv[]) {
         while (1) {
 
             NSLog(@"%@", gameController);
-
-            NSLog(@"============================");
-            NSLog(@"Type quit to leave hold menu");
+            NSLog(@"\nType quit to leave hold menu");
 
             while (1) {
-                NSString *promptString = [NSString stringWithFormat:@"Would you like to toggle any die (1-%d or quit)?", NUM_DICE];
+                NSString *promptString = [NSString stringWithFormat:@"\n\nWould you like to toggle any die (1-%d or quit)?", NUM_DICE];
                 NSString *userInput = [inputCollector inputFromPrompt:promptString];
 
                 if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
@@ -37,7 +37,6 @@ int main(int argc, const char * argv[]) {
                 }
 
                 if (![InputCollector isValidInteger:userInput]) {
-                    NSLog(@"length: %lu  string: %@", userInput.length, userInput);
                     NSLog(@"Invalid input.  Please try again.");
                     continue;
                 }

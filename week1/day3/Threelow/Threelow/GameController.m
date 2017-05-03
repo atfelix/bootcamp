@@ -9,9 +9,6 @@
 #import "GameController.h"
 #import "Die.h"
 
-#define NUM_CHARS 255
-#define NUM_DICE 6
-
 @implementation GameController
 
 - (instancetype)init {
@@ -26,8 +23,6 @@
             [die rollDie];
             [_dice addObject:die];
         }
-
-        NSLog(@"%lu", self.dice.count);
     }
     return self;
 }
@@ -52,6 +47,8 @@
 -(NSString *)description {
     NSMutableString *output = [[NSMutableString alloc] init];
 
+    [output appendString:@"\n\n============================\n"];
+
     for (Die *die in self.dice) {
         if ([self.heldDice containsObject:die]) {
             [output appendFormat:@" <%@> ", die];
@@ -60,6 +57,9 @@
             [output appendFormat:@" %@ ", die];
         }
     }
+
+    [output appendFormat:@"\nCurrent Score: %lu\n", [self getScore]];
+    [output appendString:@"============================\n\n"];
     return output;
 }
 
@@ -74,5 +74,17 @@
 -(void) resetDice {
     [self.heldDice removeAllObjects];
 }
+
+-(NSUInteger)getScore {
+    NSUInteger score = 0;
+
+    for (Die *die in self.dice) {
+        NSUInteger dieValue = die.dieValue;
+        score += (dieValue == 3) ? 0 : dieValue;
+    }
+
+    return score;
+}
+
 
 @end

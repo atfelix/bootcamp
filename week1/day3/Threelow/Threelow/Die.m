@@ -8,7 +8,7 @@
 
 #import "Die.h"
 
-#define NUM_DICE 6
+#define NUM_SIDES 6
 
 @implementation Die
 
@@ -17,9 +17,9 @@
 }
 
 +(NSString *)dieCharacterWithValue:(int)value {
-
-    if (value > NUM_DICE || value <= 0) {
+    if (value > NUM_SIDES || value <= 0) {
         NSLog(@"Parameter |value| is not valid");
+        printf("in die description\n");
         return nil;
     }
 
