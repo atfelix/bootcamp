@@ -20,7 +20,6 @@ int main(int argc, const char * argv[]) {
         NSLog(@"================================");
 
 
-        InputCollector *inputCollector = [[InputCollector alloc] init];
         GameController *gameController = [[GameController alloc] init];
 
         while (1) {
@@ -28,30 +27,7 @@ int main(int argc, const char * argv[]) {
             NSLog(@"%@", gameController);
             NSLog(@"\nType quit to leave hold menu");
 
-            while (1) {
-                NSString *promptString = [NSString stringWithFormat:@"\n\nWould you like to toggle any die (1-%d or quit)?", NUM_DICE];
-                NSString *userInput = [inputCollector inputFromPrompt:promptString];
-
-                if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
-                    break;
-                }
-
-                if (![InputCollector isValidInteger:userInput]) {
-                    NSLog(@"Invalid input.  Please try again.");
-                    continue;
-                }
-
-                int index = [userInput intValue];
-
-                if (index < 1 || index > NUM_DICE) {
-                    NSLog(@"Invalid index.  Please try again.");
-                    continue;
-                }
-
-                [gameController toggleDie:index - 1];
-            }
-
-            NSString *userInput = [inputCollector inputFromPrompt:@""];
+            NSString *userInput = [gameController takeTurn];
 
             if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
                 break;
