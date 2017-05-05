@@ -10,10 +10,12 @@
 
 #define NUM_SIDES 6
 
+static NSArray *diceStrings;
+
 @implementation Die
 
 -(void)rollDie {
-    self.dieValue = arc4random_uniform(6) + 1;
+    self.dieValue = arc4random_uniform(NUM_SIDES) + 1;
 }
 
 +(NSString *)dieCharacterWithValue:(int)value {
@@ -23,12 +25,15 @@
         return nil;
     }
 
-    NSArray *diceStrings = @[@"⚀", @"⚁", @"⚂", @"⚃", @"⚄", @"⚅"];
     return diceStrings[value - 1];
 }
 
 -(NSString *)description {
     return [Die dieCharacterWithValue:(int)self.dieValue];
+}
+
++(void)initialize {
+    diceStrings =  @[@"⚀", @"⚁", @"⚂", @"⚃", @"⚄", @"⚅"];
 }
 
 @end

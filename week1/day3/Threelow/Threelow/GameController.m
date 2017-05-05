@@ -64,6 +64,7 @@
     [output appendFormat:@"\nCurrent Score: %lu", [self getScore]];
     [output appendFormat:@"\nNumber of Rolls since last reset: %lu\n", self.numRollsSinceLastReset];
     [output appendString:@"========================================================\n\n"];
+
     return output;
 }
 
