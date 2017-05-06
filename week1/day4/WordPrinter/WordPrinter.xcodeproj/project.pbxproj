@@ -1,0 +1,269 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		119104881EBBB2530059921B /* Printer.m in Sources */ = {isa = PBXBuildFile; fileRef = 119104871EBBB2530059921B /* Printer.m */; };
+		8BF87F841CDB3603001943DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF87F831CDB3603001943DE /* main.m */; };
+		8BF87F8C1CDB367B001943DE /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF87F8B1CDB367B001943DE /* Controller.m */; };
+		8BF87F921CDB3AA9001943DE /* WonkyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF87F911CDB3AA9001943DE /* WonkyController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8BF87F7E1CDB3603001943DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		119104861EBBB2530059921B /* Printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Printer.h; sourceTree = "<group>"; };
+		119104871EBBB2530059921B /* Printer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Printer.m; sourceTree = "<group>"; };
+		8BF87F801CDB3603001943DE /* WordPrinter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WordPrinter; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BF87F831CDB3603001943DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8BF87F8A1CDB367A001943DE /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		8BF87F8B1CDB367B001943DE /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		8BF87F901CDB3AA9001943DE /* WonkyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonkyController.h; sourceTree = "<group>"; };
+		8BF87F911CDB3AA9001943DE /* WonkyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonkyController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8BF87F7D1CDB3603001943DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8BF87F771CDB3603001943DE = {
+			isa = PBXGroup;
+			children = (
+				8BF87F821CDB3603001943DE /* WordPrinter */,
+				8BF87F811CDB3603001943DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8BF87F811CDB3603001943DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BF87F801CDB3603001943DE /* WordPrinter */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8BF87F821CDB3603001943DE /* WordPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				8BF87F831CDB3603001943DE /* main.m */,
+				119104861EBBB2530059921B /* Printer.h */,
+				119104871EBBB2530059921B /* Printer.m */,
+				8BF87F8A1CDB367A001943DE /* Controller.h */,
+				8BF87F8B1CDB367B001943DE /* Controller.m */,
+				8BF87F901CDB3AA9001943DE /* WonkyController.h */,
+				8BF87F911CDB3AA9001943DE /* WonkyController.m */,
+			);
+			path = WordPrinter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8BF87F7F1CDB3603001943DE /* WordPrinter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BF87F871CDB3603001943DE /* Build configuration list for PBXNativeTarget "WordPrinter" */;
+			buildPhases = (
+				8BF87F7C1CDB3603001943DE /* Sources */,
+				8BF87F7D1CDB3603001943DE /* Frameworks */,
+				8BF87F7E1CDB3603001943DE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WordPrinter;
+			productName = WordPrinter;
+			productReference = 8BF87F801CDB3603001943DE /* WordPrinter */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8BF87F781CDB3603001943DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Lighthouse Labs";
+				TargetAttributes = {
+					8BF87F7F1CDB3603001943DE = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 8BF87F7B1CDB3603001943DE /* Build configuration list for PBXProject "WordPrinter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8BF87F771CDB3603001943DE;
+			productRefGroup = 8BF87F811CDB3603001943DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8BF87F7F1CDB3603001943DE /* WordPrinter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8BF87F7C1CDB3603001943DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119104881EBBB2530059921B /* Printer.m in Sources */,
+				8BF87F921CDB3AA9001943DE /* WonkyController.m in Sources */,
+				8BF87F841CDB3603001943DE /* main.m in Sources */,
+				8BF87F8C1CDB367B001943DE /* Controller.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8BF87F851CDB3603001943DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8BF87F861CDB3603001943DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8BF87F881CDB3603001943DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8BF87F891CDB3603001943DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8BF87F7B1CDB3603001943DE /* Build configuration list for PBXProject "WordPrinter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BF87F851CDB3603001943DE /* Debug */,
+				8BF87F861CDB3603001943DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BF87F871CDB3603001943DE /* Build configuration list for PBXNativeTarget "WordPrinter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BF87F881CDB3603001943DE /* Debug */,
+				8BF87F891CDB3603001943DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8BF87F781CDB3603001943DE /* Project object */;
+}
