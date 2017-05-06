@@ -12,7 +12,7 @@
 
 -(void)processPaymentAmount:(NSInteger)amount {
     if ([self canProcessPayment]) {
-        NSLog(@"Welcome the jungle.");
+        NSLog(@"Amazon Pay Service: %ld", amount);
     }
     else {
         NSLog(@"Sorry, can't process this");

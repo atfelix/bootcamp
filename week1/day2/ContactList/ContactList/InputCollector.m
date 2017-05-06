@@ -12,25 +12,45 @@
 
 @implementation InputCollector
 
--(NSString *)inputFromPrompt:(NSString *)promptString {
++(NSString *)getInputFromPrompt:(NSString *)promptString {
 
     char inputChars[MAX_CHARS];
 
     NSLog(@"%@", promptString);
     fgets(inputChars, MAX_CHARS, stdin);
 
+    return [NSString stringWithCString:inputChars
+                              encoding:NSUTF8StringEncoding];
+}
+
++(NSString *)removeLeadingAndTrailingWhitespaceFrom:(NSString *)string {
+
     NSCharacterSet *charSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 
-    NSString *string = [NSString stringWithCString:inputChars
-                                          encoding:NSUTF8StringEncoding];
     string = [string stringByTrimmingCharactersInSet:charSet];
 
-    string = [string stringByReplacingOccurrencesOfString:@"[ ]+"
-                                               withString:@" "
-                                                  options:NSRegularExpressionSearch
-                                                    range:NSMakeRange(0, string.length - 1)];
-
     return string;
+}
+
++(NSString *)removeConsecutiveSpacesFrom:(NSString *)string {
+    return [string stringByReplacingOccurrencesOfString:@"[ ]+"
+                                             withString:@" "
+                                                options:NSRegularExpressionSearch
+                                                  range:NSMakeRange(0, string.length - 1)];
+
+}
+
++(NSString *)getAndParseStringFromPromptString:(NSString *)promptString {
+
+    NSString *input = [InputCollector getInputFromPrompt:promptString];
+    input = [InputCollector removeLeadingAndTrailingWhitespaceFrom:input];
+    input = [InputCollector removeConsecutiveSpacesFrom:input];
+
+    return input;
+}
+
++(NSString *)getAndParseString {
+    return [InputCollector getAndParseStringFromPromptString:@""];
 }
 
 +(BOOL) isValidEmail:(NSString *) emailInputString {

@@ -8,7 +8,6 @@
 
 #import "Doctor.h"
 #import "Patient.h"
-#import "InputCollector.h"
 #import "Prescription.h"
 
 @implementation Doctor

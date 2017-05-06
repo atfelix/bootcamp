@@ -16,8 +16,7 @@
 
 -(void)processPaymentAmount:(NSInteger)amount {
     if ([self canProcessPayment]) {
-        NSLog(@"Give me more money");
-
+        NSLog(@"Apple Pay Service: %ld", amount);
     }
     else {
         NSLog(@"Sorry, can't process this");

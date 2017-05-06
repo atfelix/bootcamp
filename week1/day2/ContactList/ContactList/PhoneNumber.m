@@ -11,16 +11,16 @@
 
 @implementation PhoneNumber
 
--(instancetype) initWithInputCollector: (InputCollector *)input {
+-(instancetype) init {
 
     self = [super init];
     if (self) {
         NSString *promptPhoneLabelString = @"Enter Label for Phone Number: ";
         NSString *promptPhoneNumberString = @"Enter phone number (###-###-####): ";
 
-        _label = [input inputFromPrompt:promptPhoneLabelString];
+        _label = [InputCollector getAndParseStringFromPromptString:promptPhoneLabelString];
 
-        NSString *phoneNumberString = [input inputFromPrompt:promptPhoneNumberString];
+        NSString *phoneNumberString = [InputCollector getAndParseStringFromPromptString:promptPhoneNumberString];
 
         if (![InputCollector isValidPhoneNumber:phoneNumberString]) {
             NSLog(@"INVALID PHONE NUMBER");

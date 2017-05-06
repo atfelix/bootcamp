@@ -18,16 +18,16 @@
 
 @implementation Contact
 
-- (instancetype)initWithInputCollector:(InputCollector *)input {
+- (instancetype)init {
 
     self = [super init];
     if (self) {
         NSString *promptFullNameString = @"Enter Full Name";
         NSString *promptEmailString = @"Enter email address";
 
-        _fullname = [input inputFromPrompt:promptFullNameString];
+        _fullname = [InputCollector getAndParseStringFromPromptString:promptFullNameString];
 
-        NSString *emailInputString = [input inputFromPrompt:promptEmailString];
+        NSString *emailInputString = [InputCollector getAndParseStringFromPromptString:promptEmailString];
 
         if (![InputCollector isValidEmail:emailInputString]) {
             NSLog(@"Invalid email entered");

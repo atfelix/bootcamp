@@ -32,13 +32,12 @@ int main(int argc, const char * argv[]) {
         [promptString appendString:@"\t\thistory - See last (at most) 3 commands\n"];
         [promptString appendString:@"\t\tquit - Exit Application\n"];
 
-        InputCollector *input = [[InputCollector alloc] init];
         ContactList *contactsList = [[ContactList alloc] init];
         NSMutableArray <NSString *> *lastCommands = [[NSMutableArray alloc] initWithArray:@[@"", @"", @""]];
 
         while (1) {
 
-            NSString *inputString = [input inputFromPrompt:promptString];
+            NSString *inputString = [InputCollector getAndParseStringFromPromptString:promptString];
             enqueue(lastCommands, inputString);
 
             if ([inputString isEqualToString:@"quit"]) {
@@ -46,7 +45,7 @@ int main(int argc, const char * argv[]) {
                 break;
             }
             else if ([inputString isEqualToString:@"new"]) {
-                Contact *newContact = [[Contact alloc] initWithInputCollector:input];
+                Contact *newContact = [[Contact alloc] init];
                 if (newContact) {
                     [contactsList addContact:newContact];
                 }
@@ -83,7 +82,7 @@ int main(int argc, const char * argv[]) {
                 }
             }
             else if ([inputString isEqualToString:@"add"]) {
-                NSString *indexString = [input inputFromPrompt:@"Enter Contact id: "];
+                NSString *indexString = [InputCollector getAndParseStringFromPromptString:@"Enter Contact id: "];
 
                 if (![InputCollector isValidInteger:indexString]) {
                     NSLog(@"Please enter a number for the index");
@@ -98,7 +97,7 @@ int main(int argc, const char * argv[]) {
                 }
 
                 Contact *contact = contactsList.contacts[value];
-                PhoneNumber *phoneNumber = [[PhoneNumber alloc] initWithInputCollector:input];
+                PhoneNumber *phoneNumber = [[PhoneNumber alloc] init];
 
                 if (phoneNumber) {
                     [contact addPhoneNumber:phoneNumber];

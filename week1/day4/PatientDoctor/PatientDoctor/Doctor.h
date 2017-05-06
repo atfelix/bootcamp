@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class Patient;
-@class InputCollector;
 
 @interface Doctor : NSObject
 
 @property (nonatomic) NSMutableArray<Patient *>* patients;
-@property (nonatomic) InputCollector *input;
 
 -(void) diagnose:(Patient *)patient;
 

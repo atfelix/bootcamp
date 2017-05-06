@@ -15,7 +15,6 @@
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *number;
 
--(instancetype) initWithInputCollector: (InputCollector *)in;
 -(BOOL) searchForString: (NSString *) string;
 
 @end

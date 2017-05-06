@@ -12,7 +12,7 @@
 
 -(void)processPaymentAmount:(NSInteger)amount {
     if ([self canProcessPayment]) {
-        NSLog(@"You swipe, we Stripe.");
+        NSLog(@"Stripe pay service: %ld", amount);
     }
     else {
         NSLog(@"Sorry, can't process this");

@@ -21,7 +21,6 @@
         _dice = [[NSMutableArray alloc] init];
         _numRollsSinceLastReset = 0;
         _gameOn = YES;
-        _inputCollector = [[InputCollector alloc] init];
 
         for (int i = 0; i < NUM_DICE; i++) {
             Die *die = [[Die alloc] init];
@@ -52,7 +51,7 @@
 
     while (1) {
 
-        NSString *userInput = [self.inputCollector inputFromPrompt:@""];
+        NSString *userInput = [InputCollector getAndParseString];
 
         if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
             for (int i = 0; i < NUM_DICE; i++) {

@@ -17,7 +17,6 @@
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, readonly) NSArray <PhoneNumber *> *phoneNumbers;
 
--(instancetype)initWithInputCollector:(InputCollector *) in;
 -(BOOL) searchForString:(NSString *)string;
 -(void) addPhoneNumber:(PhoneNumber *) phoneNumber;
 

@@ -23,8 +23,6 @@ int getRandomNumberInRange(int lower, int upper);
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
-        InputCollector *input = [[InputCollector alloc] init];
-
         NSArray<NSString *>*paymentMethods = @[
                                                 @"PayPal",
                                                 @"Stripe",
@@ -51,7 +49,7 @@ int main(int argc, const char * argv[]) {
         NSString *userInput;
 
         do {
-            userInput = [input inputFromPrompt:outputString];
+            userInput = [InputCollector getAndParseStringFromPromptString:outputString];
 
             if (![InputCollector isValidInteger:userInput]) {
                 NSLog(@"Please input valid integer");

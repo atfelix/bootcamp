@@ -12,12 +12,11 @@
 
 -(void)processPaymentAmount:(NSInteger)amount {
     if ([self canProcessPayment]) {
-        NSLog(@"Why are you still using PayPal, even we're in shock?");
+        NSLog(@"PayPal Pay Service: %ld", amount);
     }
     else {
         NSLog(@"Sorry, can't process this");
-    }
-    
+    }    
 }
 
 -(BOOL)canProcessPayment {
