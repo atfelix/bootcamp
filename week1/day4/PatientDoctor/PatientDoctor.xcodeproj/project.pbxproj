@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		119104651EBB7B1C0059921B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 119104641EBB7B1C0059921B /* main.m */; };
+		1191046D1EBB7BA30059921B /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1191046C1EBB7BA30059921B /* Doctor.m */; };
+		119104701EBB7BB50059921B /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1191046F1EBB7BB50059921B /* Patient.m */; };
+		119104731EBB7CDE0059921B /* Prescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 119104721EBB7CDE0059921B /* Prescription.m */; };
+		119104761EBB82450059921B /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 119104751EBB82450059921B /* Appointment.m */; };
+		119104791EBB83420059921B /* AppointmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 119104781EBB83420059921B /* AppointmentManager.m */; };
+		1191047C1EBB8C240059921B /* InputCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1191047B1EBB8C240059921B /* InputCollector.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1191045F1EBB7B1C0059921B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		119104611EBB7B1C0059921B /* PatientDoctor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PatientDoctor; sourceTree = BUILT_PRODUCTS_DIR; };
+		119104641EBB7B1C0059921B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1191046B1EBB7BA30059921B /* Doctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Doctor.h; sourceTree = "<group>"; };
+		1191046C1EBB7BA30059921B /* Doctor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Doctor.m; sourceTree = "<group>"; };
+		1191046E1EBB7BB50059921B /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		1191046F1EBB7BB50059921B /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		119104711EBB7CDE0059921B /* Prescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prescription.h; sourceTree = "<group>"; };
+		119104721EBB7CDE0059921B /* Prescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prescription.m; sourceTree = "<group>"; };
+		119104741EBB82450059921B /* Appointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appointment.h; sourceTree = "<group>"; };
+		119104751EBB82450059921B /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
+		119104771EBB83420059921B /* AppointmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentManager.h; sourceTree = "<group>"; };
+		119104781EBB83420059921B /* AppointmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentManager.m; sourceTree = "<group>"; };
+		1191047A1EBB8C240059921B /* InputCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputCollector.h; path = ../../../day2/ContactList/ContactList/InputCollector.h; sourceTree = "<group>"; };
+		1191047B1EBB8C240059921B /* InputCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InputCollector.m; path = ../../../day2/ContactList/ContactList/InputCollector.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1191045E1EBB7B1C0059921B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		119104581EBB7B1C0059921B = {
+			isa = PBXGroup;
+			children = (
+				119104631EBB7B1C0059921B /* PatientDoctor */,
+				119104621EBB7B1C0059921B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		119104621EBB7B1C0059921B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				119104611EBB7B1C0059921B /* PatientDoctor */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		119104631EBB7B1C0059921B /* PatientDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				119104641EBB7B1C0059921B /* main.m */,
+				119104771EBB83420059921B /* AppointmentManager.h */,
+				119104781EBB83420059921B /* AppointmentManager.m */,
+				119104741EBB82450059921B /* Appointment.h */,
+				119104751EBB82450059921B /* Appointment.m */,
+				1191046B1EBB7BA30059921B /* Doctor.h */,
+				1191046C1EBB7BA30059921B /* Doctor.m */,
+				1191047A1EBB8C240059921B /* InputCollector.h */,
+				1191047B1EBB8C240059921B /* InputCollector.m */,
+				119104711EBB7CDE0059921B /* Prescription.h */,
+				119104721EBB7CDE0059921B /* Prescription.m */,
+				1191046E1EBB7BB50059921B /* Patient.h */,
+				1191046F1EBB7BB50059921B /* Patient.m */,
+			);
+			path = PatientDoctor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		119104601EBB7B1C0059921B /* PatientDoctor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119104681EBB7B1C0059921B /* Build configuration list for PBXNativeTarget "PatientDoctor" */;
+			buildPhases = (
+				1191045D1EBB7B1C0059921B /* Sources */,
+				1191045E1EBB7B1C0059921B /* Frameworks */,
+				1191045F1EBB7B1C0059921B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PatientDoctor;
+			productName = PatientDoctor;
+			productReference = 119104611EBB7B1C0059921B /* PatientDoctor */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		119104591EBB7B1C0059921B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Adam Felix";
+				TargetAttributes = {
+					119104601EBB7B1C0059921B = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1191045C1EBB7B1C0059921B /* Build configuration list for PBXProject "PatientDoctor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 119104581EBB7B1C0059921B;
+			productRefGroup = 119104621EBB7B1C0059921B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				119104601EBB7B1C0059921B /* PatientDoctor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1191045D1EBB7B1C0059921B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119104701EBB7BB50059921B /* Patient.m in Sources */,
+				1191046D1EBB7BA30059921B /* Doctor.m in Sources */,
+				119104651EBB7B1C0059921B /* main.m in Sources */,
+				119104761EBB82450059921B /* Appointment.m in Sources */,
+				119104731EBB7CDE0059921B /* Prescription.m in Sources */,
+				1191047C1EBB8C240059921B /* InputCollector.m in Sources */,
+				119104791EBB83420059921B /* AppointmentManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		119104661EBB7B1C0059921B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		119104671EBB7B1C0059921B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		119104691EBB7B1C0059921B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1191046A1EBB7B1C0059921B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1191045C1EBB7B1C0059921B /* Build configuration list for PBXProject "PatientDoctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119104661EBB7B1C0059921B /* Debug */,
+				119104671EBB7B1C0059921B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		119104681EBB7B1C0059921B /* Build configuration list for PBXNativeTarget "PatientDoctor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119104691EBB7B1C0059921B /* Debug */,
+				1191046A1EBB7B1C0059921B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 119104591EBB7B1C0059921B /* Project object */;
+}

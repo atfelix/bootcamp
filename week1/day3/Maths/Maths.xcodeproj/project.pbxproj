@@ -1,0 +1,308 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11B422371EBA374100B96717 /* QuestionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B422361EBA374100B96717 /* QuestionManager.m */; };
+		11B4223A1EBA3C5800B96717 /* InputHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B422391EBA3C5800B96717 /* InputHandler.m */; };
+		11B4223D1EBA3D9C00B96717 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4223C1EBA3D9C00B96717 /* Question.m */; };
+		11B422401EBA3ECE00B96717 /* AdditionQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4223F1EBA3ECE00B96717 /* AdditionQuestion.m */; };
+		11B422431EBA3EDC00B96717 /* SubtractionQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B422421EBA3EDC00B96717 /* SubtractionQuestion.m */; };
+		11B422491EBA3EF700B96717 /* DivisionQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B422481EBA3EF700B96717 /* DivisionQuestion.m */; };
+		11B4224C1EBA3F3000B96717 /* MultiplicationQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4224B1EBA3F3000B96717 /* MultiplicationQuestion.m */; };
+		11B4224F1EBA458500B96717 /* QuestionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4224E1EBA458500B96717 /* QuestionFactory.m */; };
+		11F2E5481EB8E4EB00A21EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F2E5471EB8E4EB00A21EE9 /* main.m */; };
+		11F2E5561EB8F92E00A21EE9 /* ScoreKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F2E5551EB8F92E00A21EE9 /* ScoreKeeper.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		11F2E5421EB8E4EB00A21EE9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		11B422351EBA374100B96717 /* QuestionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionManager.h; sourceTree = "<group>"; };
+		11B422361EBA374100B96717 /* QuestionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionManager.m; sourceTree = "<group>"; };
+		11B422381EBA3C5800B96717 /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
+		11B422391EBA3C5800B96717 /* InputHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputHandler.m; sourceTree = "<group>"; };
+		11B4223B1EBA3D9C00B96717 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		11B4223C1EBA3D9C00B96717 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		11B4223E1EBA3ECE00B96717 /* AdditionQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionQuestion.h; sourceTree = "<group>"; };
+		11B4223F1EBA3ECE00B96717 /* AdditionQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionQuestion.m; sourceTree = "<group>"; };
+		11B422411EBA3EDC00B96717 /* SubtractionQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtractionQuestion.h; sourceTree = "<group>"; };
+		11B422421EBA3EDC00B96717 /* SubtractionQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtractionQuestion.m; sourceTree = "<group>"; };
+		11B422471EBA3EF700B96717 /* DivisionQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DivisionQuestion.h; sourceTree = "<group>"; };
+		11B422481EBA3EF700B96717 /* DivisionQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DivisionQuestion.m; sourceTree = "<group>"; };
+		11B4224A1EBA3F3000B96717 /* MultiplicationQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplicationQuestion.h; sourceTree = "<group>"; };
+		11B4224B1EBA3F3000B96717 /* MultiplicationQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplicationQuestion.m; sourceTree = "<group>"; };
+		11B4224D1EBA458400B96717 /* QuestionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionFactory.h; sourceTree = "<group>"; };
+		11B4224E1EBA458500B96717 /* QuestionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionFactory.m; sourceTree = "<group>"; };
+		11F2E5441EB8E4EB00A21EE9 /* Maths */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Maths; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F2E5471EB8E4EB00A21EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11F2E5541EB8F92E00A21EE9 /* ScoreKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreKeeper.h; sourceTree = "<group>"; };
+		11F2E5551EB8F92E00A21EE9 /* ScoreKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreKeeper.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11F2E5411EB8E4EB00A21EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11F2E53B1EB8E4EB00A21EE9 = {
+			isa = PBXGroup;
+			children = (
+				11F2E5461EB8E4EB00A21EE9 /* Maths */,
+				11F2E5451EB8E4EB00A21EE9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11F2E5451EB8E4EB00A21EE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11F2E5441EB8E4EB00A21EE9 /* Maths */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11F2E5461EB8E4EB00A21EE9 /* Maths */ = {
+			isa = PBXGroup;
+			children = (
+				11F2E5471EB8E4EB00A21EE9 /* main.m */,
+				11B422381EBA3C5800B96717 /* InputHandler.h */,
+				11B422391EBA3C5800B96717 /* InputHandler.m */,
+				11F2E5541EB8F92E00A21EE9 /* ScoreKeeper.h */,
+				11F2E5551EB8F92E00A21EE9 /* ScoreKeeper.m */,
+				11B422351EBA374100B96717 /* QuestionManager.h */,
+				11B422361EBA374100B96717 /* QuestionManager.m */,
+				11B4224D1EBA458400B96717 /* QuestionFactory.h */,
+				11B4224E1EBA458500B96717 /* QuestionFactory.m */,
+				11B4223B1EBA3D9C00B96717 /* Question.h */,
+				11B4223C1EBA3D9C00B96717 /* Question.m */,
+				11B4223E1EBA3ECE00B96717 /* AdditionQuestion.h */,
+				11B4223F1EBA3ECE00B96717 /* AdditionQuestion.m */,
+				11B422411EBA3EDC00B96717 /* SubtractionQuestion.h */,
+				11B422421EBA3EDC00B96717 /* SubtractionQuestion.m */,
+				11B4224A1EBA3F3000B96717 /* MultiplicationQuestion.h */,
+				11B4224B1EBA3F3000B96717 /* MultiplicationQuestion.m */,
+				11B422471EBA3EF700B96717 /* DivisionQuestion.h */,
+				11B422481EBA3EF700B96717 /* DivisionQuestion.m */,
+			);
+			path = Maths;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11F2E5431EB8E4EB00A21EE9 /* Maths */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F2E54B1EB8E4EB00A21EE9 /* Build configuration list for PBXNativeTarget "Maths" */;
+			buildPhases = (
+				11F2E5401EB8E4EB00A21EE9 /* Sources */,
+				11F2E5411EB8E4EB00A21EE9 /* Frameworks */,
+				11F2E5421EB8E4EB00A21EE9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Maths;
+			productName = Maths;
+			productReference = 11F2E5441EB8E4EB00A21EE9 /* Maths */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11F2E53C1EB8E4EB00A21EE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Adam Felix";
+				TargetAttributes = {
+					11F2E5431EB8E4EB00A21EE9 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 11F2E53F1EB8E4EB00A21EE9 /* Build configuration list for PBXProject "Maths" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 11F2E53B1EB8E4EB00A21EE9;
+			productRefGroup = 11F2E5451EB8E4EB00A21EE9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11F2E5431EB8E4EB00A21EE9 /* Maths */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11F2E5401EB8E4EB00A21EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B422371EBA374100B96717 /* QuestionManager.m in Sources */,
+				11B422401EBA3ECE00B96717 /* AdditionQuestion.m in Sources */,
+				11B422431EBA3EDC00B96717 /* SubtractionQuestion.m in Sources */,
+				11F2E5561EB8F92E00A21EE9 /* ScoreKeeper.m in Sources */,
+				11F2E5481EB8E4EB00A21EE9 /* main.m in Sources */,
+				11B422491EBA3EF700B96717 /* DivisionQuestion.m in Sources */,
+				11B4224C1EBA3F3000B96717 /* MultiplicationQuestion.m in Sources */,
+				11B4223D1EBA3D9C00B96717 /* Question.m in Sources */,
+				11B4224F1EBA458500B96717 /* QuestionFactory.m in Sources */,
+				11B4223A1EBA3C5800B96717 /* InputHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11F2E5491EB8E4EB00A21EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		11F2E54A1EB8E4EB00A21EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		11F2E54C1EB8E4EB00A21EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11F2E54D1EB8E4EB00A21EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11F2E53F1EB8E4EB00A21EE9 /* Build configuration list for PBXProject "Maths" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F2E5491EB8E4EB00A21EE9 /* Debug */,
+				11F2E54A1EB8E4EB00A21EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11F2E54B1EB8E4EB00A21EE9 /* Build configuration list for PBXNativeTarget "Maths" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F2E54C1EB8E4EB00A21EE9 /* Debug */,
+				11F2E54D1EB8E4EB00A21EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11F2E53C1EB8E4EB00A21EE9 /* Project object */;
+}
