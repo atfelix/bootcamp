@@ -11,6 +11,7 @@
 #import "Kitchen.h"
 #import "AnchoviesHatingManager.h"
 #import "CheeryManager.h"
+#import "DeliveryService.h"
 
 int main(int argc, const char * argv[])
 {
@@ -18,16 +19,20 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         NSLog(@"Please pick your pizza size and toppings:");
-        
+
         Kitchen *restaurantKitchen1 = [[Kitchen alloc] init];
         Kitchen *restaurantKitchen2 = [[Kitchen alloc] init];
 
-        AnchoviesHatingManager *manager1 = [[AnchoviesHatingManager alloc] init];
-        CheeryManager *manager2 = [[CheeryManager alloc] init];
+        AnchoviesHatingManager *manager1 = [AnchoviesHatingManager sharedManager];
+        CheeryManager *manager2 = [CheeryManager sharedManager];
+
+        DeliveryService *deliveryService = [[DeliveryService alloc] init];
 
         restaurantKitchen1.delegate = manager1;
         restaurantKitchen2.delegate = manager2;
-        
+
+        manager2.deliveryService = deliveryService;
+
         while (TRUE) {
             // Loop forever
             
@@ -55,6 +60,7 @@ int main(int argc, const char * argv[])
                                                toppings:[commandWords
                                                          subarrayWithRange:NSMakeRange(1, commandWords.count - 1)]]
                   );
+            NSLog(@"delivered: %@", manager2.deliveryService.allDeliveredPizzas);
         }
     }
     return 0;

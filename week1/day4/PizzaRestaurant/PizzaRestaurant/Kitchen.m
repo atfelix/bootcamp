@@ -14,32 +14,19 @@
 - (Pizza *)makePizzaWithSize:(NSString *)sizeString toppings:(NSArray *)toppings {
 
     Pizza *pizzaToMake;
-    PizzaSize size;
+    PizzaSize size = [Pizza getPizzaSizeFromString:sizeString];
 
-    if ([sizeString caseInsensitiveCompare:@"small"] == NSOrderedSame) {
-        size = PIZZA_SIZE_SMALL;
-    }
-    else if ([sizeString caseInsensitiveCompare:@"medium"] == NSOrderedSame) {
-        size = PIZZA_SIZE_MEDIUM;
-    }
-    else if ([sizeString caseInsensitiveCompare:@"large"] == NSOrderedSame) {
-        size = PIZZA_SIZE_LARGE;
-    }
-    else if ([sizeString caseInsensitiveCompare:@"pepperoni"] == NSOrderedSame) {
-        size = PIZZA_SIZE_LARGE;
-        toppings = @[@"pepperoni"];
-    }
-    else {
+    if (size == PIZZA_SIZE_ERROR) {
         NSLog(@"No such pizza size");
         return nil;
     }
 
-    if ([toppings[0] caseInsensitiveCompare:@"meatlovers"] == NSOrderedSame) {
-        toppings = @[@"meatlovers"];
+    if ([sizeString caseInsensitiveCompare:@"pepperoni"] == NSOrderedSame) {
+        toppings = @[@"pepperoni"];
     }
 
-    if (self.delegate == nil) {
-        return nil;
+    if ([toppings[0] caseInsensitiveCompare:@"meatlovers"] == NSOrderedSame) {
+        toppings = @[@"meatlovers"];
     }
 
     BOOL shouldMakePizza = [self.delegate kitchen:self

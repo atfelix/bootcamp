@@ -17,11 +17,12 @@
     self = [super init];
     if (self) {
         _size  = size;
+        _toppings = [[NSMutableArray alloc] init];
         if ([toppings[0] caseInsensitiveCompare:@"meatlovers"] == NSOrderedSame) {
-            _toppings = @[@"sausage", @"bacon", @"ham", @"goat", @"duck"];
+            _toppings = [@[@"sausage", @"bacon", @"ham", @"goat", @"duck"] mutableCopy];
         }
         else {
-            _toppings = toppings;
+            _toppings = [toppings mutableCopy];
         }
     }
     return self;
@@ -31,17 +32,13 @@
     NSArray<NSString *> *sizeNames = @[@"Small", @"Medium", @"Large"];
     NSMutableString *desc = [[NSMutableString alloc] init];
 
-    [desc appendString:@"One "];
-
     [desc appendString:sizeNames[self.size]];
 
     for (NSString *topping in self.toppings) {
         [desc appendFormat:@" %@", topping];
     }
 
-    [desc appendString:@" pizza coming up"];
-
-    return desc;
+    return [desc copy];
 }
 
 +(NSArray *) makeToppingsLowercase:(NSArray *) toppings {
@@ -62,6 +59,26 @@
 +(Pizza *)meatLoversPizzaWithSize:(PizzaSize)size {
     return [[Pizza alloc] initWithSize:size
                            andToppings:@[@"meatlovers"]];
+}
+
++(PizzaSize)getPizzaSizeFromString:(NSString *)sizeString {
+
+    PizzaSize size = PIZZA_SIZE_ERROR;
+
+    if ([sizeString caseInsensitiveCompare:@"small"] == NSOrderedSame) {
+        size = PIZZA_SIZE_SMALL;
+    }
+    else if ([sizeString caseInsensitiveCompare:@"medium"] == NSOrderedSame) {
+        size = PIZZA_SIZE_MEDIUM;
+    }
+    else if ([sizeString caseInsensitiveCompare:@"large"] == NSOrderedSame) {
+        size = PIZZA_SIZE_LARGE;
+    }
+    else if ([sizeString caseInsensitiveCompare:@"pepperoni"] == NSOrderedSame) {
+        size = PIZZA_SIZE_LARGE;
+    }
+
+    return size;
 }
 
 @end

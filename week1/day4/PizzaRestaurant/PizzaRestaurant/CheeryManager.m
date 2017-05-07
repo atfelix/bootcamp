@@ -8,22 +8,11 @@
 
 #import "CheeryManager.h"
 
+#import "DeliveryService.h"
+
 static CheeryManager *sharedInstance = nil;
 
 @implementation CheeryManager
-
-- (instancetype)init {
-    return [CheeryManager sharedInstance];
-}
-
-- (instancetype)initSpecial {
-
-    self = [super init];
-    if (self) {
-        // do nothing
-    }
-    return self;
-}
 
 -(BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(PizzaSize)size andToppings:(NSArray *)toppings {
     return YES;
@@ -34,13 +23,13 @@ static CheeryManager *sharedInstance = nil;
 }
 
 -(void)kitchenDidMakePizza:(id)pizza {
-    NSLog(@"I hope you enjoy your pizza");
+    [self.deliveryService deliverPizza:pizza];
 }
 
-+(CheeryManager *) sharedInstance {
++(CheeryManager *) sharedManager {
 
     if (sharedInstance == nil) {
-        sharedInstance = [[CheeryManager alloc] initSpecial];
+        sharedInstance = [[CheeryManager alloc] init];
     }
 
     return sharedInstance;

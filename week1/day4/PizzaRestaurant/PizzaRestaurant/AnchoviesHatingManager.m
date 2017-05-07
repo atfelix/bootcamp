@@ -8,28 +8,15 @@
 
 #import "AnchoviesHatingManager.h"
 
+#import "DeliveryService.h"
+
 static AnchoviesHatingManager *sharedInstance = nil;
 
 @interface AnchoviesHatingManager()
 
-@property (nonatomic) id instance;
-
 @end
 
 @implementation AnchoviesHatingManager
-
-- (instancetype)init {
-    return [AnchoviesHatingManager sharedInstance];
-}
-
-- (instancetype)initSpecial {
-
-    self = [super init];
-    if (self) {
-        // do nothing
-    }
-    return self;
-}
 
 -(BOOL)kitchen:(Kitchen *)kitchen shouldMakePizzaOfSize:(PizzaSize)size andToppings:(NSArray *)toppings {
     return ![toppings containsObject:@"anchovies"];
@@ -39,10 +26,10 @@ static AnchoviesHatingManager *sharedInstance = nil;
     return NO;
 }
 
-+(AnchoviesHatingManager *) sharedInstance {
++(AnchoviesHatingManager *) sharedManager {
 
     if (sharedInstance == nil) {
-        sharedInstance = [[AnchoviesHatingManager alloc] initSpecial];
+        sharedInstance = [[AnchoviesHatingManager alloc] init];
     }
 
     return sharedInstance;

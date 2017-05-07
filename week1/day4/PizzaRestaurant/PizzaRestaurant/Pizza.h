@@ -10,9 +10,10 @@
 
 typedef enum PizzaSizeTypes {
 
+    PIZZA_SIZE_ERROR = -1,
     PIZZA_SIZE_SMALL,
     PIZZA_SIZE_MEDIUM,
-    PIZZA_SIZE_LARGE
+    PIZZA_SIZE_LARGE,
 
 } PizzaSize;
 
@@ -25,5 +26,6 @@ typedef enum PizzaSizeTypes {
 
 +(Pizza *) largePepperoni;
 +(Pizza *) meatLoversPizzaWithSize:(PizzaSize) size;
++(PizzaSize)getPizzaSizeFromString:(NSString *)sizeString;
 
 @end

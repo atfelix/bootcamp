@@ -10,6 +10,12 @@
 
 #import "KitchenDelegate.h"
 
+@class DeliveryService;
+
 @interface CheeryManager : NSObject <KitchenDelegate>
+
+@property (nonatomic) DeliveryService *deliveryService;
+
++(CheeryManager *) sharedManager;
 
 @end

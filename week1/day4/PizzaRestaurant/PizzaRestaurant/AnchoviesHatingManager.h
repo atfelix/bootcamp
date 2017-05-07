@@ -10,6 +10,12 @@
 
 #import "KitchenDelegate.h"
 
+@class DeliveryService;
+
 @interface AnchoviesHatingManager : NSObject <KitchenDelegate>
+
+@property (nonatomic) DeliveryService *deliveryService;
+
++(AnchoviesHatingManager *) sharedManager;
 
 @end
