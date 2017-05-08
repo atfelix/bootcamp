@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="LPSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eyes_1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NY4-Kv-j1f">
+                                <rect key="frame" x="78" y="75" width="164" height="100"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXb-1x-fkn">
+                                <rect key="frame" x="0.0" y="75" width="50" height="100"/>
+                                <state key="normal" image="arrow_left.jpg">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaW-ja-FCK">
+                                <rect key="frame" x="250" y="75" width="50" height="100"/>
+                                <state key="normal" image="arrow_right.jpg">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nose_1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Y8H-62-adD">
+                                <rect key="frame" x="78" y="183" width="164" height="100"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zep-oN-Tfp">
+                                <rect key="frame" x="250" y="291" width="70" height="100"/>
+                                <state key="normal" title="Button" image="arrow_right.jpg"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mouth_1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SHw-hm-5h4">
+                                <rect key="frame" x="78" y="291" width="165" height="100"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlV-Hv-5HL">
+                                <rect key="frame" x="27" y="291" width="42" height="100"/>
+                                <state key="normal" title="Button" image="arrow_left.jpg"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLa-YQ-OyM">
+                                <rect key="frame" x="28" y="183" width="42" height="100"/>
+                                <state key="normal" title="Button" image="arrow_left.jpg"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UpA-HE-Egz">
+                                <rect key="frame" x="250" y="183" width="70" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gXw-wK-8D6"/>
+                                    <constraint firstAttribute="width" constant="70" id="mpB-Ai-kTW"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="arrow_right.jpg"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UpA-HE-Egz" firstAttribute="leading" secondItem="Y8H-62-adD" secondAttribute="trailing" constant="8" symbolic="YES" id="5ad-8L-4cd"/>
+                            <constraint firstItem="SLa-YQ-OyM" firstAttribute="top" secondItem="Y8H-62-adD" secondAttribute="top" id="7eW-H6-DXc"/>
+                            <constraint firstItem="SlV-Hv-5HL" firstAttribute="top" secondItem="SLa-YQ-OyM" secondAttribute="bottom" constant="8" symbolic="YES" id="9K2-Hb-uK0"/>
+                            <constraint firstItem="SLa-YQ-OyM" firstAttribute="top" secondItem="yXb-1x-fkn" secondAttribute="bottom" constant="8" id="Ayd-pw-KpS"/>
+                            <constraint firstItem="UpA-HE-Egz" firstAttribute="trailing" secondItem="Zep-oN-Tfp" secondAttribute="trailing" id="C02-81-vts"/>
+                            <constraint firstItem="SlV-Hv-5HL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="11" id="DkM-lw-Y6e"/>
+                            <constraint firstItem="NY4-Kv-j1f" firstAttribute="leading" secondItem="Y8H-62-adD" secondAttribute="leading" id="JHk-x6-jS7"/>
+                            <constraint firstItem="oaW-ja-FCK" firstAttribute="leading" secondItem="NY4-Kv-j1f" secondAttribute="trailing" constant="8" symbolic="YES" id="KEf-6o-zNd"/>
+                            <constraint firstItem="SlV-Hv-5HL" firstAttribute="top" secondItem="SLa-YQ-OyM" secondAttribute="bottom" constant="8" id="LJb-KA-1xr"/>
+                            <constraint firstItem="yXb-1x-fkn" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="55" id="La4-wt-Hv8"/>
+                            <constraint firstItem="Y8H-62-adD" firstAttribute="top" secondItem="UpA-HE-Egz" secondAttribute="top" id="NwI-zn-h96"/>
+                            <constraint firstItem="yXb-1x-fkn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="O3o-Bd-AV3"/>
+                            <constraint firstItem="NY4-Kv-j1f" firstAttribute="top" secondItem="oaW-ja-FCK" secondAttribute="top" id="Qei-rw-KRk"/>
+                            <constraint firstItem="SHw-hm-5h4" firstAttribute="top" secondItem="Zep-oN-Tfp" secondAttribute="top" id="Tho-fw-7TC"/>
+                            <constraint firstAttribute="trailing" secondItem="UpA-HE-Egz" secondAttribute="trailing" id="Tjw-eZ-Ipr"/>
+                            <constraint firstItem="NY4-Kv-j1f" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="VVm-Vd-cAW"/>
+                            <constraint firstItem="Zep-oN-Tfp" firstAttribute="leading" secondItem="SHw-hm-5h4" secondAttribute="trailing" constant="7" id="WZX-oa-VJP"/>
+                            <constraint firstItem="Y8H-62-adD" firstAttribute="top" secondItem="yXb-1x-fkn" secondAttribute="bottom" constant="8" symbolic="YES" id="Xfx-BF-reG"/>
+                            <constraint firstItem="Y8H-62-adD" firstAttribute="leading" secondItem="SLa-YQ-OyM" secondAttribute="trailing" constant="8" symbolic="YES" id="aLH-eX-1bt"/>
+                            <constraint firstItem="yXb-1x-fkn" firstAttribute="top" secondItem="NY4-Kv-j1f" secondAttribute="top" id="bws-V7-f88"/>
+                            <constraint firstItem="oaW-ja-FCK" firstAttribute="leading" secondItem="UpA-HE-Egz" secondAttribute="leading" id="gqg-Mj-3jU"/>
+                            <constraint firstItem="SHw-hm-5h4" firstAttribute="leading" secondItem="SlV-Hv-5HL" secondAttribute="trailing" constant="9" id="k7y-mZ-rJ0"/>
+                            <constraint firstItem="Y8H-62-adD" firstAttribute="leading" secondItem="SHw-hm-5h4" secondAttribute="leading" id="lNO-Tu-BMk"/>
+                            <constraint firstItem="SLa-YQ-OyM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="12" id="rEY-HS-KeE"/>
+                            <constraint firstItem="UpA-HE-Egz" firstAttribute="leading" secondItem="Zep-oN-Tfp" secondAttribute="leading" id="t7y-gN-c0o"/>
+                            <constraint firstItem="SlV-Hv-5HL" firstAttribute="top" secondItem="SHw-hm-5h4" secondAttribute="top" id="wYy-c5-tHd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eyeView" destination="NY4-Kv-j1f" id="zeb-qj-oQH"/>
+                        <outlet property="leftEyeButton" destination="yXb-1x-fkn" id="I8e-I2-qGB"/>
+                        <outlet property="leftMouthButton" destination="SlV-Hv-5HL" id="gcJ-JY-gsO"/>
+                        <outlet property="leftNoseButton" destination="SLa-YQ-OyM" id="BM5-EH-kFQ"/>
+                        <outlet property="mouthView" destination="SHw-hm-5h4" id="7Vu-20-DDd"/>
+                        <outlet property="noseView" destination="Y8H-62-adD" id="0L2-Fi-YIJ"/>
+                        <outlet property="rightEyeButton" destination="oaW-ja-FCK" id="XUZ-oy-9S7"/>
+                        <outlet property="rightMouthButton" destination="Zep-oN-Tfp" id="VA6-Iw-CPd"/>
+                        <outlet property="rightNoseButton" destination="UpA-HE-Egz" id="z3v-h4-u8k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-281.5" y="-101.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow_left.jpg" width="50" height="100"/>
+        <image name="arrow_right.jpg" width="50" height="100"/>
+        <image name="eyes_1.jpg" width="220" height="100"/>
+        <image name="mouth_1.jpg" width="220" height="100"/>
+        <image name="nose_1.jpg" width="220" height="100"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
