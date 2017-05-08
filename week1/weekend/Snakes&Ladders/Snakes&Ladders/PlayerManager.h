@@ -17,10 +17,13 @@
 @property (nonatomic, assign) BOOL gameOver;
 @property (nonatomic, assign) NSUInteger currentIndex;
 
+-(void) playGame;
+-(void) endGame;
 -(void) createPlayers:(NSUInteger) numPlayers;
 -(void) roll;
 -(void) output;
-
-+(NSUInteger) getNumberOfPlayers;
+-(void) quitOrRestart;
+-(NSString *) score;
+-(NSUInteger) getNumberOfPlayers;
 
 @end

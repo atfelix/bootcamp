@@ -34,10 +34,6 @@
 
 +(NSString *)removeConsecutiveSpacesFrom:(NSString *)string {
 
-    if (string.length == 0) {
-        return nil;
-    }
-
     return [string stringByReplacingOccurrencesOfString:@"[ ]+"
                                              withString:@" "
                                                 options:NSRegularExpressionSearch
@@ -48,7 +44,13 @@
 +(NSString *)getAndParseStringFromPromptString:(NSString *)promptString {
 
     NSString *input = [InputCollector getInputFromPrompt:promptString];
+
     input = [InputCollector removeLeadingAndTrailingWhitespaceFrom:input];
+
+    if (!input || input.length == 0) {
+        return nil;
+    }
+
     input = [InputCollector removeConsecutiveSpacesFrom:input];
 
     return input;

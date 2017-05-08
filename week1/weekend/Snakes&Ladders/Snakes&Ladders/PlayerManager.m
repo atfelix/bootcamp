@@ -29,7 +29,6 @@ NSInteger getRandomIntegerInRange(NSInteger lower, NSInteger upper) {
     if (self) {
         _players = [[NSMutableArray alloc] init];
         _currentIndex = 0;
-        _gameOver = NO;
         _gameBoard = @{
                        @(4):@(14),  @(9):@(31),  @(17):@(7),  @(20):@(38),
                        @(28):@(84), @(40):@(59), @(51):@(67), @(63):@(81),
@@ -37,6 +36,37 @@ NSInteger getRandomIntegerInRange(NSInteger lower, NSInteger upper) {
                       };
     }
     return self;
+}
+
+-(void)playGame {
+
+    _gameOver = NO;
+
+    [self createPlayers:[self getNumberOfPlayers]];
+
+    NSLog(@"Please type \"roll\" or \"r\"");
+
+    while (!self.gameOver) {
+
+        NSString *userInput = [InputCollector getAndParseStringFromPromptString:@""];
+
+        if (!userInput || userInput.length == 0) {
+            continue;
+        }
+        else if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
+            [self quitOrRestart];
+        }
+        else if ([userInput caseInsensitiveCompare:@"roll"] == NSOrderedSame) {
+            [self roll];
+        }
+        else if ([userInput caseInsensitiveCompare:@"r"] == NSOrderedSame) {
+            [self roll];
+        }
+        else if ([userInput caseInsensitiveCompare:@"output"] == NSOrderedSame) {
+            [self output];
+        }
+    }
+
 }
 
 -(void)createPlayers:(NSUInteger)numPlayers {
@@ -60,7 +90,8 @@ NSInteger getRandomIntegerInRange(NSInteger lower, NSInteger upper) {
 
     if (currentPlayer.currentSquare >= END_SQUARE) {
         NSLog(@"Game Over, %@ won!", currentPlayer);
-        exit(EXIT_SUCCESS);
+        [self endGame];
+        return;
     }
     NSLog(@"%@ landed on %ld", currentPlayer, currentPlayer.currentSquare);
 
@@ -68,21 +99,39 @@ NSInteger getRandomIntegerInRange(NSInteger lower, NSInteger upper) {
 }
 
 -(void) output {
-    for (Player *player in self.players) {
-        NSLog(@"%@'s current square: %ld", player.name, player.currentSquare);
-    }
+    NSLog(@"%@", [self score]);
 }
 
 -(Player *) getCurrentPlayer {
     return self.players[self.currentIndex % self.players.count];
 }
 
-+(NSUInteger)getNumberOfPlayers {
+-(NSString *)score {
+    NSMutableString *desc = [[NSMutableString alloc] init];
+
+    [desc appendFormat:@"score: "];
+
+    for (Player *player in self.players) {
+        [desc appendFormat:@"%@'s %@, ", player.name, [player score]];
+    }
+
+    return desc;
+}
+
+-(void)endGame {
+    self.gameOver = YES;
+    [self.players removeAllObjects];
+}
+
+-(NSUInteger)getNumberOfPlayers {
 
     while (1) {
         NSString *numPlayersString = [InputCollector getAndParseStringFromPromptString:@"Enter the number of players:"];
 
-        if (![InputCollector isValidInteger:numPlayersString]) {
+        if ([numPlayersString caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
+            [self quitOrRestart];
+        }
+        else if (![InputCollector isValidInteger:numPlayersString]) {
             NSLog(@"Input is not a valid integer");
             continue;
         }
@@ -92,7 +141,20 @@ NSInteger getRandomIntegerInRange(NSInteger lower, NSInteger upper) {
         }
         return [numPlayersString integerValue];
     }
-    
 }
+
+-(void)quitOrRestart {
+    NSString *userInput = [InputCollector getAndParseStringFromPromptString:@"\n\n\tType one of the following:\n\n\tquit: quit the application\n\trestart: start a new game\n\nAny other response will be cancel the quit process"];
+
+    if ([userInput caseInsensitiveCompare:@"quit"] == NSOrderedSame) {
+        NSLog(@"Thank you for playing");
+        exit(EXIT_SUCCESS);
+    }
+    else if ([userInput caseInsensitiveCompare:@"restart"] == NSOrderedSame) {
+        [self endGame];
+        [self playGame];
+    }
+}
+
 
 @end

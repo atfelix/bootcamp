@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *name;
 
 -(instancetype) initWithName:(NSString *) nameString;
+-(NSString *) score;
 
 @end

@@ -30,4 +30,8 @@
     return self.name;
 }
 
+-(NSString *)score {
+    return [NSString stringWithFormat:@"%@: %ld", self, self.currentSquare];
+}
+
 @end
