@@ -33,6 +33,11 @@
 }
 
 +(NSString *)removeConsecutiveSpacesFrom:(NSString *)string {
+
+    if (string.length == 0) {
+        return nil;
+    }
+
     return [string stringByReplacingOccurrencesOfString:@"[ ]+"
                                              withString:@" "
                                                 options:NSRegularExpressionSearch
@@ -69,6 +74,10 @@
 }
 
 +(BOOL)isString:(NSString *)string aMatchForRegexPattern:(NSString *)pattern {
+
+    if (string.length == 0) {
+        return NO;
+    }
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
                                                                            options:0
