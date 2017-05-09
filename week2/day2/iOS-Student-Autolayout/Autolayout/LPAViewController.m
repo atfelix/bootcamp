@@ -15,6 +15,7 @@
 @property (nonatomic, weak) UIButton *squareButton;
 @property (nonatomic, weak) UIButton *portraitButton;
 @property (nonatomic, weak) UIButton *landscapeButton;
+@property (nonatomic, weak) UIButton *yellowButton;
 
 @property (nonatomic, weak) UIView *framingView;
 @property (nonatomic, weak) NSLayoutConstraint *framingViewHeightConstraint;
@@ -24,12 +25,15 @@
 @property (nonatomic, weak) NSLayoutConstraint *blueViewCenterYConstraint2;
 @property (nonatomic, weak) NSLayoutConstraint *blueViewCenterYConstraint3;
 
+@property (nonatomic, weak) UIView *yellowView;
+
 @end
 
 @implementation LPAViewController
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
 
     UIButton *squareButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -53,17 +57,24 @@
     landscapeButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.landscapeButton = landscapeButton;
 
+    UIButton *yellowButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [yellowButton setTitle:@"Toggle Yellow Button" forState:UIControlStateNormal];
+    [yellowButton addTarget:self action:@selector(toggleYellowView) forControlEvents:UIControlEventTouchUpInside];
+    yellowButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:yellowButton];
+
+
     UIView *framingView = [[UIView alloc] initWithFrame:CGRectZero];
     framingView.translatesAutoresizingMaskIntoConstraints = NO;
     framingView.backgroundColor = [UIColor greenColor];
     [self.view addSubview:framingView];
     self.framingView = framingView;
 
-    NSString *buttonsHorizontalConstraintsFormat = @"|[squareButton(==portraitButton)][portraitButton(==landscapeButton)][landscapeButton]|";
+    NSString *buttonsHorizontalConstraintsFormat = @"|[squareButton(==portraitButton)][portraitButton(==landscapeButton)][landscapeButton(==yellowButton)][yellowButton]|";
     NSArray *buttonsHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:buttonsHorizontalConstraintsFormat
                                                                                     options:NSLayoutFormatAlignAllCenterY
                                                                                     metrics:nil
-                                                                                      views:NSDictionaryOfVariableBindings(squareButton, portraitButton, landscapeButton)];
+                                                                                      views:NSDictionaryOfVariableBindings(squareButton, portraitButton, landscapeButton, yellowButton)];
     [NSLayoutConstraint activateConstraints:buttonsHorizontalConstraints];
 
     NSLayoutConstraint *squareButtonBottomConstraint = [NSLayoutConstraint constraintWithItem:squareButton
@@ -117,10 +128,11 @@
     [self addPurpleBox];
     [self addRedBox];
     [self addBlueBoxes];
+    [self addYellowView];
 
 }
 
-#pragma mark - Purple Box
+#pragma mark - Purple View
 
 -(void) addPurpleBox {
 
@@ -159,7 +171,7 @@
                                   constant:0.0].active = YES;
 }
 
-#pragma mark - Red Box
+#pragma mark - Red View
 
 -(void) addRedBox {
 
@@ -199,6 +211,8 @@
 
     [self addOrangeBoxesTo:redView];
 }
+
+#pragma mark - Orange Views
 
 -(void) addOrangeBoxesTo:(UIView *)redView {
 
@@ -271,6 +285,8 @@
                                   constant:10.0].active = YES;
 
 }
+
+#pragma mark - Blue Views
 
 -(void) addBlueBoxes {
 
@@ -388,6 +404,54 @@
     self.blueViewCenterYConstraint1.constant = height / (NUM_BLUE_BOXES + 1);
     self.blueViewCenterYConstraint2.constant = 2 * height / (NUM_BLUE_BOXES + 1);
     self.blueViewCenterYConstraint3.constant = 3 * height / (NUM_BLUE_BOXES + 1);
+}
+
+#pragma mark - Yellow View
+
+-(void) addYellowView {
+
+    UIView *yellowView = [[UIView alloc] initWithFrame:CGRectZero];
+    yellowView.translatesAutoresizingMaskIntoConstraints = NO;
+    yellowView.backgroundColor = [UIColor yellowColor];
+    [self.framingView addSubview:yellowView];
+
+    [NSLayoutConstraint constraintWithItem:yellowView
+                                 attribute:NSLayoutAttributeHeight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:nil
+                                 attribute:NSLayoutAttributeNotAnAttribute
+                                multiplier:1.0
+                                  constant:150.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:yellowView
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.framingView
+                                 attribute:NSLayoutAttributeWidth
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:yellowView
+                                 attribute:NSLayoutAttributeLeftMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.framingView
+                                 attribute:NSLayoutAttributeLeftMargin
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:yellowView
+                                 attribute:NSLayoutAttributeBottomMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.framingView
+                                 attribute:NSLayoutAttributeBottomMargin
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+
+    yellowView.hidden = YES;
+
+    self.yellowView = yellowView;
+}
+
+-(void) toggleYellowView {
+    self.yellowView.hidden ^= YES;
+    [self.view layoutIfNeeded];
 }
 
 /**
