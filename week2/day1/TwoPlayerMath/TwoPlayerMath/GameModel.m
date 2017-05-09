@@ -10,6 +10,7 @@
 
 #import "Player.h"
 #import "Question.h"
+#import "QuestionFactory.h"
 
 #define NUM_PLAYERS 2
 #define LOWER_BOUND 1
@@ -35,8 +36,7 @@ uint32_t getRandomIntegerInRange(int lower_bound, int upper_bound) {
 }
 
 -(Question *)generateQuestion {
-    return [[Question alloc] initWithLeftValue:getRandomIntegerInRange(LOWER_BOUND, UPPER_BOUND)
-                                 andRightValue:getRandomIntegerInRange(LOWER_BOUND, UPPER_BOUND)];
+    return [QuestionFactory generateQuestion];
 }
 
 -(Player *)getCurrentPlayer {
@@ -47,7 +47,7 @@ uint32_t getRandomIntegerInRange(int lower_bound, int upper_bound) {
 
     BOOL correctAnswer = YES;
 
-    if (answer != [self.currentQuestion getAnswer]) {
+    if (answer != self.currentQuestion.answer) {
         [[self getCurrentPlayer] loseLife];
         correctAnswer = NO;
 

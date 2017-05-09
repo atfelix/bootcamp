@@ -12,8 +12,7 @@
 
 @property (nonatomic, assign) NSUInteger leftValue;
 @property (nonatomic, assign) NSUInteger rightValue;
-
--(instancetype) initWithLeftValue:(NSUInteger) leftValue andRightValue:(NSUInteger) rightValue;
--(NSUInteger) getAnswer;
+@property (nonatomic, assign) unichar operatorChar;
+@property (nonatomic, assign) NSInteger answer;
 
 @end

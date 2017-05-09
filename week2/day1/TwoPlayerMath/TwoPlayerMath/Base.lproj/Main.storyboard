@@ -107,6 +107,11 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BTt-yl-lJh">
+                                <rect key="frame" x="128" y="323" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="-"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -124,6 +129,7 @@
                         <outlet property="correctnessLabel" destination="mrg-oY-ncA" id="F4w-zG-gd7"/>
                         <outlet property="currentAnswerLabel" destination="PNB-Dq-aGZ" id="KVo-SM-OZX"/>
                         <outlet property="currentPlayerLabel" destination="PNB-Dq-aGZ" id="Yve-5W-Lsj"/>
+                        <outlet property="negateButton" destination="BTt-yl-lJh" id="CBi-6Q-1Ky"/>
                         <outlet property="player1ScoreLabel" destination="IzO-ge-Fiz" id="q2h-0k-08g"/>
                         <outlet property="player2ScoreLabel" destination="8aB-La-a2f" id="KCk-gJ-zxu"/>
                         <outlet property="questionLabel" destination="qmu-bV-1vG" id="vN3-sJ-qdw"/>

@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *button9;
 @property (weak, nonatomic) IBOutlet UIButton *button0;
 @property (weak, nonatomic) IBOutlet UIButton *submitAnswerButton;
+@property (weak, nonatomic) IBOutlet UIButton *negateButton;
 
 @end
 
@@ -75,6 +76,10 @@
                      action:@selector(digitButtonTapped:)
            forControlEvents:UIControlEventTouchUpInside];
 
+    [self.negateButton addTarget:self
+                          action:@selector(negateButtonTapped:)
+                forControlEvents:UIControlEventTouchUpInside];
+
     [self.submitAnswerButton addTarget:self
                                 action:@selector(submit)
                       forControlEvents:UIControlEventTouchUpInside];
@@ -106,10 +111,9 @@
 }
 
 -(void) updateQuestionLabel {
-    self.questionLabel.text = [NSString stringWithFormat:@"Player %lu: %lu + %lu?",
+    self.questionLabel.text = [NSString stringWithFormat:@"Player %lu: %@",
                                self.game.currentIndex + 1,
-                               self.game.currentQuestion.leftValue,
-                               self.game.currentQuestion.rightValue];
+                               self.game.currentQuestion];
 }
 
 -(void) updateLabels {
@@ -120,6 +124,11 @@
 
 -(void) digitButtonTapped:(UIButton *) sender {
     self.currentAnswer = (10 * self.currentAnswer) + [sender.titleLabel.text intValue];
+    [self updateCurrentAnswerLabel];
+}
+
+-(void) negateButtonTapped:(UIButton *) sender {
+    self.currentAnswer *= -1;
     [self updateCurrentAnswerLabel];
 }
 
