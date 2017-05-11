@@ -20,8 +20,10 @@
     UIButton *restartButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [restartButton setTitle:@"Restart"
                    forState:UIControlStateNormal];
-    //restartButton.frame = CGRectMake(0, 0, 40, 40);
     [restartButton sizeToFit];
+    [restartButton addTarget:self
+                      action:@selector(restartGame)
+            forControlEvents:UIControlEventTouchUpInside];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
                                                                                            target:nil
@@ -35,5 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)restartGame {
+    NSLog(@"banana");
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
 
 @end
