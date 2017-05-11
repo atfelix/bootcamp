@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11F0D39E1EC4FBC200484E40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F0D39D1EC4FBC200484E40 /* main.m */; };
+		11F0D3A11EC4FBC200484E40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F0D3A01EC4FBC200484E40 /* AppDelegate.m */; };
+		11F0D3A41EC4FBC200484E40 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F0D3A31EC4FBC200484E40 /* ViewController.m */; };
+		11F0D3A71EC4FBC200484E40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3A51EC4FBC200484E40 /* Main.storyboard */; };
+		11F0D3A91EC4FBC200484E40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3A81EC4FBC200484E40 /* Assets.xcassets */; };
+		11F0D3AC1EC4FBC200484E40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3AA1EC4FBC200484E40 /* LaunchScreen.storyboard */; };
+		11F0D3C31EC4FDC600484E40 /* back_porch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B41EC4FDC600484E40 /* back_porch.jpg */; };
+		11F0D3C41EC4FDC600484E40 /* bathroom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B51EC4FDC600484E40 /* bathroom.jpg */; };
+		11F0D3C51EC4FDC600484E40 /* bedroom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B61EC4FDC600484E40 /* bedroom.jpg */; };
+		11F0D3C61EC4FDC600484E40 /* coat_room.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B71EC4FDC600484E40 /* coat_room.jpg */; };
+		11F0D3C71EC4FDC600484E40 /* cursed_chalice.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B81EC4FDC600484E40 /* cursed_chalice.jpg */; };
+		11F0D3C81EC4FDC600484E40 /* dining_room.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3B91EC4FDC600484E40 /* dining_room.jpg */; };
+		11F0D3C91EC4FDC600484E40 /* dungeon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BA1EC4FDC600484E40 /* dungeon.jpg */; };
+		11F0D3CA1EC4FDC600484E40 /* front_door.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BB1EC4FDC600484E40 /* front_door.jpg */; };
+		11F0D3CB1EC4FDC600484E40 /* generator.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BC1EC4FDC600484E40 /* generator.jpg */; };
+		11F0D3CC1EC4FDC600484E40 /* kitchen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BD1EC4FDC600484E40 /* kitchen.jpg */; };
+		11F0D3CD1EC4FDC600484E40 /* labratory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BE1EC4FDC600484E40 /* labratory.jpg */; };
+		11F0D3CE1EC4FDC600484E40 /* library.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3BF1EC4FDC600484E40 /* library.jpg */; };
+		11F0D3CF1EC4FDC600484E40 /* mysterious_lake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3C01EC4FDC600484E40 /* mysterious_lake.jpg */; };
+		11F0D3D01EC4FDC600484E40 /* secret_passage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3C11EC4FDC600484E40 /* secret_passage.jpg */; };
+		11F0D3D11EC4FDC600484E40 /* stairs_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11F0D3C21EC4FDC600484E40 /* stairs_up.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11F0D3991EC4FBC200484E40 /* EnteringAHouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnteringAHouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F0D39D1EC4FBC200484E40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11F0D39F1EC4FBC200484E40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		11F0D3A01EC4FBC200484E40 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		11F0D3A21EC4FBC200484E40 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		11F0D3A31EC4FBC200484E40 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		11F0D3A61EC4FBC200484E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11F0D3A81EC4FBC200484E40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11F0D3AB1EC4FBC200484E40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11F0D3AD1EC4FBC200484E40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F0D3B41EC4FDC600484E40 /* back_porch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back_porch.jpg; sourceTree = "<group>"; };
+		11F0D3B51EC4FDC600484E40 /* bathroom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bathroom.jpg; sourceTree = "<group>"; };
+		11F0D3B61EC4FDC600484E40 /* bedroom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bedroom.jpg; sourceTree = "<group>"; };
+		11F0D3B71EC4FDC600484E40 /* coat_room.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coat_room.jpg; sourceTree = "<group>"; };
+		11F0D3B81EC4FDC600484E40 /* cursed_chalice.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cursed_chalice.jpg; sourceTree = "<group>"; };
+		11F0D3B91EC4FDC600484E40 /* dining_room.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dining_room.jpg; sourceTree = "<group>"; };
+		11F0D3BA1EC4FDC600484E40 /* dungeon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dungeon.jpg; sourceTree = "<group>"; };
+		11F0D3BB1EC4FDC600484E40 /* front_door.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = front_door.jpg; sourceTree = "<group>"; };
+		11F0D3BC1EC4FDC600484E40 /* generator.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = generator.jpg; sourceTree = "<group>"; };
+		11F0D3BD1EC4FDC600484E40 /* kitchen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kitchen.jpg; sourceTree = "<group>"; };
+		11F0D3BE1EC4FDC600484E40 /* labratory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = labratory.jpg; sourceTree = "<group>"; };
+		11F0D3BF1EC4FDC600484E40 /* library.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = library.jpg; sourceTree = "<group>"; };
+		11F0D3C01EC4FDC600484E40 /* mysterious_lake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mysterious_lake.jpg; sourceTree = "<group>"; };
+		11F0D3C11EC4FDC600484E40 /* secret_passage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = secret_passage.jpg; sourceTree = "<group>"; };
+		11F0D3C21EC4FDC600484E40 /* stairs_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stairs_up.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11F0D3961EC4FBC200484E40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11F0D3901EC4FBC200484E40 = {
+			isa = PBXGroup;
+			children = (
+				11F0D39B1EC4FBC200484E40 /* EnteringAHouse */,
+				11F0D39A1EC4FBC200484E40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11F0D39A1EC4FBC200484E40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11F0D3991EC4FBC200484E40 /* EnteringAHouse.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11F0D39B1EC4FBC200484E40 /* EnteringAHouse */ = {
+			isa = PBXGroup;
+			children = (
+				11F0D39F1EC4FBC200484E40 /* AppDelegate.h */,
+				11F0D3A01EC4FBC200484E40 /* AppDelegate.m */,
+				11F0D3A21EC4FBC200484E40 /* ViewController.h */,
+				11F0D3A31EC4FBC200484E40 /* ViewController.m */,
+				11F0D3A51EC4FBC200484E40 /* Main.storyboard */,
+				11F0D3A81EC4FBC200484E40 /* Assets.xcassets */,
+				11F0D3AA1EC4FBC200484E40 /* LaunchScreen.storyboard */,
+				11F0D3AD1EC4FBC200484E40 /* Info.plist */,
+				11F0D3B31EC4FDC600484E40 /* Images */,
+				11F0D39C1EC4FBC200484E40 /* Supporting Files */,
+			);
+			path = EnteringAHouse;
+			sourceTree = "<group>";
+		};
+		11F0D39C1EC4FBC200484E40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				11F0D39D1EC4FBC200484E40 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11F0D3B31EC4FDC600484E40 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				11F0D3B41EC4FDC600484E40 /* back_porch.jpg */,
+				11F0D3B51EC4FDC600484E40 /* bathroom.jpg */,
+				11F0D3B61EC4FDC600484E40 /* bedroom.jpg */,
+				11F0D3B71EC4FDC600484E40 /* coat_room.jpg */,
+				11F0D3B81EC4FDC600484E40 /* cursed_chalice.jpg */,
+				11F0D3B91EC4FDC600484E40 /* dining_room.jpg */,
+				11F0D3BA1EC4FDC600484E40 /* dungeon.jpg */,
+				11F0D3BB1EC4FDC600484E40 /* front_door.jpg */,
+				11F0D3BC1EC4FDC600484E40 /* generator.jpg */,
+				11F0D3BD1EC4FDC600484E40 /* kitchen.jpg */,
+				11F0D3BE1EC4FDC600484E40 /* labratory.jpg */,
+				11F0D3BF1EC4FDC600484E40 /* library.jpg */,
+				11F0D3C01EC4FDC600484E40 /* mysterious_lake.jpg */,
+				11F0D3C11EC4FDC600484E40 /* secret_passage.jpg */,
+				11F0D3C21EC4FDC600484E40 /* stairs_up.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11F0D3981EC4FBC200484E40 /* EnteringAHouse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F0D3B01EC4FBC200484E40 /* Build configuration list for PBXNativeTarget "EnteringAHouse" */;
+			buildPhases = (
+				11F0D3951EC4FBC200484E40 /* Sources */,
+				11F0D3961EC4FBC200484E40 /* Frameworks */,
+				11F0D3971EC4FBC200484E40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnteringAHouse;
+			productName = EnteringAHouse;
+			productReference = 11F0D3991EC4FBC200484E40 /* EnteringAHouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11F0D3911EC4FBC200484E40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Adam Felix";
+				TargetAttributes = {
+					11F0D3981EC4FBC200484E40 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 11F0D3941EC4FBC200484E40 /* Build configuration list for PBXProject "EnteringAHouse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11F0D3901EC4FBC200484E40;
+			productRefGroup = 11F0D39A1EC4FBC200484E40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11F0D3981EC4FBC200484E40 /* EnteringAHouse */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11F0D3971EC4FBC200484E40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F0D3D11EC4FDC600484E40 /* stairs_up.jpg in Resources */,
+				11F0D3AC1EC4FBC200484E40 /* LaunchScreen.storyboard in Resources */,
+				11F0D3C31EC4FDC600484E40 /* back_porch.jpg in Resources */,
+				11F0D3CF1EC4FDC600484E40 /* mysterious_lake.jpg in Resources */,
+				11F0D3A91EC4FBC200484E40 /* Assets.xcassets in Resources */,
+				11F0D3A71EC4FBC200484E40 /* Main.storyboard in Resources */,
+				11F0D3C81EC4FDC600484E40 /* dining_room.jpg in Resources */,
+				11F0D3CC1EC4FDC600484E40 /* kitchen.jpg in Resources */,
+				11F0D3C51EC4FDC600484E40 /* bedroom.jpg in Resources */,
+				11F0D3C61EC4FDC600484E40 /* coat_room.jpg in Resources */,
+				11F0D3CD1EC4FDC600484E40 /* labratory.jpg in Resources */,
+				11F0D3C41EC4FDC600484E40 /* bathroom.jpg in Resources */,
+				11F0D3CE1EC4FDC600484E40 /* library.jpg in Resources */,
+				11F0D3C91EC4FDC600484E40 /* dungeon.jpg in Resources */,
+				11F0D3C71EC4FDC600484E40 /* cursed_chalice.jpg in Resources */,
+				11F0D3CA1EC4FDC600484E40 /* front_door.jpg in Resources */,
+				11F0D3D01EC4FDC600484E40 /* secret_passage.jpg in Resources */,
+				11F0D3CB1EC4FDC600484E40 /* generator.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11F0D3951EC4FBC200484E40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F0D3A41EC4FBC200484E40 /* ViewController.m in Sources */,
+				11F0D3A11EC4FBC200484E40 /* AppDelegate.m in Sources */,
+				11F0D39E1EC4FBC200484E40 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		11F0D3A51EC4FBC200484E40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F0D3A61EC4FBC200484E40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		11F0D3AA1EC4FBC200484E40 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F0D3AB1EC4FBC200484E40 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11F0D3AE1EC4FBC200484E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		11F0D3AF1EC4FBC200484E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11F0D3B11EC4FBC200484E40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EnteringAHouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bignerdranch.EnteringAHouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11F0D3B21EC4FBC200484E40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EnteringAHouse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bignerdranch.EnteringAHouse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11F0D3941EC4FBC200484E40 /* Build configuration list for PBXProject "EnteringAHouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F0D3AE1EC4FBC200484E40 /* Debug */,
+				11F0D3AF1EC4FBC200484E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11F0D3B01EC4FBC200484E40 /* Build configuration list for PBXNativeTarget "EnteringAHouse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F0D3B11EC4FBC200484E40 /* Debug */,
+				11F0D3B21EC4FBC200484E40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11F0D3911EC4FBC200484E40 /* Project object */;
+}
