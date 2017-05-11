@@ -15,6 +15,7 @@
 		1133DE9F1EC4C1A9006A6570 /* toronto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1133DE9A1EC4C1A9006A6570 /* toronto.jpg */; };
 		1133DEA01EC4C1A9006A6570 /* vancouver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1133DE9B1EC4C1A9006A6570 /* vancouver.jpg */; };
 		1133DEA31EC4C20A006A6570 /* LHWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1133DEA21EC4C20A006A6570 /* LHWDetailViewController.m */; };
+		11F0D38F1EC4F53300484E40 /* LHWAddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F0D38E1EC4F53300484E40 /* LHWAddCityViewController.m */; };
 		12E6125B1C501E0F0017AB28 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E6125A1C501E0F0017AB28 /* Launch Screen.storyboard */; };
 		60ADD94B1989CFDB0086A6BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60ADD94A1989CFDB0086A6BC /* Foundation.framework */; };
 		60ADD94D1989CFDB0086A6BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60ADD94C1989CFDB0086A6BC /* CoreGraphics.framework */; };
@@ -65,6 +66,8 @@
 		1133DE9B1EC4C1A9006A6570 /* vancouver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vancouver.jpg; sourceTree = "<group>"; };
 		1133DEA11EC4C20A006A6570 /* LHWDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHWDetailViewController.h; sourceTree = "<group>"; };
 		1133DEA21EC4C20A006A6570 /* LHWDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHWDetailViewController.m; sourceTree = "<group>"; };
+		11F0D38D1EC4F53300484E40 /* LHWAddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHWAddCityViewController.h; sourceTree = "<group>"; };
+		11F0D38E1EC4F53300484E40 /* LHWAddCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHWAddCityViewController.m; sourceTree = "<group>"; };
 		12E6125A1C501E0F0017AB28 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		60ADD9471989CFDB0086A6BC /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60ADD94A1989CFDB0086A6BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,14 +161,16 @@
 				60ADD95A1989CFDB0086A6BC /* LHWAppDelegate.m */,
 				1133DE911EC4B711006A6570 /* LHWCityViewController.h */,
 				1133DE921EC4B711006A6570 /* LHWCityViewController.m */,
+				11F0D38D1EC4F53300484E40 /* LHWAddCityViewController.h */,
+				11F0D38E1EC4F53300484E40 /* LHWAddCityViewController.m */,
 				1133DEA11EC4C20A006A6570 /* LHWDetailViewController.h */,
 				1133DEA21EC4C20A006A6570 /* LHWDetailViewController.m */,
 				1133DE941EC4BB32006A6570 /* LHWCity.h */,
 				1133DE951EC4BB32006A6570 /* LHWCity.m */,
+				12E6125A1C501E0F0017AB28 /* Launch Screen.storyboard */,
 				AF207A4519F472D300FD95BF /* images */,
 				60ADD95C1989CFDB0086A6BC /* Images.xcassets */,
 				60ADD9511989CFDB0086A6BC /* Supporting Files */,
-				12E6125A1C501E0F0017AB28 /* Launch Screen.storyboard */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				1133DE961EC4BB32006A6570 /* LHWCity.m in Sources */,
 				1133DE931EC4B711006A6570 /* LHWCityViewController.m in Sources */,
 				1133DEA31EC4C20A006A6570 /* LHWDetailViewController.m in Sources */,
+				11F0D38F1EC4F53300484E40 /* LHWAddCityViewController.m in Sources */,
 				60ADD95B1989CFDB0086A6BC /* LHWAppDelegate.m in Sources */,
 				60ADD9571989CFDB0086A6BC /* main.m in Sources */,
 			);

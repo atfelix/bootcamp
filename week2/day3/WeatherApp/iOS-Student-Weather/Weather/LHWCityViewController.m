@@ -45,6 +45,19 @@
      forControlEvents:UIControlEventTouchUpInside];
 
     [self.view addSubview:button];
+
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    addButton.frame = CGRectMake(0, 0, 40, 40);
+    [addButton setTitle:@"Add"
+               forState:UIControlStateNormal];
+
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                   target:self
+                                                                                   action:nil];
+    barButtonItem.customView = addButton;
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +80,7 @@
     weatherImageView.center = self.view.center;
 
     [imageView addSubview:weatherImageView];
+
     [self.navigationController pushViewController:detailViewController
                                          animated:NO];
 }

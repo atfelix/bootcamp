@@ -63,10 +63,6 @@
 
     tabBarController.viewControllers = navControllers;
 
-    for (int i = 0; i < tabBarController.tabBar.items.count; i++) {
-        tabBarController.tabBar.items[i].badgeColor = colors[i];
-    }
-
     self.window.rootViewController = tabBarController;
     
     [self.window makeKeyAndVisible];
