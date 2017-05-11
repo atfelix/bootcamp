@@ -13,7 +13,7 @@
 
 - (Pizza *)makePizzaWithSize:(NSString *)sizeString toppings:(NSArray *)toppings {
 
-    Pizza *pizzaToMake;
+    
     PizzaSize size = [Pizza getPizzaSizeFromString:sizeString];
 
     if (size == PIZZA_SIZE_ERROR) {
@@ -34,6 +34,8 @@
                                       andToppings:toppings];
     BOOL shouldUpgradePizza = [self.delegate kitchenShouldUpgradeOrder:self];
 
+    Pizza *pizzaToMake;
+    
     if (shouldUpgradePizza && shouldMakePizza) {
         pizzaToMake = [[Pizza alloc] initWithSize:PIZZA_SIZE_LARGE
                                       andToppings:toppings];

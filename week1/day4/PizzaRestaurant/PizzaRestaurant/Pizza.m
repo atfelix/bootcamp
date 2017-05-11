@@ -52,7 +52,7 @@
 }
 
 +(Pizza *)largePepperoni {
-    return [[Pizza alloc] initWithSize:PIZZA_SIZE_LARGE
+    return [[self alloc] initWithSize:PIZZA_SIZE_LARGE
                            andToppings:@[@"pepperoni"]];
 }
 
