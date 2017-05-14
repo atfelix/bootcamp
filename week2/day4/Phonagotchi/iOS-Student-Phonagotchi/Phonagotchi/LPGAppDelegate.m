@@ -12,7 +12,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    application.applicationSupportsShakeToEdit = YES;
+
+    [self.window addSubview:self.window.rootViewController.view];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 							

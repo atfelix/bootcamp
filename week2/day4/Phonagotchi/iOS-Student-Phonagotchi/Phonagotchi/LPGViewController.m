@@ -8,13 +8,12 @@
 
 #import "LPGViewController.h"
 
-@import UIKit;
-
 #import "LPGPetModel.h"
 
 #define PointsBelowScreen 100
 #define SpeedUpTimeFactor 10.0
 #define MinimumPressDuration 0.15
+#define ProgressViewAnimationDurationTime 1
 
 @interface LPGViewController ()
 
@@ -32,7 +31,9 @@
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
 
-@property (nonatomic) NSArray<UIImage *> *imageArray;
+@property (nonatomic) UIImage *sleepingImage;
+@property (nonatomic) UIImage *defaultImage;
+@property (nonatomic) UIImage *grumpyImage;
 
 @end
 
@@ -42,11 +43,9 @@
     [super viewDidLoad];
 
     self.petModel = [[LPGPetModel alloc] init];
-    self.imageArray = @[
-                            [UIImage imageNamed:@"default.png"],
-                            [UIImage imageNamed:@"grumpy.png"],
-                            [UIImage imageNamed:@"sleeping.png"],
-    ];
+    self.defaultImage = [UIImage imageNamed:@"default.png"];
+    self.grumpyImage = [UIImage imageNamed:@"grumpy.png"];
+    self.sleepingImage = [UIImage imageNamed:@"sleeping.png"];
 	
     self.view.backgroundColor = [UIColor colorWithRed:(252.0/255.0) green:(240.0/255.0) blue:(228.0/255.0) alpha:1.0];
 
@@ -60,8 +59,20 @@
     [self addRestfulnessTimer];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        self.petModel.sleeping = NO;
+        self.petImageView.image = self.defaultImage;
+    }
+
+    if ([super respondsToSelector:@selector(motionEnded:withEvent:)] ) {
+        [super motionEnded:motion
+                 withEvent:event];
+    }
 }
 
 
@@ -258,12 +269,24 @@
 
 
 -(void)rubPet {
-    [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
-    [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
-    self.petImageView.image = (self.petModel.isHappy) ? self.imageArray[0] : self.imageArray[1];
+    if (self.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.petModel.sleeping = NO;
+    }
+    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
+        [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
+        self.petImageView.image = (self.petModel.isHappy) ? self.defaultImage : self.grumpyImage;
+    }
+    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        self.petImageView.image = (self.petModel.isSleeping) ? self.sleepingImage : self.defaultImage;
+    }
+
 }
 
 -(void)attemptToFeedPet {
+
+    self.petModel.sleeping = NO;
+    self.petImageView.image = self.defaultImage;
 
     CGPoint location = [self.longPressGestureRecognizer locationInView:self.view];
 
@@ -271,7 +294,7 @@
         self.feedingAppleImageView.center = location;
     }
     else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        if (![self isLocationOverPet:location]) {
+        if (self.petModel.isSleeping || ![self isLocationOverPet:location]) {
             [self animateFeedingAppleDown:location];
         }
         else {
@@ -311,25 +334,43 @@
 }
 
 -(void)addRestfulnessTimer {
-    self.restfulnessTimer = [NSTimer scheduledTimerWithTimeInterval:.1
+    self.restfulnessTimer = [NSTimer scheduledTimerWithTimeInterval:ProgressViewAnimationDurationTime
                                                              target:self
-                                                           selector:@selector(countDown)
-                                                           userInfo:nil
+                                                           selector:@selector(runPetSimulation:)
+                                                           userInfo:@{@"animationDurationTime":@(ProgressViewAnimationDurationTime),
+                                                                      @"sleepingRegenerationRate":@(self.petModel.regenerationRate)}
                                                             repeats:YES];
 
 }
 
--(void)countDown {
-    if (self.petModel.restfulness > 0) {
-        self.petModel.restfulness -= .1;
-        [UIView animateWithDuration:.1
-                         animations:^{
-                             [self.progressView setProgress:[self.petModel getAlertness]
-                                                   animated:YES];
-                         }];
+-(void)runPetSimulation:(NSTimer *)timer {
+    if (self.petModel.isSleeping) {
+        [self regenerateRestfulness:timer];
     }
     else {
-        [self.restfulnessTimer invalidate];
+        [self depleteRestfulness:timer];
+    }
+}
+
+-(void)depleteRestfulness:(NSTimer *)timer {
+    self.petModel.restfulness -= [[timer userInfo][@"animationDurationTime"] intValue];
+    [self animateProgessView:timer];
+    NSLog(@"%@", @(self.petModel.restfulness));
+
+    if ([self.petModel isFullyDepleted]) {
+        self.petModel.sleeping = YES;
+        self.petImageView.image = self.sleepingImage;
+    }
+}
+
+-(void)regenerateRestfulness:(NSTimer *)timer {
+    self.petModel.restfulness += [[timer userInfo][@"animationDurationTime"] intValue] * [[timer userInfo][@"sleepingRegenerationRate"] intValue];
+    [self animateProgessView:timer];
+    NSLog(@"%@", @(self.petModel.restfulness));
+
+    if (self.petModel.isFullyRested) {
+        self.petModel.sleeping = NO;
+        self.petImageView.image = self.defaultImage;
     }
 }
 
@@ -400,6 +441,14 @@
                      }
                      completion:^(BOOL finished) {
                          [self.view setNeedsLayout];
+                     }];
+}
+
+-(void)animateProgessView:(NSTimer *)timer {
+    [UIView animateWithDuration:[[timer userInfo][@"animationDurationTime"] intValue] 
+                     animations:^{
+                         [self.progressView setProgress:[self.petModel getAlertness]
+                                               animated:YES];
                      }];
 }
 

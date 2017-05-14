@@ -9,11 +9,13 @@
 #import "LPGPetModel.h"
 
 #define HappinessThreshold 52500
-#define InitialRestfulness 180
+#define InitialRestfulness 30
+#define SleepingRegenerationRate 3
 
 @interface LPGPetModel ()
 
 @property (nonatomic, assign, readwrite, getter=isHappy) BOOL happy;
+
 
 @end
 
@@ -25,6 +27,8 @@
     if (self) {
         _happy = YES;
         _restfulness = InitialRestfulness;
+        _sleeping = NO;
+        _regenerationRate = SleepingRegenerationRate;
     }
     return self;
 }
@@ -35,6 +39,15 @@
 
 -(float)getAlertness {
     return (float) self.restfulness / InitialRestfulness;
+}
+
+-(BOOL)isFullyRested {
+    self.restfulness = MIN(self.restfulness, InitialRestfulness);
+    return self.restfulness == InitialRestfulness;
+}
+
+-(BOOL)isFullyDepleted {
+    return self.restfulness == 0;
 }
 
 @end
