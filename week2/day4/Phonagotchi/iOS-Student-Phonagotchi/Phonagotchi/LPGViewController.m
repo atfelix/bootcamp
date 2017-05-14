@@ -25,8 +25,8 @@
 @property (nonatomic) UIImageView *appleImageView;
 @property (nonatomic) UIImageView *feedingAppleImageView;
 
-@property (nonatomic) NSLayoutConstraint *feedingAppleImageViewCenterXConstraint;
-@property (nonatomic) NSLayoutConstraint *feedingAppleImageViewCenterYConstraint;
+@property (nonatomic) UILabel *restfulnessLabel;
+@property (nonatomic) UIProgressView *progressView;
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
@@ -37,7 +37,7 @@
 
 @implementation LPGViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
 
     self.petModel = [[LPGPetModel alloc] init];
@@ -53,6 +53,69 @@
     [self createBasketAndAppleViews];
     [self createFeedingAppleView];
     [self createPanGestureRecognizer];
+
+    [self addRestfulnessLabel];
+    [self addProgressView];
+}
+
+-(void)addRestfulnessLabel {
+    self.restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.restfulnessLabel.text = @"Restfulness";
+    [self.view addSubview:self.restfulnessLabel];
+
+    [self addRestfulnessLabelConstraints];
+}
+
+-(void)addRestfulnessLabelConstraints {
+    self.restfulnessLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeTopMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.topLayoutGuide
+                                 attribute:NSLayoutAttributeBottomMargin
+                                multiplier:1.0
+                                  constant:20.0].active = YES;
+}
+
+-(void)addProgressView {
+    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    self.progressView.progressTintColor = [UIColor blueColor];
+    [self.progressView setProgress:1 animated:YES];
+    [self.view addSubview:self.progressView];
+
+    [self addProgressViewConstraints];
+}
+
+-(void)addProgressViewConstraints {
+    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:20.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:-5.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
 }
 
 -(void)rubPet {
@@ -137,26 +200,7 @@
     [self addLongPressGestureRecognizerToFeedingAppleView];
 }
 
--(void)changeFeedingAppleImageViewCenterConstraints:(CGPoint)location {
-    self.feedingAppleImageViewCenterXConstraint = [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                                                               attribute:NSLayoutAttributeCenterX
-                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                  toItem:nil
-                                                                               attribute:NSLayoutAttributeNotAnAttribute
-                                                                              multiplier:1.0
-                                                                                constant:location.x];
-    self.feedingAppleImageViewCenterXConstraint.active = YES;
-    self.feedingAppleImageViewCenterYConstraint = [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                                                               attribute:NSLayoutAttributeCenterY
-                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                  toItem:nil
-                                                                               attribute:NSLayoutAttributeNotAnAttribute
-                                                                              multiplier:1.0
-                                                                                constant:location.y];
-    self.feedingAppleImageViewCenterYConstraint.active = YES;
-}
-
--(void) addFeedingAppleImageViewConstraints {
+-(void)addFeedingAppleImageViewConstraints {
     [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
                                  attribute:NSLayoutAttributeWidth
                                  relatedBy:NSLayoutRelationEqual
@@ -274,7 +318,7 @@
     }
 }
 
--(BOOL) isLocationOverPet:(CGPoint)location {
+-(BOOL)isLocationOverPet:(CGPoint)location {
 
     CGPoint locationOverPet = [self.view convertPoint:location
                                                toView:self.petImageView];
