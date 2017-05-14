@@ -105,6 +105,7 @@
     [self update:&_currentMouthIndex
          andData:self.data.mouthImages
   andUIImageView:self.mouthView
+     inDirection:NO];
 }
 
 @end
