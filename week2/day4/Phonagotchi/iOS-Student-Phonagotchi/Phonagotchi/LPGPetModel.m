@@ -9,6 +9,7 @@
 #import "LPGPetModel.h"
 
 #define HappinessThreshold 52500
+#define InitialRestfulness 180
 
 @interface LPGPetModel ()
 
@@ -23,12 +24,17 @@
     self = [super init];
     if (self) {
         _happy = YES;
+        _restfulness = InitialRestfulness;
     }
     return self;
 }
 
 -(void)rubPetWithVelocity:(CGPoint)velocity {
-    self.happy = (velocity.x * velocity.x + velocity.y * velocity.y < HappinessThreshold) ? YES : NO;
+    self.happy = (velocity.x * velocity.x + velocity.y * velocity.y < [self getAlertness] * HappinessThreshold) ? YES : NO;
+}
+
+-(float)getAlertness {
+    return (float) self.restfulness / InitialRestfulness;
 }
 
 @end

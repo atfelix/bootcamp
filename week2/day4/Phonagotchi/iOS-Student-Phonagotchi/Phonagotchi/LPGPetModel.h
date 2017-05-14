@@ -11,7 +11,9 @@
 @interface LPGPetModel : NSObject
 
 @property (nonatomic, assign, readonly, getter=isHappy) BOOL happy;
+@property (nonatomic, assign) int restfulness;
 
 -(void)rubPetWithVelocity:(CGPoint) velocity;
+-(float)getAlertness;
 
 @end

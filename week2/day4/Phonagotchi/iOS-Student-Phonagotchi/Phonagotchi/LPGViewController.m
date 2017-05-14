@@ -27,6 +27,7 @@
 
 @property (nonatomic) UILabel *restfulnessLabel;
 @property (nonatomic) UIProgressView *progressView;
+@property (nonatomic) NSTimer *restfulnessTimer;
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
@@ -56,73 +57,16 @@
 
     [self addRestfulnessLabel];
     [self addProgressView];
+    [self addRestfulnessTimer];
 }
 
--(void)addRestfulnessLabel {
-    self.restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.restfulnessLabel.text = @"Restfulness";
-    [self.view addSubview:self.restfulnessLabel];
-
-    [self addRestfulnessLabelConstraints];
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
--(void)addRestfulnessLabelConstraints {
-    self.restfulnessLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeTopMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.topLayoutGuide
-                                 attribute:NSLayoutAttributeBottomMargin
-                                multiplier:1.0
-                                  constant:20.0].active = YES;
-}
 
--(void)addProgressView {
-    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    self.progressView.progressTintColor = [UIColor blueColor];
-    [self.progressView setProgress:1 animated:YES];
-    [self.view addSubview:self.progressView];
+#pragma mark - Pet Image View
 
-    [self addProgressViewConstraints];
-}
-
--(void)addProgressViewConstraints {
-    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:20.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:-5.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-}
-
--(void)rubPet {
-    [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
-    [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
-    self.petImageView.image = (self.petModel.isHappy) ? self.imageArray[0] : self.imageArray[1];
-}
 
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -156,11 +100,26 @@
                                                            constant:0.0]];
 }
 
+
+#pragma mark - Gesture Recognizers
+
+
 -(void)createPanGestureRecognizer {
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                         action:@selector(rubPet)];
     [self.petImageView addGestureRecognizer:self.panGestureRecognizer];
 }
+
+-(void)addLongPressGestureRecognizerToFeedingAppleView {
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(attemptToFeedPet)];
+    self.longPressGestureRecognizer.minimumPressDuration = MinimumPressDuration;
+    [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
+}
+
+
+#pragma mark - Basket and Apple Views
+
 
 -(void)createBasketAndAppleViews {
     [self createBasketView];
@@ -294,11 +253,14 @@
                                   constant:0.0].active = YES;
 }
 
--(void)addLongPressGestureRecognizerToFeedingAppleView {
-    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(attemptToFeedPet)];
-    self.longPressGestureRecognizer.minimumPressDuration = MinimumPressDuration;
-    [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
+
+#pragma mark - Communication with Pet Model
+
+
+-(void)rubPet {
+    [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
+    [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
+    self.petImageView.image = (self.petModel.isHappy) ? self.imageArray[0] : self.imageArray[1];
 }
 
 -(void)attemptToFeedPet {
@@ -318,15 +280,109 @@
     }
 }
 
--(BOOL)isLocationOverPet:(CGPoint)location {
 
-    CGPoint locationOverPet = [self.view convertPoint:location
-                                               toView:self.petImageView];
+#pragma mark - Restfulness methods
 
-    return (0 <= locationOverPet.x
-            && locationOverPet.x <= self.petImageView.frame.size.width
-            && 0 <= locationOverPet.y
-            && locationOverPet.y <= self.petImageView.frame.size.height);
+
+-(void)addRestfulnessLabel {
+    self.restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.restfulnessLabel.text = @"Restfulness";
+    [self.view addSubview:self.restfulnessLabel];
+
+    [self addRestfulnessLabelConstraints];
+}
+
+-(void)addRestfulnessLabelConstraints {
+    self.restfulnessLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeTopMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.topLayoutGuide
+                                 attribute:NSLayoutAttributeBottomMargin
+                                multiplier:1.0
+                                  constant:20.0].active = YES;
+}
+
+-(void)addRestfulnessTimer {
+    self.restfulnessTimer = [NSTimer scheduledTimerWithTimeInterval:.1
+                                                             target:self
+                                                           selector:@selector(countDown)
+                                                           userInfo:nil
+                                                            repeats:YES];
+
+}
+
+-(void)countDown {
+    if (self.petModel.restfulness > 0) {
+        self.petModel.restfulness -= .1;
+        [UIView animateWithDuration:.1
+                         animations:^{
+                             [self.progressView setProgress:[self.petModel getAlertness]
+                                                   animated:YES];
+                         }];
+    }
+    else {
+        [self.restfulnessTimer invalidate];
+    }
+}
+
+-(void)addProgressView {
+    self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+    self.progressView.progressTintColor = [UIColor blueColor];
+    [self.progressView setProgress:[self.petModel getAlertness]
+                          animated:NO];
+    [self.view addSubview:self.progressView];
+
+    [self addProgressViewConstraints];
+}
+
+-(void)addProgressViewConstraints {
+    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:20.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:-5.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.progressView
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.restfulnessLabel
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.0
+                                  constant:0.0].active = YES;
+}
+
+
+#pragma mark - Animations
+
+
+-(void)animateFeedPet {
+    [UIView animateWithDuration:1.0
+                          delay:0.2
+                        options:0
+                     animations:^{
+                         self.feedingAppleImageView.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.view setNeedsLayout];
+                         self.feedingAppleImageView.alpha = 1;
+                     }];
 }
 
 -(void)animateFeedingAppleDown:(CGPoint)location {
@@ -347,18 +403,21 @@
                      }];
 }
 
--(void)animateFeedPet {
-    [UIView animateWithDuration:1.0
-                          delay:0.2
-                        options:0
-                     animations:^{
-                         self.feedingAppleImageView.alpha = 0;
-                     }
-                     completion:^(BOOL finished) {
-                         [self.view setNeedsLayout];
-                         self.feedingAppleImageView.alpha = 1;
-                     }];
+
+#pragma mark - ViewController helper functions
+
+
+-(BOOL)isLocationOverPet:(CGPoint)location {
+
+    CGPoint locationOverPet = [self.view convertPoint:location
+                                               toView:self.petImageView];
+
+    return (0 <= locationOverPet.x
+            && locationOverPet.x <= self.petImageView.frame.size.width
+            && 0 <= locationOverPet.y
+            && locationOverPet.y <= self.petImageView.frame.size.height);
 }
+
 
 -(UIColor *) colorOfPoint:(CGPoint)point {
     unsigned char pixel[4] = {0, 0, 0, 0};
