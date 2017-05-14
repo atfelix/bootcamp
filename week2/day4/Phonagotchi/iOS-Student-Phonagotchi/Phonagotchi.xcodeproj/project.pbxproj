@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115EAA391EC9200100CDA53E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115EAA381EC9200100CDA53E /* AudioToolbox.framework */; };
 		1165F3151EC52045003C3D22 /* LPGPetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1165F3141EC52045003C3D22 /* LPGPetModel.m */; };
 		602CAE411984363700C9FE49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602CAE401984363700C9FE49 /* Foundation.framework */; };
 		602CAE431984363700C9FE49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602CAE421984363700C9FE49 /* CoreGraphics.framework */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		115EAA381EC9200100CDA53E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1165F3131EC52045003C3D22 /* LPGPetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPGPetModel.h; sourceTree = "<group>"; };
 		1165F3141EC52045003C3D22 /* LPGPetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPGPetModel.m; sourceTree = "<group>"; };
 		602CAE3D1984363700C9FE49 /* Phonagotchi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phonagotchi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115EAA391EC9200100CDA53E /* AudioToolbox.framework in Frameworks */,
 				602CAE431984363700C9FE49 /* CoreGraphics.framework in Frameworks */,
 				602CAE451984363700C9FE49 /* UIKit.framework in Frameworks */,
 				602CAE411984363700C9FE49 /* Foundation.framework in Frameworks */,
@@ -116,6 +119,7 @@
 		602CAE3F1984363700C9FE49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				115EAA381EC9200100CDA53E /* AudioToolbox.framework */,
 				602CAE401984363700C9FE49 /* Foundation.framework */,
 				602CAE421984363700C9FE49 /* CoreGraphics.framework */,
 				602CAE441984363700C9FE49 /* UIKit.framework */,

@@ -8,6 +8,8 @@
 
 #import "LPGViewController.h"
 
+@import AudioToolbox;
+
 #import "LPGPetModel.h"
 
 #define PointsBelowScreen 100
@@ -15,7 +17,7 @@
 #define MinimumPressDuration 0.15
 #define ProgressViewAnimationDurationTime 1
 
-@interface LPGViewController ()
+@interface LPGViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic) LPGPetModel *petModel;
 
@@ -30,6 +32,10 @@
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
+
+@property (nonatomic) UITextField *textField;
+@property (nonatomic) UIButton *button;
 
 @property (nonatomic) UIImage *sleepingImage;
 @property (nonatomic) UIImage *defaultImage;
@@ -50,13 +56,17 @@
     self.view.backgroundColor = [UIColor colorWithRed:(252.0/255.0) green:(240.0/255.0) blue:(228.0/255.0) alpha:1.0];
 
     [self createPetImageView];
-    [self createBasketAndAppleViews];
-    [self createFeedingAppleView];
-    [self createPanGestureRecognizer];
+    [self addBasketAndAppleViews];
+    [self addFeedingAppleView];
+    [self addPanGestureRecognizer];
 
     [self addRestfulnessLabel];
     [self addProgressView];
     [self addRestfulnessTimer];
+
+
+
+    [self addGestureRecognizers];
 }
 
 -(BOOL)canBecomeFirstResponder {
@@ -73,6 +83,10 @@
         [super motionEnded:motion
                  withEvent:event];
     }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 
@@ -115,10 +129,18 @@
 #pragma mark - Gesture Recognizers
 
 
--(void)createPanGestureRecognizer {
+-(void)addGestureRecognizers {
+    [self addPanGestureRecognizer];
+    [self addLongPressGestureRecognizerToFeedingAppleView];
+    [self addDoubleTapGestureRecognizer];
+}
+
+
+-(void)addPanGestureRecognizer {
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                         action:@selector(rubPet)];
     [self.petImageView addGestureRecognizer:self.panGestureRecognizer];
+    self.panGestureRecognizer.delegate = self;
 }
 
 -(void)addLongPressGestureRecognizerToFeedingAppleView {
@@ -128,16 +150,24 @@
     [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
 }
 
+-(void)addDoubleTapGestureRecognizer {
+    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(petMakesNoise)];
+    self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    [self.petImageView addGestureRecognizer:self.doubleTapGestureRecognizer];
+    self.doubleTapGestureRecognizer.delegate = self;
+}
+
 
 #pragma mark - Basket and Apple Views
 
 
--(void)createBasketAndAppleViews {
-    [self createBasketView];
-    [self createAppleView];
+-(void)addBasketAndAppleViews {
+    [self addBasketView];
+    [self addAppleView];
 }
 
--(void)createBasketView {
+-(void)addBasketView {
     self.bucketImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bucket.png"]];
     self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.bucketImageView.userInteractionEnabled = YES;
@@ -147,7 +177,7 @@
     [self addBucketImageViewConstraints];
 }
 
--(void)createAppleView {
+-(void)addAppleView {
     self.appleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple.png"]];
     self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appleImageView.userInteractionEnabled = YES;
@@ -157,7 +187,7 @@
     [self addAppleImageViewConstraints];
 }
 
--(void)createFeedingAppleView {
+-(void)addFeedingAppleView {
     self.feedingAppleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple.png"]];
     self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.feedingAppleImageView.userInteractionEnabled = YES;
@@ -303,6 +333,14 @@
     }
 }
 
+-(void)petMakesNoise {
+    if (self.doubleTapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        self.petModel.sleeping = NO;
+        self.petImageView.image = self.defaultImage;
+        AudioServicesPlaySystemSound((1 << 10) - 1);
+    }
+}
+
 
 #pragma mark - Restfulness methods
 
@@ -355,7 +393,6 @@
 -(void)depleteRestfulness:(NSTimer *)timer {
     self.petModel.restfulness -= [[timer userInfo][@"animationDurationTime"] intValue];
     [self animateProgessView:timer];
-    NSLog(@"%@", @(self.petModel.restfulness));
 
     if ([self.petModel isFullyDepleted]) {
         self.petModel.sleeping = YES;
@@ -366,7 +403,6 @@
 -(void)regenerateRestfulness:(NSTimer *)timer {
     self.petModel.restfulness += [[timer userInfo][@"animationDurationTime"] intValue] * [[timer userInfo][@"sleepingRegenerationRate"] intValue];
     [self animateProgessView:timer];
-    NSLog(@"%@", @(self.petModel.restfulness));
 
     if (self.petModel.isFullyRested) {
         self.petModel.sleeping = NO;
@@ -450,6 +486,16 @@
                          [self.progressView setProgress:[self.petModel getAlertness]
                                                animated:YES];
                      }];
+}
+
+
+#pragma mark - Button and TextField
+
+
+-(void)addButton {
+}
+
+-(void)addTextField {
 }
 
 
