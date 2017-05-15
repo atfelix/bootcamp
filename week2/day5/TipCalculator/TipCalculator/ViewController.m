@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#define TipRate 0.15
+
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
@@ -27,5 +29,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)calculateTip:(UIButton *)sender {
+    double tipAmount = TipRate * [self.billAmountTextField.text doubleValue];
+}
 
 @end
