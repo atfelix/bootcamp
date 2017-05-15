@@ -64,9 +64,11 @@
     [self addProgressView];
     [self addRestfulnessTimer];
 
-
+    [self addButtonAndTextField];
 
     [self addGestureRecognizers];
+
+    [self.view layoutIfNeeded];
 }
 
 -(BOOL)canBecomeFirstResponder {
@@ -337,6 +339,7 @@
     if (self.doubleTapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
         self.petModel.sleeping = NO;
         self.petImageView.image = self.defaultImage;
+
         AudioServicesPlaySystemSound((1 << 10) - 1);
     }
 }
@@ -450,6 +453,7 @@
 
 
 -(void)animateFeedPet {
+    
     [UIView animateWithDuration:1.0
                           delay:0.2
                         options:0
@@ -492,11 +496,75 @@
 #pragma mark - Button and TextField
 
 
+-(void)addButtonAndTextField {
+    [self addButton];
+    [self addTextField];
+}
+
 -(void)addButton {
+    self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.button setTitle:@"Send"
+                 forState:UIControlStateNormal];
+
+    [self.view addSubview:self.button];
+
+    [self addButtonConstraints];
 }
 
 -(void)addTextField {
+    self.textField = [[UITextField alloc] init];
+    self.textField.placeholder = @"Send message";
+    self.textField.textAlignment = NSTextAlignmentRight;
+
+    [self.view addSubview:self.textField];
+    [self addTextFieldConstraints];
 }
+
+-(void)addButtonConstraints {
+    self.button.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint constraintWithItem:self.button
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:-5.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.button
+                                 attribute:NSLayoutAttributeBottomMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeBottomMargin
+                                multiplier:1.0
+                                  constant:-10.0].active = YES;
+}
+
+-(void)addTextFieldConstraints {
+    self.textField.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint constraintWithItem:self.textField
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:-5.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.textField
+                                 attribute:NSLayoutAttributeBottomMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.button
+                                 attribute:NSLayoutAttributeTopMargin
+                                multiplier:1.0
+                                  constant:-10.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.textField
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.bucketImageView
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:20.0].active = YES;
+}
+
 
 
 #pragma mark - ViewController helper functions
