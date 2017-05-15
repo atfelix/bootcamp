@@ -12,11 +12,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    application.applicationSupportsShakeToEdit = YES;
-
-    [self.window addSubview:self.window.rootViewController.view];
-    [self.window makeKeyAndVisible];
-
     return YES;
 }
 							

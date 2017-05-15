@@ -17,9 +17,11 @@
 #define MinimumPressDuration 0.15
 #define ProgressViewAnimationDurationTime 1
 
-@interface LPGViewController () <UIGestureRecognizerDelegate>
+@interface LPGViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) LPGPetModel *petModel;
+
+@property (nonatomic) UIScrollView *scrollView;
 
 @property (nonatomic) UIImageView *petImageView;
 @property (nonatomic) UIImageView *bucketImageView;
@@ -33,6 +35,7 @@
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
+@property (nonatomic) UITapGestureRecognizer *singleTapGestureRecognizer;
 
 @property (nonatomic) UITextField *textField;
 @property (nonatomic) UIButton *button;
@@ -68,6 +71,8 @@
 
     [self addGestureRecognizers];
 
+    [self registerKeyboardNotifications];
+
     [self.view layoutIfNeeded];
 }
 
@@ -88,6 +93,11 @@
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    for (id x in self.textField.gestureRecognizers) {
+        if ([gestureRecognizer class] == [x class]) {
+            return NO;
+        }
+    }
     return YES;
 }
 
@@ -135,8 +145,8 @@
     [self addPanGestureRecognizer];
     [self addLongPressGestureRecognizerToFeedingAppleView];
     [self addDoubleTapGestureRecognizer];
+    [self addSingleTapGestureRecognizer];
 }
-
 
 -(void)addPanGestureRecognizer {
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
@@ -158,6 +168,14 @@
     self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
     [self.petImageView addGestureRecognizer:self.doubleTapGestureRecognizer];
     self.doubleTapGestureRecognizer.delegate = self;
+}
+
+-(void)addSingleTapGestureRecognizer {
+    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.textField
+                                                                              action:@selector(resignFirstResponder)];
+    [self.view addGestureRecognizer:self.singleTapGestureRecognizer];
+
+    self.singleTapGestureRecognizer.delegate = self;
 }
 
 
@@ -453,7 +471,7 @@
 
 
 -(void)animateFeedPet {
-    
+
     [UIView animateWithDuration:1.0
                           delay:0.2
                         options:0
@@ -506,6 +524,10 @@
     [self.button setTitle:@"Send"
                  forState:UIControlStateNormal];
 
+    [self.button addTarget:self
+                    action:@selector(sendMessageToPet)
+          forControlEvents:UIControlEventTouchUpInside];
+
     [self.view addSubview:self.button];
 
     [self addButtonConstraints];
@@ -515,6 +537,8 @@
     self.textField = [[UITextField alloc] init];
     self.textField.placeholder = @"Send message";
     self.textField.textAlignment = NSTextAlignmentRight;
+    self.textField.returnKeyType = UIReturnKeySend;
+    self.textField.delegate = self;
 
     [self.view addSubview:self.textField];
     [self addTextFieldConstraints];
@@ -565,6 +589,65 @@
                                   constant:20.0].active = YES;
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self sendMessageToPet];
+    return YES;
+}
+
+-(void)sendMessageToPet {
+    if (self.textField.text.length > 0) {
+        self.textField.text = @"";
+    }
+    [self.textField resignFirstResponder];
+}
+
+
+#pragma mark - Keyboard Functions
+
+
+-(void)registerKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardShowsOnScreen:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardHidesOffScreen:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShowOnScreen:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHideOffScreen:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+}
+
+-(void)keyboardShowsOnScreen:(NSNotification *)notification {
+    [UIView setAnimationsEnabled:NO];
+
+    CGSize size = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.view.frame = CGRectMake(0, -size.height, self.view.frame.size.width, self.view.frame.size.height);
+
+    [self.view layoutIfNeeded];
+}
+
+-(void)keyboardDidShowOnScreen:(NSNotification *)NSNotification {
+    [UIView setAnimationsEnabled:YES];
+}
+
+-(void)keyboardHidesOffScreen:(NSNotification *)notification {
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    [self.view layoutIfNeeded];
+
+    [UIView setAnimationsEnabled:NO];
+}
+
+-(void)keyboardDidHideOffScreen:(NSNotification *)notification {
+    [UIView setAnimationsEnabled:YES];
+}
 
 
 #pragma mark - ViewController helper functions
@@ -580,7 +663,6 @@
             && 0 <= locationOverPet.y
             && locationOverPet.y <= self.petImageView.frame.size.height);
 }
-
 
 -(UIColor *) colorOfPoint:(CGPoint)point {
     unsigned char pixel[4] = {0, 0, 0, 0};
