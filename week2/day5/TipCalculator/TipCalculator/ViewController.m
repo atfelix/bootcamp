@@ -10,6 +10,8 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
+
 @end
 
 @implementation ViewController
