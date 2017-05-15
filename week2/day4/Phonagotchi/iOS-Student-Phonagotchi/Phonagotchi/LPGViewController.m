@@ -12,10 +12,48 @@
 
 #import "LPGPetModel.h"
 
-#define PointsBelowScreen 100
-#define SpeedUpTimeFactor 10.0
-#define MinimumPressDuration 0.15
-#define ProgressViewAnimationDurationTime 1
+
+#pragma mark Background Color Macros
+
+
+#define BackgroundColorRedHue (252.0 / 255.0)
+#define BackgroundColorGreenHue (240.0 / 255.0)
+#define BackgroundColorBlueHue (228.0 / 255.0)
+#define BackgroundColorAlphaValue (1.0)
+
+
+#pragma mark Animation Times
+
+#define MinimumPressDuration (0.15)
+#define ProgressViewAnimationDurationTime (1)
+#define PetResponseAnimationDurationTime (3)
+#define PetResponsePlaceHolderAnimationDurationTime (1)
+#define AnimationDurationTimeDictionaryKey (0)
+#define SleepingRegenerationRateDictionaryKey (1)
+
+
+#pragma mark Other Macros
+
+#define PointsBelowScreen (100)
+
+#define AccelerationDueToGravity (9.8)
+#define SpeedUpTimeFactor (10.0)
+
+#define ChooChooSound ((1 << 10) - 1)
+
+#define NumberOfTapsRequiredToMakeNoise (2)
+
+
+#pragma mark Static NSStrings
+
+
+static NSString *RestfulnessLabelText = @"Restfulness";
+static NSString *DefaultImageNameString = @"default.png";
+static NSString *SleepingImageNameString = @"sleeping.png";
+static NSString *GrumpyImageNameString = @"grumpy.png";
+static NSString *AppleImageNameString = @"apple.png";
+static NSString *BucketImageNameString = @"bucket.png";
+static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 @interface LPGViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
 
@@ -39,66 +77,52 @@
 
 @property (nonatomic) UITextField *textField;
 @property (nonatomic) UIButton *button;
+@property (nonatomic) UILabel *petResponseLabel;
+@property (nonatomic) NSArray<NSString *> *petResponsesArray;
+@property (nonatomic, assign) NSUInteger currentPetResponseIndex;
 
 @property (nonatomic) UIImage *sleepingImage;
 @property (nonatomic) UIImage *defaultImage;
 @property (nonatomic) UIImage *grumpyImage;
+@property (nonatomic) UIImage *appleImage;
+@property (nonatomic) UIImage *bucketImage;
 
 @end
 
 @implementation LPGViewController
 
+#pragma mark - View Life Cycle
+
 -(void)viewDidLoad {
     [super viewDidLoad];
 
     self.petModel = [[LPGPetModel alloc] init];
-    self.defaultImage = [UIImage imageNamed:@"default.png"];
-    self.grumpyImage = [UIImage imageNamed:@"grumpy.png"];
-    self.sleepingImage = [UIImage imageNamed:@"sleeping.png"];
+    self.defaultImage = [UIImage imageNamed:DefaultImageNameString];
+    self.grumpyImage = [UIImage imageNamed:GrumpyImageNameString];
+    self.sleepingImage = [UIImage imageNamed:SleepingImageNameString];
+    self.appleImage = [UIImage imageNamed:AppleImageNameString];
+    self.bucketImage = [UIImage imageNamed:BucketImageNameString];
 	
-    self.view.backgroundColor = [UIColor colorWithRed:(252.0/255.0) green:(240.0/255.0) blue:(228.0/255.0) alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithRed:BackgroundColorRedHue
+                                                green:BackgroundColorGreenHue
+                                                 blue:BackgroundColorBlueHue
+                                                alpha:BackgroundColorAlphaValue];
 
     [self createPetImageView];
     [self addBasketAndAppleViews];
     [self addFeedingAppleView];
-    [self addPanGestureRecognizer];
 
     [self addRestfulnessLabel];
     [self addProgressView];
     [self addRestfulnessTimer];
 
-    [self addButtonAndTextField];
+    [self addMessageService];
 
     [self addGestureRecognizers];
 
     [self registerKeyboardNotifications];
 
     [self.view layoutIfNeeded];
-}
-
--(BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
--(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (event.subtype == UIEventSubtypeMotionShake) {
-        self.petModel.sleeping = NO;
-        self.petImageView.image = self.defaultImage;
-    }
-
-    if ([super respondsToSelector:@selector(motionEnded:withEvent:)] ) {
-        [super motionEnded:motion
-                 withEvent:event];
-    }
-}
-
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    for (id x in self.textField.gestureRecognizers) {
-        if ([gestureRecognizer class] == [x class]) {
-            return NO;
-        }
-    }
-    return YES;
 }
 
 
@@ -108,13 +132,12 @@
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.petImageView.image = [UIImage imageNamed:@"default"];
+    self.petImageView.image = self.defaultImage;
     self.petImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.petImageView];
 
     self.petImageView.layer.borderColor = [UIColor redColor].CGColor;
-    self.petImageView.layer.borderWidth = 2.0;
 
     [self addPetImageViewConstraints];
 }
@@ -138,48 +161,7 @@
 }
 
 
-#pragma mark - Gesture Recognizers
-
-
--(void)addGestureRecognizers {
-    [self addPanGestureRecognizer];
-    [self addLongPressGestureRecognizerToFeedingAppleView];
-    [self addDoubleTapGestureRecognizer];
-    [self addSingleTapGestureRecognizer];
-}
-
--(void)addPanGestureRecognizer {
-    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                        action:@selector(rubPet)];
-    [self.petImageView addGestureRecognizer:self.panGestureRecognizer];
-    self.panGestureRecognizer.delegate = self;
-}
-
--(void)addLongPressGestureRecognizerToFeedingAppleView {
-    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(attemptToFeedPet)];
-    self.longPressGestureRecognizer.minimumPressDuration = MinimumPressDuration;
-    [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
-}
-
--(void)addDoubleTapGestureRecognizer {
-    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(petMakesNoise)];
-    self.doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-    [self.petImageView addGestureRecognizer:self.doubleTapGestureRecognizer];
-    self.doubleTapGestureRecognizer.delegate = self;
-}
-
--(void)addSingleTapGestureRecognizer {
-    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.textField
-                                                                              action:@selector(resignFirstResponder)];
-    [self.view addGestureRecognizer:self.singleTapGestureRecognizer];
-
-    self.singleTapGestureRecognizer.delegate = self;
-}
-
-
-#pragma mark - Basket and Apple Views
+#pragma mark - Feeding Views
 
 
 -(void)addBasketAndAppleViews {
@@ -188,7 +170,7 @@
 }
 
 -(void)addBasketView {
-    self.bucketImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bucket.png"]];
+    self.bucketImageView = [[UIImageView alloc] initWithImage:self.bucketImage];
     self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.bucketImageView.userInteractionEnabled = YES;
 
@@ -198,7 +180,7 @@
 }
 
 -(void)addAppleView {
-    self.appleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple.png"]];
+    self.appleImageView = [[UIImageView alloc] initWithImage:self.appleImage];
     self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appleImageView.userInteractionEnabled = YES;
 
@@ -208,7 +190,7 @@
 }
 
 -(void)addFeedingAppleView {
-    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple.png"]];
+    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:self.appleImage];
     self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.feedingAppleImageView.userInteractionEnabled = YES;
 
@@ -315,60 +297,12 @@
 }
 
 
-#pragma mark - Communication with Pet Model
-
-
--(void)rubPet {
-    if (self.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        self.petModel.sleeping = NO;
-    }
-    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
-        [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
-        self.petImageView.image = (self.petModel.isHappy) ? self.defaultImage : self.grumpyImage;
-    }
-    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        self.petImageView.image = (self.petModel.isSleeping) ? self.sleepingImage : self.defaultImage;
-    }
-
-}
-
--(void)attemptToFeedPet {
-
-    self.petModel.sleeping = NO;
-    self.petImageView.image = self.defaultImage;
-
-    CGPoint location = [self.longPressGestureRecognizer locationInView:self.view];
-
-    if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        self.feedingAppleImageView.center = location;
-    }
-    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        if (self.petModel.isSleeping || ![self isLocationOverPet:location]) {
-            [self animateFeedingAppleDown:location];
-        }
-        else {
-            [self animateFeedPet];
-        }
-    }
-}
-
--(void)petMakesNoise {
-    if (self.doubleTapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        self.petModel.sleeping = NO;
-        self.petImageView.image = self.defaultImage;
-
-        AudioServicesPlaySystemSound((1 << 10) - 1);
-    }
-}
-
-
-#pragma mark - Restfulness methods
+#pragma mark - Restfulness View
 
 
 -(void)addRestfulnessLabel {
     self.restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.restfulnessLabel.text = @"Restfulness";
+    self.restfulnessLabel.text = RestfulnessLabelText;
     [self.view addSubview:self.restfulnessLabel];
 
     [self addRestfulnessLabelConstraints];
@@ -384,50 +318,39 @@
                                 multiplier:1.0
                                   constant:0.0].active = YES;
     [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeTopMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.topLayoutGuide
                                  attribute:NSLayoutAttributeBottomMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.petImageView
+                                 attribute:NSLayoutAttributeTopMargin
                                 multiplier:1.0
-                                  constant:20.0].active = YES;
+                                  constant:-20.0].active = YES;
 }
 
 -(void)addRestfulnessTimer {
     self.restfulnessTimer = [NSTimer scheduledTimerWithTimeInterval:ProgressViewAnimationDurationTime
                                                              target:self
                                                            selector:@selector(runPetSimulation:)
-                                                           userInfo:@{@"animationDurationTime":@(ProgressViewAnimationDurationTime),
-                                                                      @"sleepingRegenerationRate":@(self.petModel.regenerationRate)}
+                                                           userInfo:@{@(AnimationDurationTimeDictionaryKey):@(ProgressViewAnimationDurationTime),
+                                                                      @(SleepingRegenerationRateDictionaryKey):@(self.petModel.regenerationRate)}
                                                             repeats:YES];
 
 }
 
--(void)runPetSimulation:(NSTimer *)timer {
-    if (self.petModel.isSleeping) {
-        [self regenerateRestfulness:timer];
-    }
-    else {
-        [self depleteRestfulness:timer];
-    }
-}
-
 -(void)depleteRestfulness:(NSTimer *)timer {
-    self.petModel.restfulness -= [[timer userInfo][@"animationDurationTime"] intValue];
+    self.petModel.restfulness -= [[timer userInfo][@(AnimationDurationTimeDictionaryKey)] intValue];
     [self animateProgessView:timer];
 
     if ([self.petModel isFullyDepleted]) {
-        self.petModel.sleeping = YES;
-        self.petImageView.image = self.sleepingImage;
+        [self makePetSleep];
     }
 }
 
 -(void)regenerateRestfulness:(NSTimer *)timer {
-    self.petModel.restfulness += [[timer userInfo][@"animationDurationTime"] intValue] * [[timer userInfo][@"sleepingRegenerationRate"] intValue];
+    self.petModel.restfulness += [[timer userInfo][@(AnimationDurationTimeDictionaryKey)] intValue] * [[timer userInfo][@(SleepingRegenerationRateDictionaryKey)] intValue];
     [self animateProgessView:timer];
 
     if (self.petModel.isFullyRested) {
-        self.petModel.sleeping = NO;
-        self.petImageView.image = self.defaultImage;
+        [self wakePet];
     }
 }
 
@@ -467,56 +390,13 @@
 }
 
 
-#pragma mark - Animations
+#pragma mark - Messaging Service
 
 
--(void)animateFeedPet {
-
-    [UIView animateWithDuration:1.0
-                          delay:0.2
-                        options:0
-                     animations:^{
-                         self.feedingAppleImageView.alpha = 0;
-                     }
-                     completion:^(BOOL finished) {
-                         [self.view setNeedsLayout];
-                         self.feedingAppleImageView.alpha = 1;
-                     }];
-}
-
--(void)animateFeedingAppleDown:(CGPoint)location {
-
-    CGFloat top = location.y;
-    CGFloat bottom = self.view.bounds.size.height + PointsBelowScreen;
-
-    NSTimeInterval duration = sqrt(2 * (bottom - top) / 9.8) / SpeedUpTimeFactor;
-
-    [UIView animateWithDuration:duration
-                          delay:0.2
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.feedingAppleImageView.center = CGPointMake(location.x, bottom);
-                     }
-                     completion:^(BOOL finished) {
-                         [self.view setNeedsLayout];
-                     }];
-}
-
--(void)animateProgessView:(NSTimer *)timer {
-    [UIView animateWithDuration:[[timer userInfo][@"animationDurationTime"] intValue] 
-                     animations:^{
-                         [self.progressView setProgress:[self.petModel getAlertness]
-                                               animated:YES];
-                     }];
-}
-
-
-#pragma mark - Button and TextField
-
-
--(void)addButtonAndTextField {
+-(void)addMessageService {
     [self addButton];
     [self addTextField];
+    [self addPetResponseLabel];
 }
 
 -(void)addButton {
@@ -596,13 +476,195 @@
 
 -(void)sendMessageToPet {
     if (self.textField.text.length > 0) {
+        self.petResponseLabel.text = self.petResponsesArray[self.currentPetResponseIndex];
+        self.currentPetResponseIndex = (self.currentPetResponseIndex + 1) % self.petResponsesArray.count;
+
+        [self animatePetResponse];
+
         self.textField.text = @"";
     }
     [self.textField resignFirstResponder];
 }
 
+-(void)animatePetResponse {
+    self.petResponseLabel.alpha = 1;
+    self.petResponseLabel.textColor = [UIColor blueColor];
+
+    [UIView animateWithDuration:PetResponseAnimationDurationTime
+                     animations:^{
+                         self.petResponseLabel.alpha = 0;
+                     }
+                     completion:^(BOOL finished){
+                         self.petResponseLabel.text = PetResponsePlaceholderString;
+                         self.petResponseLabel.textColor = [UIColor grayColor];
+                         [UIView animateWithDuration:PetResponsePlaceHolderAnimationDurationTime
+                                          animations:^{
+                                              self.petResponseLabel.alpha = 0.5;
+                                          }];
+                     }];
+}
+
+-(void)addPetResponseLabel {
+    self.petResponsesArray = @[
+                               @"Stop feeding me Apples.",
+                               @"Can I vomit in your shoes?",
+                               @"I'm not listening to you.  I'm a cat"
+                               ];
+    self.currentPetResponseIndex = 0;
+    self.petResponseLabel = [[UILabel alloc] init];
+    self.petResponseLabel.text = PetResponsePlaceholderString;
+    self.petResponseLabel.textAlignment = NSTextAlignmentRight;
+    self.petResponseLabel.textColor = [UIColor grayColor];
+    self.petResponseLabel.alpha = 0.5;
+
+    [self.view addSubview:self.petResponseLabel];
+
+    [self addPetResponseLabelConstraints];
+}
+
+-(void)addPetResponseLabelConstraints {
+    self.petResponseLabel.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeTrailingMargin
+                                multiplier:1.0
+                                  constant:-10.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
+                                 attribute:NSLayoutAttributeTopMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.petImageView
+                                 attribute:NSLayoutAttributeBottomMargin
+                                multiplier:1.0
+                                  constant:10.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
+                                 attribute:NSLayoutAttributeLeadingMargin
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.view
+                                 attribute:NSLayoutAttributeLeading
+                                multiplier:1.0
+                                  constant:10.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
+                                 attribute:NSLayoutAttributeHeight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:nil
+                                 attribute:NSLayoutAttributeNotAnAttribute
+                                multiplier:1.0
+                                  constant:40.0].active = YES;
+}
+
+#pragma mark - Communication with Pet Model
+
+
+-(void)rubPet {
+    if (self.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        [self wakePet];
+    }
+    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
+        [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
+        self.petImageView.image = (self.petModel.isHappy) ? self.defaultImage : self.grumpyImage;
+    }
+    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        self.petImageView.image = (self.petModel.isSleeping) ? self.sleepingImage : self.defaultImage;
+    }
+
+}
+
+-(void)attemptToFeedPet {
+
+    [self wakePet];
+
+    CGPoint location = [self.longPressGestureRecognizer locationInView:self.view];
+
+    if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        self.feedingAppleImageView.center = location;
+    }
+    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        ([self isLocationOverPet:location]) ? [self animateFeedPet] : [self animateFeedingAppleDown:location];
+    }
+}
+
+-(void)petMakesNoise {
+    if (self.doubleTapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self wakePet];
+
+        AudioServicesPlaySystemSound(ChooChooSound);
+    }
+}
+
+-(void)wakePet {
+    [self changePetStateWithSleepingBool:NO];
+}
+
+-(void)makePetSleep {
+    [self changePetStateWithSleepingBool:YES];
+}
+
+-(void)changePetStateWithSleepingBool:(BOOL)isSleeping {
+    self.petModel.sleeping = isSleeping;
+    self.petImageView.image = (isSleeping) ? self.sleepingImage : self.defaultImage;
+}
+
+-(void)runPetSimulation:(NSTimer *)timer {
+    if (self.petModel.isSleeping) {
+        [self regenerateRestfulness:timer];
+    }
+    else {
+        [self depleteRestfulness:timer];
+    }
+}
+
+
+#pragma mark - Animations
+
+
+-(void)animateFeedPet {
+    [UIView animateWithDuration:1.0
+                          delay:0.2
+                        options:0
+                     animations:^{
+                         self.feedingAppleImageView.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.view setNeedsLayout];
+                         self.feedingAppleImageView.alpha = 1;
+                     }];
+}
+
+-(void)animateFeedingAppleDown:(CGPoint)location {
+
+    CGFloat top = location.y;
+    CGFloat bottom = self.view.bounds.size.height + PointsBelowScreen;
+
+    NSTimeInterval duration = [self calculateTimeToFallWithHeight:bottom - top
+                                                       andGravity:AccelerationDueToGravity] / SpeedUpTimeFactor;
+
+    [UIView animateWithDuration:duration
+                          delay:0.2
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.feedingAppleImageView.center = CGPointMake(location.x, bottom);
+                     }
+                     completion:^(BOOL finished) {
+                         [self.view setNeedsLayout];
+                     }];
+}
+
+-(void)animateProgessView:(NSTimer *)timer {
+    [UIView animateWithDuration:[[timer userInfo][@(AnimationDurationTimeDictionaryKey)] intValue]
+                     animations:^{
+                         [self.progressView setProgress:[self.petModel getAlertness]
+                                               animated:YES];
+                     }];
+}
+
 
 #pragma mark - Keyboard Functions
+
+// TODO: fix keyboard animation
 
 
 -(void)registerKeyboardNotifications {
@@ -625,30 +687,92 @@
 }
 
 -(void)keyboardShowsOnScreen:(NSNotification *)notification {
-    [UIView setAnimationsEnabled:NO];
-
     CGSize size = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    self.view.frame = CGRectMake(0, -size.height, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame = CGRectMake(self.view.frame.origin.x,
+                                 -size.height,
+                                 self.view.frame.size.width,
+                                 self.view.frame.size.height);
 
     [self.view layoutIfNeeded];
 }
 
 -(void)keyboardDidShowOnScreen:(NSNotification *)NSNotification {
-    [UIView setAnimationsEnabled:YES];
+
 }
 
 -(void)keyboardHidesOffScreen:(NSNotification *)notification {
-    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame = CGRectMake(0,
+                                 0,
+                                 self.view.frame.size.width,
+                                 self.view.frame.size.height);
 
     [self.view layoutIfNeeded];
-
-    [UIView setAnimationsEnabled:NO];
 }
 
 -(void)keyboardDidHideOffScreen:(NSNotification *)notification {
-    [UIView setAnimationsEnabled:YES];
+
 }
 
+
+#pragma mark - Shake Motion Logic
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        [self wakePet];
+    }
+
+    if ([super respondsToSelector:@selector(motionEnded:withEvent:)] ) {
+        [super motionEnded:motion
+                 withEvent:event];
+    }
+}
+
+
+#pragma mark - Gesture Recognizers
+
+
+-(void)addGestureRecognizers {
+    [self addPanGestureRecognizer];
+    [self addLongPressGestureRecognizerToFeedingAppleView];
+    [self addDoubleTapGestureRecognizer];
+    [self addSingleTapGestureRecognizer];
+}
+
+-(void)addPanGestureRecognizer {
+    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(rubPet)];
+    [self.petImageView addGestureRecognizer:self.panGestureRecognizer];
+    self.panGestureRecognizer.delegate = self;
+}
+
+-(void)addLongPressGestureRecognizerToFeedingAppleView {
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(attemptToFeedPet)];
+    self.longPressGestureRecognizer.minimumPressDuration = MinimumPressDuration;
+    [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
+}
+
+-(void)addDoubleTapGestureRecognizer {
+    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(petMakesNoise)];
+    self.doubleTapGestureRecognizer.numberOfTapsRequired = NumberOfTapsRequiredToMakeNoise;
+    [self.petImageView addGestureRecognizer:self.doubleTapGestureRecognizer];
+    self.doubleTapGestureRecognizer.delegate = self;
+}
+
+-(void)addSingleTapGestureRecognizer {
+    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.textField
+                                                                              action:@selector(resignFirstResponder)];
+    [self.view addGestureRecognizer:self.singleTapGestureRecognizer];
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 
 #pragma mark - ViewController helper functions
 
@@ -662,6 +786,10 @@
             && locationOverPet.x <= self.petImageView.frame.size.width
             && 0 <= locationOverPet.y
             && locationOverPet.y <= self.petImageView.frame.size.height);
+}
+
+-(double)calculateTimeToFallWithHeight:(CGFloat)height andGravity:(CGFloat)gravity {
+    return sqrt(2.0 * height / gravity);
 }
 
 -(UIColor *) colorOfPoint:(CGPoint)point {
