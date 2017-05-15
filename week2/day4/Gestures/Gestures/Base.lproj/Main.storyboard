@@ -6,10 +6,49 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Edge-->
+        <scene sceneID="Gt3-F9-J6S">
+            <objects>
+                <viewController id="Ya8-gm-7gY" customClass="EdgeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9FV-lN-ep6"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZJc-H4-Psm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VFl-eX-jwb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giK-fN-H5A">
+                                <rect key="frame" x="354" y="127" width="700" height="325"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="325" id="DSk-TT-k1D"/>
+                                    <constraint firstAttribute="width" constant="700" id="bia-ZD-PM7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="giK-fN-H5A" firstAttribute="top" secondItem="9FV-lN-ep6" secondAttribute="bottom" constant="107" id="qj8-LI-M8d"/>
+                            <constraint firstItem="giK-fN-H5A" firstAttribute="leading" secondItem="VFl-eX-jwb" secondAttribute="trailingMargin" constant="-5" id="uAp-ep-Ves"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Edge" image="item6" id="AkE-O5-VqX"/>
+                    <connections>
+                        <outlet property="greenView" destination="giK-fN-H5A" id="g8h-wZ-XeH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3dm-4x-8PM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1948" y="-215.44227886056973"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PcO-Vw-GeW">
             <objects>
@@ -20,11 +59,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Ya8-gm-7gY" kind="relationship" relationship="viewControllers" id="LKf-T6-3aW"/>
                         <segue destination="ob9-S7-MIB" kind="relationship" relationship="viewControllers" id="wIv-sF-B3w"/>
                         <segue destination="jah-wg-4SF" kind="relationship" relationship="viewControllers" id="8VK-ys-7wQ"/>
-                        <segue destination="izw-NA-mdN" kind="relationship" relationship="viewControllers" id="7EF-6v-KfZ"/>
                         <segue destination="PzH-wN-Yfh" kind="relationship" relationship="viewControllers" id="xTA-N5-d9h"/>
                         <segue destination="w8K-hx-evo" kind="relationship" relationship="viewControllers" id="W7Z-oc-N8g"/>
+                        <segue destination="izw-NA-mdN" kind="relationship" relationship="viewControllers" id="lE3-u4-g9K"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E70-UA-r9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -127,10 +167,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRj-eX-krf">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRj-eX-krf">
                                 <rect key="frame" x="16" y="267" width="343" height="61"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOF-xS-wvf">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOF-xS-wvf">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -237,5 +277,6 @@
         <image name="item3" width="30" height="28"/>
         <image name="item4" width="30" height="30"/>
         <image name="item5" width="30" height="30"/>
+        <image name="item6" width="30" height="30"/>
     </resources>
 </document>

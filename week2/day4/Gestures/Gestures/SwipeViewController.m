@@ -34,10 +34,8 @@
           initialSpringVelocity:0.1
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         sender.view.frame = CGRectMake(sender.view.frame.origin.x,
-                                                        sender.view.frame.origin.y,
-                                                        sender.view.frame.size.width + direction * 100,
-                                                        sender.view.frame.size.height);
+                         sender.view.center = CGPointMake(sender.view.center.x + direction * 100,
+                                                          sender.view.center.y);
                      }
                      completion:^(BOOL finished) {
                          self.swiped ^= YES;

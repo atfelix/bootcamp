@@ -17,6 +17,7 @@
 		117311441ECA13C000026D49 /* PinchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311431ECA13C000026D49 /* PinchViewController.m */; };
 		117311471ECA256600026D49 /* SwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311461ECA256600026D49 /* SwipeViewController.m */; };
 		1173114A1ECA447E00026D49 /* RotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311491ECA447E00026D49 /* RotationViewController.m */; };
+		117311501ECA526300026D49 /* EdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173114F1ECA526300026D49 /* EdgeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		117311461ECA256600026D49 /* SwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeViewController.m; sourceTree = "<group>"; };
 		117311481ECA447E00026D49 /* RotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationViewController.h; sourceTree = "<group>"; };
 		117311491ECA447E00026D49 /* RotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationViewController.m; sourceTree = "<group>"; };
+		1173114E1ECA526300026D49 /* EdgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeViewController.h; sourceTree = "<group>"; };
+		1173114F1ECA526300026D49 /* EdgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				117311201ECA08DA00026D49 /* Main.storyboard */,
+				1173114E1ECA526300026D49 /* EdgeViewController.h */,
+				1173114F1ECA526300026D49 /* EdgeViewController.m */,
 				117311481ECA447E00026D49 /* RotationViewController.h */,
 				117311491ECA447E00026D49 /* RotationViewController.m */,
 				117311451ECA256600026D49 /* SwipeViewController.h */,
@@ -173,6 +178,7 @@
 				1173113E1ECA0E8300026D49 /* PanViewController.m in Sources */,
 				1173111C1ECA08DA00026D49 /* AppDelegate.m in Sources */,
 				117311441ECA13C000026D49 /* PinchViewController.m in Sources */,
+				117311501ECA526300026D49 /* EdgeViewController.m in Sources */,
 				1173114A1ECA447E00026D49 /* RotationViewController.m in Sources */,
 				117311471ECA256600026D49 /* SwipeViewController.m in Sources */,
 				117311411ECA0E9500026D49 /* TapViewController.m in Sources */,
