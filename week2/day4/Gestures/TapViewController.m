@@ -15,5 +15,8 @@
 @implementation TapViewController
 
 
+- (IBAction)squareTapped:(UITapGestureRecognizer *)sender {
+    sender.view.backgroundColor = ([sender.view.backgroundColor isEqual:[UIColor whiteColor]]) ? [UIColor blackColor] : [UIColor whiteColor];
+}
 
 @end

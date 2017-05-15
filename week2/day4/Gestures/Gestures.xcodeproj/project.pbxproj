@@ -14,6 +14,8 @@
 		117311271ECA08DA00026D49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117311251ECA08DA00026D49 /* LaunchScreen.storyboard */; };
 		1173113E1ECA0E8300026D49 /* PanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1173113D1ECA0E8300026D49 /* PanViewController.m */; };
 		117311411ECA0E9500026D49 /* TapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311401ECA0E9500026D49 /* TapViewController.m */; };
+		117311441ECA13C000026D49 /* PinchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311431ECA13C000026D49 /* PinchViewController.m */; };
+		117311471ECA256600026D49 /* SwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 117311461ECA256600026D49 /* SwipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		1173113D1ECA0E8300026D49 /* PanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanViewController.m; sourceTree = "<group>"; };
 		1173113F1ECA0E9500026D49 /* TapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapViewController.h; path = ../TapViewController.h; sourceTree = "<group>"; };
 		117311401ECA0E9500026D49 /* TapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapViewController.m; path = ../TapViewController.m; sourceTree = "<group>"; };
+		117311421ECA13C000026D49 /* PinchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinchViewController.h; sourceTree = "<group>"; };
+		117311431ECA13C000026D49 /* PinchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchViewController.m; sourceTree = "<group>"; };
+		117311451ECA256600026D49 /* SwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeViewController.h; sourceTree = "<group>"; };
+		117311461ECA256600026D49 /* SwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 			isa = PBXGroup;
 			children = (
 				117311201ECA08DA00026D49 /* Main.storyboard */,
+				117311451ECA256600026D49 /* SwipeViewController.h */,
+				117311461ECA256600026D49 /* SwipeViewController.m */,
+				117311421ECA13C000026D49 /* PinchViewController.h */,
+				117311431ECA13C000026D49 /* PinchViewController.m */,
 				1173113C1ECA0E8300026D49 /* PanViewController.h */,
 				1173113D1ECA0E8300026D49 /* PanViewController.m */,
 				1173113F1ECA0E9500026D49 /* TapViewController.h */,
@@ -157,6 +167,8 @@
 			files = (
 				1173113E1ECA0E8300026D49 /* PanViewController.m in Sources */,
 				1173111C1ECA08DA00026D49 /* AppDelegate.m in Sources */,
+				117311441ECA13C000026D49 /* PinchViewController.m in Sources */,
+				117311471ECA256600026D49 /* SwipeViewController.m in Sources */,
 				117311411ECA0E9500026D49 /* TapViewController.m in Sources */,
 				117311191ECA08DA00026D49 /* main.m in Sources */,
 			);
