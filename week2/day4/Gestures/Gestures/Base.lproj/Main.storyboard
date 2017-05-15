@@ -20,6 +20,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="ob9-S7-MIB" kind="relationship" relationship="viewControllers" id="wIv-sF-B3w"/>
                         <segue destination="jah-wg-4SF" kind="relationship" relationship="viewControllers" id="8VK-ys-7wQ"/>
                         <segue destination="izw-NA-mdN" kind="relationship" relationship="viewControllers" id="7EF-6v-KfZ"/>
                         <segue destination="PzH-wN-Yfh" kind="relationship" relationship="viewControllers" id="xTA-N5-d9h"/>
@@ -71,6 +72,48 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="524" y="-316"/>
+        </scene>
+        <!--Rotation-->
+        <scene sceneID="Kof-J0-kkj">
+            <objects>
+                <viewController id="ob9-S7-MIB" customClass="RotationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TcP-WL-Och"/>
+                        <viewControllerLayoutGuide type="bottom" id="WVy-QL-HdQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tkY-Fq-5tD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWH-az-n4L">
+                                <rect key="frame" x="137" y="283" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="S5V-Bl-QC8"/>
+                                    <constraint firstAttribute="height" constant="100" id="j59-iE-ymg"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="O7a-6L-Myn" appends="YES" id="5vO-T7-Ye4"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="AWH-az-n4L" firstAttribute="centerY" secondItem="tkY-Fq-5tD" secondAttribute="centerY" id="L1F-KV-WtI"/>
+                            <constraint firstItem="AWH-az-n4L" firstAttribute="centerX" secondItem="tkY-Fq-5tD" secondAttribute="centerX" id="bhg-wh-U9X"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rotation" image="item5" id="XN1-qg-EEX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9de-4H-Q8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <rotationGestureRecognizer id="O7a-6L-Myn">
+                    <connections>
+                        <action selector="rotateBlackView:" destination="ob9-S7-MIB" id="5W7-eb-TQv"/>
+                    </connections>
+                </rotationGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1708" y="456"/>
         </scene>
         <!--Swipe-->
         <scene sceneID="yHR-ea-afn">
@@ -193,5 +236,6 @@
         <image name="item2" width="30" height="28"/>
         <image name="item3" width="30" height="28"/>
         <image name="item4" width="30" height="30"/>
+        <image name="item5" width="30" height="30"/>
     </resources>
 </document>

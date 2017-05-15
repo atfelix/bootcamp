@@ -18,41 +18,30 @@
 @implementation SwipeViewController
 
 - (IBAction)whiteViewSwiped:(UISwipeGestureRecognizer *)sender {
-    CGRect frame = sender.view.frame;
-
     if (self.isSwiped && (sender.direction == UISwipeGestureRecognizerDirectionRight)) {
-        [UIView animateWithDuration:0.75
-                              delay:0
-             usingSpringWithDamping:0.175
-              initialSpringVelocity:0.125
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             sender.view.frame = CGRectMake(frame.origin.x,
-                                                            frame.origin.y,
-                                                            frame.size.width + 100,
-                                                            frame.size.height);
-                         }
-                         completion:^(BOOL finished) {
-                             self.swiped ^= YES;
-                         }];
+        [self animateSwipeWithSender:sender];
     }
     else if (!self.isSwiped && (sender.direction == UISwipeGestureRecognizerDirectionLeft)) {
-        [UIView animateWithDuration:0.75
-                              delay:0
-             usingSpringWithDamping:0.175
-              initialSpringVelocity:0.125
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             sender.view.frame = CGRectMake(frame.origin.x,
-                                                            frame.origin.y,
-                                                            frame.size.width - 100,
-                                                            frame.size.height);
-                         }
-                         completion:^(BOOL finished) {
-                             self.swiped ^= YES;
-                         }];
+        [self animateSwipeWithSender:sender];
     }
 }
 
+-(void)animateSwipeWithSender:(UISwipeGestureRecognizer *)sender {
+    int direction = (sender.direction == UISwipeGestureRecognizerDirectionLeft) ? -1 : +1;
+    [UIView animateWithDuration:0.75
+                          delay:0
+         usingSpringWithDamping:0.175
+          initialSpringVelocity:0.1
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         sender.view.frame = CGRectMake(sender.view.frame.origin.x,
+                                                        sender.view.frame.origin.y,
+                                                        sender.view.frame.size.width + direction * 100,
+                                                        sender.view.frame.size.height);
+                     }
+                     completion:^(BOOL finished) {
+                         self.swiped ^= YES;
+                     }];
+}
 
 @end
