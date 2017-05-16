@@ -14,5 +14,7 @@
 @property (nonatomic) NSString *todoDescription;
 @property (nonatomic) NSInteger priorityNumber;
 @property (nonatomic, assign, getter=isDone) BOOL done;
+@property (nonatomic) NSDate *dateCreated;
+@property (nonatomic) NSDate *dateFinished;
 
 @end

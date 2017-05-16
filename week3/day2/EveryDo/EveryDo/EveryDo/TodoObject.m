@@ -18,6 +18,8 @@
         _todoDescription = descriptionString;
         _priorityNumber = priorityNumber;
         _done = NO;
+        _dateCreated = [NSDate date];
+        _dateFinished = [NSDate date];
     }
     return self;
 }

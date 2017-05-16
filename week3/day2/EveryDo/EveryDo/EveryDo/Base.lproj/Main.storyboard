@@ -147,6 +147,13 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <connections>
+                        <outlet property="dataFinishedLabel" destination="V4C-wX-vcQ" id="YUp-9R-23U"/>
+                        <outlet property="dateCreatedLabel" destination="SFO-QN-sAs" id="UkF-Za-o8Q"/>
+                        <outlet property="priorityLabel" destination="Ny1-ZK-7Hm" id="aIj-25-5hW"/>
+                        <outlet property="textView" destination="BMN-Dj-D7a" id="bQl-Rk-fNz"/>
+                        <outlet property="titleLabel" destination="kbh-cB-2Mv" id="44D-Fa-mh3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +172,7 @@
                                 <rect key="frame" x="0.0" y="22" width="414" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="83.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="83.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-Je-tPR">

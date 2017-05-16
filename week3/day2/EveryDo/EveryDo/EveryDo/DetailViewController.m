@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 
+#import "TodoObject.h"
+
 @interface DetailViewController ()
 
 @end
@@ -16,7 +18,7 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem {
+- (void)setDetailItem:(TodoObject *)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
             
@@ -27,9 +29,16 @@
 
 
 - (void)configureView {
-    // Update the user interface for the detail item.
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd/MM/yyyy";
+
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+        self.titleLabel.text = self.detailItem.title;
+        self.textView.text = self.detailItem.todoDescription;
+        self.priorityLabel.text = [NSString stringWithFormat:@"%@", @(self.detailItem.priorityNumber)];
+        self.dateCreatedLabel.text = [dateFormatter stringFromDate:self.detailItem.dateCreated];
+        self.dataFinishedLabel.text = [dateFormatter stringFromDate:self.detailItem.dateFinished];
     }
 }
 

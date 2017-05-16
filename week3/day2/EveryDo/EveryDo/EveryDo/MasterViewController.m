@@ -76,8 +76,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoTableViewCell" forIndexPath:indexPath];
 
+    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoTableViewCell" forIndexPath:indexPath];
     cell.todoObject = self.todoObjects[indexPath.row];
     [cell updateDisplay];
     return cell;
@@ -98,6 +98,5 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
-
 
 @end
