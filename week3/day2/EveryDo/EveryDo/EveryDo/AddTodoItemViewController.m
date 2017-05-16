@@ -8,6 +8,8 @@
 
 #import "AddTodoItemViewController.h"
 
+#import "TodoObject.h"
+
 @interface AddTodoItemViewController ()
 
 @property (nonatomic) UIStatusBarStyle originalStyle;
@@ -62,6 +64,13 @@
 */
 
 - (IBAction)saveTodoItem:(UIButton *)sender {
+    TodoObject *todo = [[TodoObject alloc] initWithTitle:self.titleTextField.text
+                                          andDescription:self.descriptionTextView.text
+                                       andPriorityNumber:[self.priorityTextField.text integerValue]
+                                         andDeadlineDate:self.datePicker.date
+                                         andDeadlineTime:self.timePicker.date];
+
+    [self.delegate saveTodoItem:todo];
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }

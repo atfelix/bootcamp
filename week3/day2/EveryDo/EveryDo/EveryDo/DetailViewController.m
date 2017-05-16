@@ -33,12 +33,16 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd/MM/yyyy";
 
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.dateFormat = @"HH:mm";
+
     if (self.detailItem) {
         self.titleLabel.text = self.detailItem.title;
         self.textView.text = self.detailItem.todoDescription;
         self.priorityLabel.text = [NSString stringWithFormat:@"%@", @(self.detailItem.priorityNumber)];
         self.dateCreatedLabel.text = [dateFormatter stringFromDate:self.detailItem.dateCreated];
-        self.dataFinishedLabel.text = [dateFormatter stringFromDate:self.detailItem.dateFinished];
+        self.deadlineDateLabel.text = [dateFormatter stringFromDate:self.detailItem.deadlineDate];
+        self.deadlineTimeLabel.text = [timeFormatter stringFromDate:self.detailItem.deadlineTime];
     }
 }
 

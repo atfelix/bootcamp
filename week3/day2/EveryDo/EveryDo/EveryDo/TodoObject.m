@@ -10,7 +10,7 @@
 
 @implementation TodoObject
 
--(instancetype)initWithTitle:(NSString *)titleString andDescription:(NSString *)descriptionString andPriorityNumber:(NSInteger)priorityNumber {
+-(instancetype)initWithTitle:(NSString *)titleString andDescription:(NSString *)descriptionString andPriorityNumber:(NSInteger)priorityNumber andDeadlineDate:(NSDate *)date andDeadlineTime:(NSDate *)time {
 
     self = [super init];
     if (self) {
@@ -19,7 +19,8 @@
         _priorityNumber = priorityNumber;
         _done = NO;
         _dateCreated = [NSDate date];
-        _dateFinished = [NSDate date];
+        _deadlineDate = date;
+        _deadlineTime = time;
     }
     return self;
 }
@@ -27,7 +28,9 @@
 -(instancetype)init {
     return [self initWithTitle:@"NO TITLE"
                 andDescription:@"NO DESCRIPTION"
-             andPriorityNumber:-1];
+             andPriorityNumber:-1
+               andDeadlineDate:[NSDate date]
+               andDeadlineTime:[NSDate distantFuture]];
 }
 
 @end

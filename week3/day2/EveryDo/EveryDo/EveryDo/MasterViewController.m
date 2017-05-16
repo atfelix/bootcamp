@@ -13,13 +13,20 @@
 #import "TodoTableViewCell.h"
 #import "TodoObject.h"
 
-@interface MasterViewController ()
+@interface MasterViewController () <AddTodoItemDelegate>
 
-@property NSMutableArray *todoObjects;
+@property (nonatomic) NSMutableArray<TodoObject *> *todoObjects;
 
 @end
 
 @implementation MasterViewController
+
+-(NSMutableArray *)todoObjects {
+    if (!_todoObjects) {
+        _todoObjects = [[NSMutableArray<TodoObject *> alloc] init];
+    }
+    return _todoObjects;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +55,9 @@
 
     [self presentViewController:addTodoItemViewController
                        animated:YES
-                     completion:^{}];
+                     completion:^{
+                         addTodoItemViewController.delegate = self;
+                     }];
     return;
 
     if (!self.todoObjects) {
@@ -107,6 +116,11 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+
+-(void)saveTodoItem:(TodoObject *)todo {
+    [self.todoObjects addObject:todo];
+    [self.tableView reloadData];
 }
 
 @end

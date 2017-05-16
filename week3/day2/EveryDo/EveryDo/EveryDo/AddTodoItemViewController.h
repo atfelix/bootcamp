@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class TodoObject;
+
+@protocol AddTodoItemDelegate <NSObject>
+
+-(void)saveTodoItem:(TodoObject *)todo;
+
+@end
+
 @interface AddTodoItemViewController : UIViewController
+
+@property (nonatomic, weak) id<AddTodoItemDelegate> delegate;
 
 @end

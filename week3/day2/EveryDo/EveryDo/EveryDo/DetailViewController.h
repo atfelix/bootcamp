@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *priorityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateCreatedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dataFinishedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deadlineDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *deadlineTimeLabel;
 
 @end
