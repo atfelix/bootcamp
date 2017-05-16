@@ -9,8 +9,15 @@
 #import "LPGPetModel.h"
 
 #define HappinessThreshold 52500
-#define InitialRestfulness 30
+#define InitialRestfulness 10
 #define SleepingRegenerationRate 3
+
+static NSString *SleepingImageNameString = @"sleeping.png";
+static NSString *GrumpyImageNameString = @"grumpy.png";
+static NSString *AppleImageNameString = @"apple.png";
+static NSString *BucketImageNameString = @"bucket.png";
+static NSString *DefaultImageNameString = @"default.png";
+
 
 @interface LPGPetModel ()
 
@@ -29,6 +36,11 @@
         _restfulness = InitialRestfulness;
         _sleeping = NO;
         _regenerationRate = SleepingRegenerationRate;
+        _defaultImage = [UIImage imageNamed:DefaultImageNameString];
+        _grumpyImage = [UIImage imageNamed:GrumpyImageNameString];
+        _sleepingImage = [UIImage imageNamed:SleepingImageNameString];
+        _appleImage = [UIImage imageNamed:AppleImageNameString];
+        _bucketImage = [UIImage imageNamed:BucketImageNameString];
     }
     return self;
 }

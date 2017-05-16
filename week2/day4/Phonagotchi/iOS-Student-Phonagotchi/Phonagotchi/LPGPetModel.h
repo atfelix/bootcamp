@@ -15,6 +15,11 @@
 @property (nonatomic, assign) int restfulness;
 @property (nonatomic, assign, readonly) int regenerationRate;
 
+@property (nonatomic) UIImage *sleepingImage;
+@property (nonatomic) UIImage *defaultImage;
+@property (nonatomic) UIImage *grumpyImage;
+@property (nonatomic) UIImage *appleImage;
+@property (nonatomic) UIImage *bucketImage;
 
 -(void)rubPetWithVelocity:(CGPoint) velocity;
 -(float)getAlertness;

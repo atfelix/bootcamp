@@ -482,6 +482,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
         [self animatePetResponse];
 
         self.textField.text = @"";
+        [self wakePet];
     }
     [self.textField resignFirstResponder];
 }
@@ -565,24 +566,24 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     else if (self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
         [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
-        self.petImageView.image = (self.petModel.isHappy) ? self.defaultImage : self.grumpyImage;
     }
-    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        self.petImageView.image = (self.petModel.isSleeping) ? self.sleepingImage : self.defaultImage;
-    }
-
 }
 
 -(void)attemptToFeedPet {
 
-    [self wakePet];
-
     CGPoint location = [self.longPressGestureRecognizer locationInView:self.view];
 
-    if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    if (self.petModel.isSleeping && self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self animateFeedingAppleDown:location];
+    }
+    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        [self wakePet];
+    }
+    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         self.feedingAppleImageView.center = location;
     }
     else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self wakePet];
         ([self isLocationOverPet:location]) ? [self animateFeedPet] : [self animateFeedingAppleDown:location];
     }
 }
@@ -605,14 +606,15 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)changePetStateWithSleepingBool:(BOOL)isSleeping {
     self.petModel.sleeping = isSleeping;
-    self.petImageView.image = (isSleeping) ? self.sleepingImage : self.defaultImage;
 }
 
 -(void)runPetSimulation:(NSTimer *)timer {
     if (self.petModel.isSleeping) {
+        self.petImageView.image = self.sleepingImage;
         [self regenerateRestfulness:timer];
     }
     else {
+        self.petImageView.image = self.defaultImage;
         [self depleteRestfulness:timer];
     }
 }
@@ -713,6 +715,11 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 }
 
+-(void)dismissKeyboard:(UITapGestureRecognizer *)sender {
+    [self wakePet];
+    [self.view endEditing:YES];
+}
+
 
 #pragma mark - Shake Motion Logic
 
@@ -765,8 +772,8 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addSingleTapGestureRecognizer {
-    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.textField
-                                                                              action:@selector(resignFirstResponder)];
+    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(dismissKeyboard:)];
     [self.view addGestureRecognizer:self.singleTapGestureRecognizer];
 }
 
