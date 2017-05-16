@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tipPercentageField;
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
+@property (weak, nonatomic) IBOutlet UISlider *tipPercentageSlider;
 
 @end
 
@@ -23,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tipAmountLabel.text = @"$";
+    self.tipPercentageField.text = [NSString stringWithFormat:@"%.0f", self.tipPercentageSlider.value];
     [self registerKeyboardNotifications];
 }
 
@@ -88,5 +89,8 @@
     [self.view endEditing:YES];
 }
 
+- (IBAction)adjustTipPercentage:(UISlider *)sender {
+    self.tipPercentageField.text = [NSString stringWithFormat:@"%.0f", sender.value];
+}
 
 @end
