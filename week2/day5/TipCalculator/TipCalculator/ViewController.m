@@ -13,6 +13,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
+@property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 
 @end
 
@@ -20,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.tipAmountLabel.text = @"";
 }
 
 
@@ -30,7 +31,7 @@
 }
 
 - (IBAction)calculateTip:(UIButton *)sender {
-    double tipAmount = TipRate * [self.billAmountTextField.text doubleValue];
+    self.tipAmountLabel.text = [NSString stringWithFormat:@"$%.2f", TipRate * [self.billAmountTextField.text doubleValue]];
 }
 
 @end

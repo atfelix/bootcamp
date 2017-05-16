@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Bill Amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qh8-qv-jun">
-                                <rect key="frame" x="16" y="28" width="343" height="30"/>
+                                <rect key="frame" x="227" y="28" width="132" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hnU-wE-cz9"/>
                                 </constraints>
@@ -42,23 +42,56 @@
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zF5-2M-wxr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-EN-nNk">
+                                <rect key="frame" x="16" y="190" width="94" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="3a9-7J-25y"/>
+                                    <constraint firstAttribute="height" constant="21" id="ZnU-I1-xRK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjR-Tk-HSF">
+                                <rect key="frame" x="269" y="190" width="90" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="EKK-aN-ssr"/>
+                                    <constraint firstAttribute="height" constant="21" id="hfF-8h-OBs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0q5-1P-Dvl">
+                                <rect key="frame" x="16" y="28" width="117" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="xjR-Tk-HSF" firstAttribute="leading" secondItem="mVd-EN-nNk" secondAttribute="trailing" constant="159" id="D6g-Ae-nMA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mVd-EN-nNk" secondAttribute="bottom" constant="456" id="EHa-jF-5vs"/>
                             <constraint firstItem="qh8-qv-jun" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="IOx-Qd-RF7"/>
                             <constraint firstItem="Hfc-cn-Yea" firstAttribute="top" secondItem="qh8-qv-jun" secondAttribute="bottom" constant="8" id="KTY-XP-O3t"/>
                             <constraint firstItem="Hfc-cn-Yea" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Q7V-aw-ROP"/>
-                            <constraint firstItem="qh8-qv-jun" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ypt-8t-zVu"/>
                             <constraint firstItem="qh8-qv-jun" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gGq-lA-5FV"/>
+                            <constraint firstItem="xjR-Tk-HSF" firstAttribute="leading" secondItem="mVd-EN-nNk" secondAttribute="trailing" constant="159" id="hJe-fq-8yH"/>
+                            <constraint firstItem="mVd-EN-nNk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="o1J-Lz-gik"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xjR-Tk-HSF" secondAttribute="bottom" constant="456" id="tXv-Q0-MGf"/>
+                            <constraint firstItem="mVd-EN-nNk" firstAttribute="top" secondItem="qh8-qv-jun" secondAttribute="bottom" constant="132" id="zRD-kh-eSD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="billAmountTextField" destination="qh8-qv-jun" id="RPQ-PH-tBZ"/>
+                        <outlet property="tipAmountLabel" destination="xjR-Tk-HSF" id="T4V-Zp-PmS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="239.19999999999999" y="161.46926536731635"/>
         </scene>
     </scenes>
 </document>
