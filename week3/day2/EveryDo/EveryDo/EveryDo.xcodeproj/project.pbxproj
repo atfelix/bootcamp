@@ -16,6 +16,7 @@
 		11ACDCA31ECB4A030096623B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11ACDCA11ECB4A030096623B /* LaunchScreen.storyboard */; };
 		11ACDCAC1ECB4B960096623B /* TodoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDCAB1ECB4B960096623B /* TodoObject.m */; };
 		11ACDCAF1ECB4F140096623B /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDCAE1ECB4F140096623B /* TodoTableViewCell.m */; };
+		11ACDCD81ECB7C190096623B /* AddTodoItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDCD71ECB7C190096623B /* AddTodoItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		11ACDCAB1ECB4B960096623B /* TodoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoObject.m; sourceTree = "<group>"; };
 		11ACDCAD1ECB4F140096623B /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
 		11ACDCAE1ECB4F140096623B /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		11ACDCD61ECB7C190096623B /* AddTodoItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTodoItemViewController.h; sourceTree = "<group>"; };
+		11ACDCD71ECB7C190096623B /* AddTodoItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTodoItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				11ACDC991ECB4A030096623B /* DetailViewController.h */,
 				11ACDC9A1ECB4A030096623B /* DetailViewController.m */,
 				11ACDC9C1ECB4A030096623B /* Main.storyboard */,
+				11ACDCD61ECB7C190096623B /* AddTodoItemViewController.h */,
+				11ACDCD71ECB7C190096623B /* AddTodoItemViewController.m */,
 				11ACDCAA1ECB4B960096623B /* TodoObject.h */,
 				11ACDCAB1ECB4B960096623B /* TodoObject.m */,
 				11ACDC9F1ECB4A030096623B /* Assets.xcassets */,
@@ -166,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11ACDC951ECB4A030096623B /* AppDelegate.m in Sources */,
+				11ACDCD81ECB7C190096623B /* AddTodoItemViewController.m in Sources */,
 				11ACDCAF1ECB4F140096623B /* TodoTableViewCell.m in Sources */,
 				11ACDC981ECB4A030096623B /* MasterViewController.m in Sources */,
 				11ACDCAC1ECB4B960096623B /* TodoObject.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 
+#import "AddTodoItemViewController.h"
 #import "DetailViewController.h"
 #import "TodoTableViewCell.h"
 #import "TodoObject.h"
@@ -24,9 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 
@@ -40,7 +38,19 @@
 }
 
 
-- (void)insertNewObject:(id)sender {
+- (IBAction)insertNewObject:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                         bundle:nil];
+    
+    AddTodoItemViewController *addTodoItemViewController = [storyboard instantiateViewControllerWithIdentifier:@"AddTodoItemViewController"];
+    addTodoItemViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    addTodoItemViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+    [self presentViewController:addTodoItemViewController
+                       animated:YES
+                     completion:^{}];
+    return;
+
     if (!self.todoObjects) {
         self.todoObjects = [[NSMutableArray alloc] init];
     }
