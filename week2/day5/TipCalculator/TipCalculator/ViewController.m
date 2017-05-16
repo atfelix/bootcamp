@@ -8,9 +8,7 @@
 
 #import "ViewController.h"
 
-#define TipRate 0.15
-
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tipPercentageField;
@@ -26,6 +24,11 @@
 
     self.tipPercentageField.text = [NSString stringWithFormat:@"%.0f", self.tipPercentageSlider.value];
     [self registerKeyboardNotifications];
+    self.billAmountTextField.delegate = self;
+
+    [self.billAmountTextField addTarget:self
+                                 action:@selector(textFieldDidChange:)
+                       forControlEvents:UIControlEventEditingChanged];
 }
 
 
@@ -35,7 +38,7 @@
 }
 
 - (IBAction)calculateTip:(UIButton *)sender {
-    self.tipAmountLabel.text = [NSString stringWithFormat:@"$%.2f", [self.tipPercentageField.text doubleValue] * [self.billAmountTextField.text doubleValue] / 100.0];
+    [self updateTipLabel];
     [self.view endEditing:YES];
 }
 
@@ -91,6 +94,45 @@
 
 - (IBAction)adjustTipPercentage:(UISlider *)sender {
     self.tipPercentageField.text = [NSString stringWithFormat:@"%.0f", sender.value];
+    [self calculateTip:nil];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    BOOL existingTextHasDecimalSeparator = [textField.text rangeOfString:@"."].location != NSNotFound;
+    BOOL replacementTextHasDecimalSeparator = [string rangeOfString:@"."].location != NSNotFound;
+    BOOL replacementTextHasAlphabeticCharacter = [string rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location != NSNotFound;
+
+    if (string.length == 0) {
+        return YES;
+    }
+    else if (replacementTextHasAlphabeticCharacter) {
+        return NO;
+    }
+    else if (existingTextHasDecimalSeparator && replacementTextHasDecimalSeparator) {
+        return NO;
+    }
+    else if ([textField.text rangeOfString:@"."].location == textField.text.length - 3) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
+-(float)getTipPercentage {
+    return self.tipPercentageSlider.value / 100.0;
+}
+
+-(float)getBillAmount {
+    return [self.billAmountTextField.text doubleValue];
+}
+
+-(void)textFieldDidChange:(UITextField *)textField {
+    [self updateTipLabel];
+}
+
+-(void)updateTipLabel {
+    self.tipAmountLabel.text = [NSString stringWithFormat:@"$%.2f", [self getTipPercentage] * [self getBillAmount]];
 }
 
 @end
