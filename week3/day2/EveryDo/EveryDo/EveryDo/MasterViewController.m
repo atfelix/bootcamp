@@ -125,6 +125,78 @@
     }
 }
 
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (tableView.editing) ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    TodoObject *todo = [self.todoObjects[sourceIndexPath.section] objectAtIndex:sourceIndexPath.row];
+    [self.todoObjects[sourceIndexPath.section] removeObjectAtIndex:sourceIndexPath.row];
+    [self.todoObjects[destinationIndexPath.section] insertObject:todo
+                                                         atIndex:destinationIndexPath.row];
+    [self.tableView reloadData];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.sectionHeaders[section];
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+
+    NSIndexPath *indexPath;
+
+    if (sourceIndexPath.section == proposedDestinationIndexPath.section) {
+        indexPath = [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row
+                                       inSection:proposedDestinationIndexPath.section];
+    }
+    else if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+        indexPath = [NSIndexPath indexPathForRow:self.todoObjects[sourceIndexPath.section].count - 1
+                                       inSection:sourceIndexPath.section];
+    }
+    else {
+        indexPath = [NSIndexPath indexPathForRow:0
+                                       inSection:sourceIndexPath.section];
+    }
+    return indexPath;
+}
+
+#pragma mark - Utility Functions
+
+-(void)sortByPriority {
+    for (NSMutableArray *array in self.todoObjects) {
+        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
+            return (NSComparisonResult)((a.priorityNumber < b.priorityNumber)
+                                        - (b.priorityNumber < a.priorityNumber));
+        }];
+    }
+}
+
+-(void)sortByDeadline {
+    for (NSMutableArray *array in self.todoObjects) {
+        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
+            return [a.deadlineDate compare:b.deadlineDate];
+        }];
+    }
+}
+
+- (IBAction)sort:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == PrioritySegmentedControlIndex) {
+        [self sortByPriority];
+    }
+    else if (sender.selectedSegmentIndex == DeadlineSegmentedControlIndex) {
+        [self sortByDeadline];
+    }
+    [self.tableView reloadData];
+}
+
 -(void)saveTodoItem:(TodoObject *)todo {
     [self.todoObjects[0] insertObject:todo
                               atIndex:0];
@@ -155,74 +227,5 @@
     }
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (tableView.editing) ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
-}
-
--(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    TodoObject *todo = [self.todoObjects[sourceIndexPath.section] objectAtIndex:sourceIndexPath.row];
-    [self.todoObjects[sourceIndexPath.section] removeObjectAtIndex:sourceIndexPath.row];
-    [self.todoObjects[destinationIndexPath.section] insertObject:todo
-                                                         atIndex:destinationIndexPath.row];
-    [self.tableView reloadData];
-}
-
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return self.sectionHeaders[section];
-}
-
--(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-
-    NSIndexPath *indexPath;
-
-    if (sourceIndexPath.section == proposedDestinationIndexPath.section) {
-        indexPath = [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row
-                                       inSection:proposedDestinationIndexPath.section];
-    }
-    else if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
-        indexPath = [NSIndexPath indexPathForRow:self.todoObjects[sourceIndexPath.section].count - 1
-                                       inSection:sourceIndexPath.section];
-    }
-    else {
-        indexPath = [NSIndexPath indexPathForRow:0
-                                       inSection:sourceIndexPath.section];
-    }
-    return indexPath;
-}
-
--(void)sortByPriority {
-    for (NSMutableArray *array in self.todoObjects) {
-        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
-            return (NSComparisonResult)((a.priorityNumber < b.priorityNumber)
-                                        - (b.priorityNumber < a.priorityNumber));
-        }];
-    }
-}
-
--(void)sortByDeadline {
-    for (NSMutableArray *array in self.todoObjects) {
-        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
-            return [a.deadlineDate compare:b.deadlineDate];
-        }];
-    }
-}
-
-- (IBAction)sort:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == PrioritySegmentedControlIndex) {
-        [self sortByPriority];
-    }
-    else if (sender.selectedSegmentIndex == DeadlineSegmentedControlIndex) {
-        [self sortByDeadline];
-    }
-    [self.tableView reloadData];
-}
 
 @end
