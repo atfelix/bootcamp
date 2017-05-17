@@ -15,7 +15,8 @@
 
 @interface MasterViewController () <AddTodoItemDelegate, UITableViewDelegate>
 
-@property (nonatomic) NSMutableArray<TodoObject *> *todoObjects;
+@property (nonatomic) NSMutableArray<NSMutableArray *> *todoObjects;
+@property (nonatomic) NSArray<NSString *> *sectionHeaders;
 
 @end
 
@@ -23,7 +24,7 @@
 
 -(NSMutableArray *)todoObjects {
     if (!_todoObjects) {
-        _todoObjects = [[NSMutableArray<TodoObject *> alloc] init];
+        _todoObjects = [[NSMutableArray alloc] init];
     }
     return _todoObjects;
 }
@@ -38,6 +39,12 @@
     swipeGR.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeGR];
     self.tableView.delegate = self;
+
+    self.sectionHeaders = @[@"Outstanding Tasks", @"Completed Tasks"];
+
+    for (int i = 0; i < self.sectionHeaders.count; i++) {
+        [self.todoObjects addObject:[[NSMutableArray alloc] init]];
+    }
 }
 
 
@@ -72,7 +79,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        TodoObject *object = self.todoObjects[indexPath.row];
+        TodoObject *object = self.todoObjects[indexPath.section][indexPath.row];
         DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         [controller setDetailItem:object];
     }
@@ -82,19 +89,19 @@
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.sectionHeaders.count;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.todoObjects.count;
+    return self.todoObjects[section].count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoTableViewCell" forIndexPath:indexPath];
-    cell.todoObject = self.todoObjects[indexPath.row];
+    cell.todoObject = self.todoObjects[indexPath.section][indexPath.row];
     [cell updateDisplay];
     return cell;
 }
@@ -108,7 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.todoObjects removeObjectAtIndex:indexPath.row];
+        [self.todoObjects[indexPath.section] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -116,8 +123,8 @@
 }
 
 -(void)saveTodoItem:(TodoObject *)todo {
-    [self.todoObjects insertObject:todo
-                           atIndex:0];
+    [self.todoObjects[0] insertObject:todo
+                              atIndex:0];
     [self.tableView reloadData];
 }
 
@@ -136,9 +143,9 @@
             return;
         }
 
-        [self.todoObjects removeObjectAtIndex:indexPath.row];
+        [self.todoObjects[0] removeObjectAtIndex:indexPath.row];
 
-        [self.todoObjects addObject:cell.todoObject];
+        [self.todoObjects[1] addObject:cell.todoObject];
         cell.todoObject.done = YES;
 
         [self.tableView reloadData];
@@ -150,19 +157,43 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"===================%@", indexPath);
     cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
 }
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    TodoObject *todo = [self.todoObjects objectAtIndex:sourceIndexPath.row];
-    [self.todoObjects removeObjectAtIndex:sourceIndexPath.row];
-    [self.todoObjects insertObject:todo
-                           atIndex:destinationIndexPath.row];
+    TodoObject *todo = [self.todoObjects[sourceIndexPath.section] objectAtIndex:sourceIndexPath.row];
+    [self.todoObjects[sourceIndexPath.section] removeObjectAtIndex:sourceIndexPath.row];
+    [self.todoObjects[destinationIndexPath.section] insertObject:todo
+                                                         atIndex:destinationIndexPath.row];
     [self.tableView reloadData];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return self.sectionHeaders[section];
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+
+    NSIndexPath *indexPath;
+
+    if (sourceIndexPath.section == proposedDestinationIndexPath.section) {
+        indexPath = [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row
+                                       inSection:proposedDestinationIndexPath.section];
+    }
+    else if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+        indexPath = [NSIndexPath indexPathForRow:self.todoObjects[sourceIndexPath.section].count - 1
+                                       inSection:sourceIndexPath.section];
+    }
+    else {
+        indexPath = [NSIndexPath indexPathForRow:0
+                                       inSection:sourceIndexPath.section];
+    }
+    return indexPath;
 }
 
 @end
