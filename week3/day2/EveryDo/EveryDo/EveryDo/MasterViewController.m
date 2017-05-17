@@ -122,6 +122,11 @@
 }
 
 -(void)handleSwipe:(UISwipeGestureRecognizer *)sender {
+
+    if (self.tableView.isEditing) {
+        return;
+    }
+
     if (sender.state == UIGestureRecognizerStateEnded) {
         CGPoint swipeLocation = [sender locationInView:self.tableView];
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
@@ -131,10 +136,9 @@
             return;
         }
 
-        for (long int i = indexPath.row; i < self.todoObjects.count - 1; i++) {
-            self.todoObjects[i] = self.todoObjects[i + 1];
-        }
-        self.todoObjects[self.todoObjects.count - 1] = cell.todoObject;
+        [self.todoObjects removeObjectAtIndex:indexPath.row];
+
+        [self.todoObjects addObject:cell.todoObject];
         cell.todoObject.done = YES;
 
         [self.tableView reloadData];
@@ -147,6 +151,18 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    TodoObject *todo = [self.todoObjects objectAtIndex:sourceIndexPath.row];
+    [self.todoObjects removeObjectAtIndex:sourceIndexPath.row];
+    [self.todoObjects insertObject:todo
+                           atIndex:destinationIndexPath.row];
+    [self.tableView reloadData];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
 }
 
 @end
