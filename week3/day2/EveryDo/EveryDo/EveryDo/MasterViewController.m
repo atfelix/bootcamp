@@ -13,6 +13,9 @@
 #import "TodoTableViewCell.h"
 #import "TodoObject.h"
 
+#define PrioritySegmentedControlIndex 0
+#define DeadlineSegmentedControlIndex 1
+
 @interface MasterViewController () <AddTodoItemDelegate, UITableViewDelegate>
 
 @property (nonatomic) NSMutableArray<NSMutableArray *> *todoObjects;
@@ -157,7 +160,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"===================%@", indexPath);
     cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
 }
 
@@ -194,6 +196,33 @@
                                        inSection:sourceIndexPath.section];
     }
     return indexPath;
+}
+
+-(void)sortByPriority {
+    for (NSMutableArray *array in self.todoObjects) {
+        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
+            return (NSComparisonResult)((a.priorityNumber < b.priorityNumber)
+                                        - (b.priorityNumber < a.priorityNumber));
+        }];
+    }
+}
+
+-(void)sortByDeadline {
+    for (NSMutableArray *array in self.todoObjects) {
+        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
+            return [a.deadlineDate compare:b.deadlineDate];
+        }];
+    }
+}
+
+- (IBAction)sort:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == PrioritySegmentedControlIndex) {
+        [self sortByPriority];
+    }
+    else if (sender.selectedSegmentIndex == DeadlineSegmentedControlIndex) {
+        [self sortByDeadline];
+    }
+    [self.tableView reloadData];
 }
 
 @end

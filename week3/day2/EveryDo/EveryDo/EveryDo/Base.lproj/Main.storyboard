@@ -180,7 +180,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="dateCreatedLabel" destination="SFO-QN-sAs" id="UkF-Za-o8Q"/>
-                        <outlet property="deadlineDateLabel" destination="fo6-ak-XdH" id="vsd-Qw-ZfL"/>
+                        <outlet property="deadlineDateLabel" destination="V4C-wX-vcQ" id="UgC-Y2-8OY"/>
                         <outlet property="deadlineTimeLabel" destination="LmY-zx-46l" id="CVA-EO-Sw6"/>
                         <outlet property="priorityLabel" destination="Ny1-ZK-7Hm" id="aIj-25-5hW"/>
                         <outlet property="textView" destination="BMN-Dj-D7a" id="bQl-Rk-fNz"/>
@@ -287,7 +287,19 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8">
+                    <navigationItem key="navigationItem" id="Zdf-7t-Un8">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Y9f-BF-Y64">
+                            <rect key="frame" x="125" y="7" width="165" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Priority"/>
+                                <segment title="Deadline"/>
+                            </segments>
+                            <connections>
+                                <action selector="sort:" destination="7bK-jq-Zjz" eventType="valueChanged" id="bcu-mK-ux2"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xr3-aq-ua3">
                             <connections>
                                 <action selector="insertNewObject:" destination="7bK-jq-Zjz" id="dyV-7c-R1Q"/>
