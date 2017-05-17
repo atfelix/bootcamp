@@ -70,11 +70,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 @property (nonatomic) UIProgressView *progressView;
 @property (nonatomic) NSTimer *restfulnessTimer;
 
-@property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
-@property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
-@property (nonatomic) UITapGestureRecognizer *doubleTapGestureRecognizer;
-@property (nonatomic) UITapGestureRecognizer *singleTapGestureRecognizer;
-
 @property (nonatomic) UITextField *textField;
 @property (nonatomic) UIButton *button;
 @property (nonatomic) UILabel *petResponseLabel;
@@ -97,12 +92,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [super viewDidLoad];
 
     self.petModel = [[LPGPetModel alloc] init];
-    self.defaultImage = [UIImage imageNamed:DefaultImageNameString];
-    self.grumpyImage = [UIImage imageNamed:GrumpyImageNameString];
-    self.sleepingImage = [UIImage imageNamed:SleepingImageNameString];
-    self.appleImage = [UIImage imageNamed:AppleImageNameString];
-    self.bucketImage = [UIImage imageNamed:BucketImageNameString];
-	
+    
     self.view.backgroundColor = [UIColor colorWithRed:BackgroundColorRedHue
                                                 green:BackgroundColorGreenHue
                                                  blue:BackgroundColorBlueHue
@@ -132,7 +122,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.petImageView.image = self.defaultImage;
+    self.petImageView.image = self.petModel.defaultImage;
     self.petImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.petImageView];
@@ -170,7 +160,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addBasketView {
-    self.bucketImageView = [[UIImageView alloc] initWithImage:self.bucketImage];
+    self.bucketImageView = [[UIImageView alloc] initWithImage:self.petModel.bucketImage];
     self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.bucketImageView.userInteractionEnabled = YES;
 
@@ -180,7 +170,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addAppleView {
-    self.appleImageView = [[UIImageView alloc] initWithImage:self.appleImage];
+    self.appleImageView = [[UIImageView alloc] initWithImage:self.petModel.appleImage];
     self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appleImageView.userInteractionEnabled = YES;
 
@@ -190,7 +180,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addFeedingAppleView {
-    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:self.appleImage];
+    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:self.petModel.appleImage];
     self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.feedingAppleImageView.userInteractionEnabled = YES;
 
@@ -559,39 +549,39 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 #pragma mark - Communication with Pet Model
 
 
--(void)rubPet {
-    if (self.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+-(void)rubPet:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
         [self wakePet];
     }
-    else if (self.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        [self isLocationOverPet:[self.panGestureRecognizer locationInView:self.view]];
-        [self.petModel rubPetWithVelocity:[self.panGestureRecognizer velocityInView:self.petImageView]];
+    else if (sender.state == UIGestureRecognizerStateChanged) {
+        [self isLocationOverPet:[sender locationInView:self.view]];
+        [self.petModel rubPetWithVelocity:[sender velocityInView:self.petImageView]];
+        self.petImageView.image = (self.petModel.isHappy) ? self.petModel.defaultImage : self.petModel.grumpyImage;
     }
 }
 
--(void)attemptToFeedPet {
+-(void)attemptToFeedPet:(UILongPressGestureRecognizer *)sender {
 
-    CGPoint location = [self.longPressGestureRecognizer locationInView:self.view];
+    CGPoint location = [sender locationInView:self.view];
 
-    if (self.petModel.isSleeping && self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    if (self.petModel.isSleeping && sender.state == UIGestureRecognizerStateEnded) {
         [self animateFeedingAppleDown:location];
     }
-    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    else if (sender.state == UIGestureRecognizerStateBegan) {
         [self wakePet];
     }
-    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+    else if (sender.state == UIGestureRecognizerStateChanged) {
         self.feedingAppleImageView.center = location;
     }
-    else if (self.longPressGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    else if (sender.state == UIGestureRecognizerStateEnded) {
         [self wakePet];
         ([self isLocationOverPet:location]) ? [self animateFeedPet] : [self animateFeedingAppleDown:location];
     }
 }
 
--(void)petMakesNoise {
-    if (self.doubleTapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+-(void)petMakesNoise:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
         [self wakePet];
-
         AudioServicesPlaySystemSound(ChooChooSound);
     }
 }
@@ -610,11 +600,11 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)runPetSimulation:(NSTimer *)timer {
     if (self.petModel.isSleeping) {
-        self.petImageView.image = self.sleepingImage;
+        self.petImageView.image = self.petModel.sleepingImage;
         [self regenerateRestfulness:timer];
     }
     else {
-        self.petImageView.image = self.defaultImage;
+        self.petImageView.image = self.petModel.defaultImage;
         [self depleteRestfulness:timer];
     }
 }
@@ -672,19 +662,11 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)registerKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardShowsOnScreen:)
-                                                 name:UIKeyboardDidShowNotification
+                                                 name:UIKeyboardWillShowNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardHidesOffScreen:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShowOnScreen:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHideOffScreen:)
-                                                 name:UIKeyboardDidHideNotification
+                                                 name:UIKeyboardWillHideNotification
                                                object:nil];
 }
 
@@ -716,7 +698,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)dismissKeyboard:(UITapGestureRecognizer *)sender {
-    [self wakePet];
     [self.view endEditing:YES];
 }
 
@@ -750,31 +731,31 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addPanGestureRecognizer {
-    self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                        action:@selector(rubPet)];
-    [self.petImageView addGestureRecognizer:self.panGestureRecognizer];
-    self.panGestureRecognizer.delegate = self;
+    UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                            action:@selector(rubPet:)];
+    [self.petImageView addGestureRecognizer:panGR];
+    panGR.delegate = self;
 }
 
 -(void)addLongPressGestureRecognizerToFeedingAppleView {
-    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(attemptToFeedPet)];
-    self.longPressGestureRecognizer.minimumPressDuration = MinimumPressDuration;
-    [self.feedingAppleImageView addGestureRecognizer:self.longPressGestureRecognizer];
+    UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                              action:@selector(attemptToFeedPet:)];
+    longPressGR.minimumPressDuration = MinimumPressDuration;
+    [self.feedingAppleImageView addGestureRecognizer:longPressGR];
 }
 
 -(void)addDoubleTapGestureRecognizer {
-    self.doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(petMakesNoise)];
-    self.doubleTapGestureRecognizer.numberOfTapsRequired = NumberOfTapsRequiredToMakeNoise;
-    [self.petImageView addGestureRecognizer:self.doubleTapGestureRecognizer];
-    self.doubleTapGestureRecognizer.delegate = self;
+    UITapGestureRecognizer *doubleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(petMakesNoise:)];
+    doubleTapGR.numberOfTapsRequired = NumberOfTapsRequiredToMakeNoise;
+    [self.petImageView addGestureRecognizer:doubleTapGR];
+    doubleTapGR.delegate = self;
 }
 
 -(void)addSingleTapGestureRecognizer {
-    self.singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(dismissKeyboard:)];
-    [self.view addGestureRecognizer:self.singleTapGestureRecognizer];
+    UITapGestureRecognizer *singleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(dismissKeyboard:)];
+    [self.view addGestureRecognizer:singleTapGR];
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
