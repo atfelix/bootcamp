@@ -13,7 +13,7 @@
 #import "TodoTableViewCell.h"
 #import "TodoObject.h"
 
-@interface MasterViewController () <AddTodoItemDelegate>
+@interface MasterViewController () <AddTodoItemDelegate, UITableViewDelegate>
 
 @property (nonatomic) NSMutableArray<TodoObject *> *todoObjects;
 
@@ -32,6 +32,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+
+    UISwipeGestureRecognizer *swipeGR = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(handleSwipe:)];
+    swipeGR.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeGR];
+    self.tableView.delegate = self;
 }
 
 
@@ -58,15 +64,6 @@
                      completion:^{
                          addTodoItemViewController.delegate = self;
                      }];
-    return;
-
-    if (!self.todoObjects) {
-        self.todoObjects = [[NSMutableArray alloc] init];
-    }
-    TodoObject *todoObject = [[TodoObject alloc] init];
-    [self.todoObjects insertObject:todoObject atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 
@@ -119,8 +116,37 @@
 }
 
 -(void)saveTodoItem:(TodoObject *)todo {
-    [self.todoObjects addObject:todo];
+    [self.todoObjects insertObject:todo
+                           atIndex:0];
     [self.tableView reloadData];
+}
+
+-(void)handleSwipe:(UISwipeGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        CGPoint swipeLocation = [sender locationInView:self.tableView];
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
+        TodoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+        if (!cell || cell.todoObject.isDone) {
+            return;
+        }
+
+        for (long int i = indexPath.row; i < self.todoObjects.count - 1; i++) {
+            self.todoObjects[i] = self.todoObjects[i + 1];
+        }
+        self.todoObjects[self.todoObjects.count - 1] = cell.todoObject;
+        cell.todoObject.done = YES;
+
+        [self.tableView reloadData];
+    }
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (tableView.editing) ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(TodoTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = (cell.todoObject.isDone) ? [[UIColor redColor] colorWithAlphaComponent:0.5] : [UIColor whiteColor];
 }
 
 @end
