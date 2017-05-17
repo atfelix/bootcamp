@@ -562,8 +562,12 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
         [self wakePet];
     }
     else if (sender.state == UIGestureRecognizerStateChanged) {
+        [self wakePet];
         [self isLocationOverPet:[sender locationInView:self.view]];
         [self.petModel rubPetWithVelocity:[sender velocityInView:self.petImageView]];
+    }
+    else if (sender.state == UIGestureRecognizerStateEnded) {
+        self.petModel.happy = YES;
     }
 }
 
@@ -589,6 +593,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)petMakesNoise:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded) {
         [self wakePet];
+        self.petModel.happy = YES;
         AudioServicesPlaySystemSound(ChooChooSound);
     }
 }
@@ -761,11 +766,13 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)loadImageWithNewRestfulness:(int)restfulness {
     if (self.petModel.restfulness == 0 && restfulness == -1) {
-        self.petImageView.image = self.petModel.grumpyImage;
+        self.petModel.happy = NO;
+        self.petModel.sleeping = NO;
     }
-    else {
-        self.petImageView.image = self.petModel.currentImage;
+    else if (self.petModel.isSleeping) {
+        self.petModel.happy = YES;
     }
+    self.petImageView.image = self.petModel.currentImage;
 }
 
 

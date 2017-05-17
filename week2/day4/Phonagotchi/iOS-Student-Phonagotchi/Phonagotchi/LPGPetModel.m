@@ -21,11 +21,12 @@ static NSString *DefaultImageNameString = @"default.png";
 
 @interface LPGPetModel ()
 
-@property (nonatomic, assign, readwrite, getter=isHappy) BOOL happy;
 
 @end
 
 @implementation LPGPetModel
+
+@synthesize currentImage = _currentImage;
 
 - (instancetype)init {
 
@@ -50,11 +51,10 @@ static NSString *DefaultImageNameString = @"default.png";
 }
 
 -(void)setRestfulness:(int)restfulness {
-    NSLog(@"%@ __ %@", @(_restfulness), @(restfulness));
     if (restfulness == -1 && _restfulness == 0) {
         self.currentImage = self.grumpyImage;
     }
-    if (restfulness < 0) {
+    else if (restfulness == 0) {
         _restfulness = 0;
     }
     else if (restfulness > InitialRestfulness) {
@@ -68,16 +68,19 @@ static NSString *DefaultImageNameString = @"default.png";
 }
 
 -(UIImage *)currentImage {
+
+    UIImage *image;
     
     if (self.isSleeping) {
-        return self.sleepingImage;
+        image = self.sleepingImage;
     }
     else if (self.isHappy) {
-        return self.defaultImage;
+        image = self.defaultImage;
     }
     else {
-        return self.grumpyImage;
+        image = self.grumpyImage;
     }
+    return image;
 }
 
 -(float)getAlertness {

@@ -16,7 +16,7 @@
 
 @interface LPGPetModel : NSObject
 
-@property (nonatomic, assign, readonly, getter=isHappy) BOOL happy;
+@property (nonatomic, assign, readwrite, getter=isHappy) BOOL happy;
 @property (nonatomic, assign, getter=isSleeping) BOOL sleeping;
 @property (nonatomic, assign) int restfulness;
 @property (nonatomic, assign, readonly) int regenerationRate;
