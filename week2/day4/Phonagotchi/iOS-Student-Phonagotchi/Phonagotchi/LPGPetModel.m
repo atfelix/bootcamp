@@ -23,7 +23,6 @@ static NSString *DefaultImageNameString = @"default.png";
 
 @property (nonatomic, assign, readwrite, getter=isHappy) BOOL happy;
 
-
 @end
 
 @implementation LPGPetModel
@@ -41,12 +40,44 @@ static NSString *DefaultImageNameString = @"default.png";
         _sleepingImage = [UIImage imageNamed:SleepingImageNameString];
         _appleImage = [UIImage imageNamed:AppleImageNameString];
         _bucketImage = [UIImage imageNamed:BucketImageNameString];
+        _currentImage = _defaultImage;
     }
     return self;
 }
 
 -(void)rubPetWithVelocity:(CGPoint)velocity {
     self.happy = (velocity.x * velocity.x + velocity.y * velocity.y < [self getAlertness] * HappinessThreshold) ? YES : NO;
+}
+
+-(void)setRestfulness:(int)restfulness {
+    NSLog(@"%@ __ %@", @(_restfulness), @(restfulness));
+    if (restfulness == -1 && _restfulness == 0) {
+        self.currentImage = self.grumpyImage;
+    }
+    if (restfulness < 0) {
+        _restfulness = 0;
+    }
+    else if (restfulness > InitialRestfulness) {
+        _restfulness = InitialRestfulness;
+    }
+    else {
+        _restfulness = restfulness;
+    }
+
+    [self.delegate loadImageWithNewRestfulness:restfulness];
+}
+
+-(UIImage *)currentImage {
+    
+    if (self.isSleeping) {
+        return self.sleepingImage;
+    }
+    else if (self.isHappy) {
+        return self.defaultImage;
+    }
+    else {
+        return self.grumpyImage;
+    }
 }
 
 -(float)getAlertness {

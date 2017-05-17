@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol PetDelegate <NSObject>
+
+-(void)loadImageWithNewRestfulness:(int)restfulness;
+
+@end
+
 @interface LPGPetModel : NSObject
 
 @property (nonatomic, assign, readonly, getter=isHappy) BOOL happy;
@@ -15,11 +21,17 @@
 @property (nonatomic, assign) int restfulness;
 @property (nonatomic, assign, readonly) int regenerationRate;
 
+@property (nonatomic) UIImage *appleImage;
+@property (nonatomic) UIImage *bucketImage;
+
 @property (nonatomic) UIImage *sleepingImage;
 @property (nonatomic) UIImage *defaultImage;
 @property (nonatomic) UIImage *grumpyImage;
-@property (nonatomic) UIImage *appleImage;
-@property (nonatomic) UIImage *bucketImage;
+
+
+@property (nonatomic) UIImage *currentImage;
+
+@property (nonatomic, weak) id<PetDelegate> delegate;
 
 -(void)rubPetWithVelocity:(CGPoint) velocity;
 -(float)getAlertness;

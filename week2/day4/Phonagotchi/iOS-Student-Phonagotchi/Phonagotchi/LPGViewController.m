@@ -28,11 +28,18 @@
 #define ProgressViewAnimationDurationTime (1)
 #define PetResponseAnimationDurationTime (3)
 #define PetResponsePlaceHolderAnimationDurationTime (1)
+
+
+#pragma mark Timer Dictionary Keys
+
+
 #define AnimationDurationTimeDictionaryKey (0)
 #define SleepingRegenerationRateDictionaryKey (1)
+#define ProgressViewDictionaryKey (2)
 
 
 #pragma mark Other Macros
+
 
 #define PointsBelowScreen (100)
 
@@ -48,14 +55,9 @@
 
 
 static NSString *RestfulnessLabelText = @"Restfulness";
-static NSString *DefaultImageNameString = @"default.png";
-static NSString *SleepingImageNameString = @"sleeping.png";
-static NSString *GrumpyImageNameString = @"grumpy.png";
-static NSString *AppleImageNameString = @"apple.png";
-static NSString *BucketImageNameString = @"bucket.png";
 static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
-@interface LPGViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate>
+@interface LPGViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate, PetDelegate>
 
 @property (nonatomic) LPGPetModel *petModel;
 
@@ -66,21 +68,13 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 @property (nonatomic) UIImageView *appleImageView;
 @property (nonatomic) UIImageView *feedingAppleImageView;
 
-@property (nonatomic) UILabel *restfulnessLabel;
 @property (nonatomic) UIProgressView *progressView;
 @property (nonatomic) NSTimer *restfulnessTimer;
 
 @property (nonatomic) UITextField *textField;
-@property (nonatomic) UIButton *button;
 @property (nonatomic) UILabel *petResponseLabel;
-@property (nonatomic) NSArray<NSString *> *petResponsesArray;
-@property (nonatomic, assign) NSUInteger currentPetResponseIndex;
 
-@property (nonatomic) UIImage *sleepingImage;
-@property (nonatomic) UIImage *defaultImage;
-@property (nonatomic) UIImage *grumpyImage;
-@property (nonatomic) UIImage *appleImage;
-@property (nonatomic) UIImage *bucketImage;
+@property (nonatomic, assign) NSUInteger currentPetResponseIndex;
 
 @end
 
@@ -88,11 +82,12 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 #pragma mark - View Life Cycle
 
+
 -(void)viewDidLoad {
     [super viewDidLoad];
 
     self.petModel = [[LPGPetModel alloc] init];
-    
+
     self.view.backgroundColor = [UIColor colorWithRed:BackgroundColorRedHue
                                                 green:BackgroundColorGreenHue
                                                  blue:BackgroundColorBlueHue
@@ -102,15 +97,15 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [self addBasketAndAppleViews];
     [self addFeedingAppleView];
 
-    [self addRestfulnessLabel];
-    [self addProgressView];
-    [self addRestfulnessTimer];
+    [self addProgressBar];
 
     [self addMessageService];
 
     [self addGestureRecognizers];
 
     [self registerKeyboardNotifications];
+
+    self.petModel.delegate = self;
 
     [self.view layoutIfNeeded];
 }
@@ -122,12 +117,10 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.petImageView.image = self.petModel.defaultImage;
+    self.petImageView.image = self.petModel.currentImage;
     self.petImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.petImageView];
-
-    self.petImageView.layer.borderColor = [UIColor redColor].CGColor;
 
     [self addPetImageViewConstraints];
 }
@@ -165,7 +158,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     self.bucketImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.bucketImageView];
-    
+
     [self addBucketImageViewConstraints];
 }
 
@@ -290,30 +283,40 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 #pragma mark - Restfulness View
 
 
--(void)addRestfulnessLabel {
-    self.restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.restfulnessLabel.text = RestfulnessLabelText;
-    [self.view addSubview:self.restfulnessLabel];
-
-    [self addRestfulnessLabelConstraints];
+-(void)addProgressBar {
+    UILabel *label = [self addRestfulnessLabel];
+    [self addProgressViewNextToLabel:label];
+    [self addRestfulnessTimer];
 }
 
--(void)addRestfulnessLabelConstraints {
-    self.restfulnessLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeBottomMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.petImageView
-                                 attribute:NSLayoutAttributeTopMargin
-                                multiplier:1.0
-                                  constant:-20.0].active = YES;
+
+-(UILabel *)addRestfulnessLabel {
+    UILabel *restfulnessLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    restfulnessLabel.text = RestfulnessLabelText;
+    [self.view addSubview:restfulnessLabel];
+
+    [self addConstraintsToLabel:restfulnessLabel];
+    return restfulnessLabel;
+}
+
+-(void)addConstraintsToLabel:(UILabel *)label {
+
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                          attribute:NSLayoutAttributeLeadingMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeLeadingMargin
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:label
+                                                          attribute:NSLayoutAttributeBottomMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.petImageView
+                                                          attribute:NSLayoutAttributeTopMargin
+                                                         multiplier:1.0
+                                                           constant:-20.0]];
+
 }
 
 -(void)addRestfulnessTimer {
@@ -344,39 +347,41 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     }
 }
 
--(void)addProgressView {
+-(void)addProgressViewNextToLabel:(UILabel *)label {
+
     self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     self.progressView.progressTintColor = [UIColor blueColor];
     [self.progressView setProgress:[self.petModel getAlertness]
                           animated:NO];
     [self.view addSubview:self.progressView];
-
-    [self addProgressViewConstraints];
+    [self addConstraintsToProgressView:self.progressView
+                           nextToLabel:label];
 }
 
--(void)addProgressViewConstraints {
-    self.progressView.translatesAutoresizingMaskIntoConstraints = NO;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:20.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:-5.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.progressView
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.restfulnessLabel
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
+-(void)addConstraintsToProgressView:(UIProgressView *)progressView nextToLabel:(UILabel *)label {
+
+    progressView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
+                                                          attribute:NSLayoutAttributeLeadingMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:label
+                                                          attribute:NSLayoutAttributeTrailingMargin
+                                                         multiplier:1.0
+                                                           constant:20.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
+                                                          attribute:NSLayoutAttributeTrailingMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTrailingMargin
+                                                         multiplier:1.0
+                                                           constant:-5.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:label
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:0.0]];
 }
 
 
@@ -384,26 +389,28 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 
 -(void)addMessageService {
-    [self addButton];
-    [self addTextField];
+    UIButton *button = [self addButton];
+    [self addTextFieldOnTopOfButton:button];
     [self addPetResponseLabel];
 }
 
--(void)addButton {
-    self.button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.button setTitle:@"Send"
-                 forState:UIControlStateNormal];
+-(UIButton *)addButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTitle:@"Send"
+            forState:UIControlStateNormal];
 
-    [self.button addTarget:self
-                    action:@selector(sendMessageToPet)
-          forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self
+               action:@selector(sendMessageToPet:)
+     forControlEvents:UIControlEventTouchUpInside];
 
-    [self.view addSubview:self.button];
+    [self.view addSubview:button];
 
-    [self addButtonConstraints];
+    [self addConstraintsToButton:(UIButton *)button];
+    return button;
 }
 
--(void)addTextField {
+-(void)addTextFieldOnTopOfButton:(UIButton *)button {
+
     self.textField = [[UITextField alloc] init];
     self.textField.placeholder = @"Send message";
     self.textField.textAlignment = NSTextAlignmentRight;
@@ -411,29 +418,29 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     self.textField.delegate = self;
 
     [self.view addSubview:self.textField];
-    [self addTextFieldConstraints];
+    [self addTextFieldConstraints:button];
 }
 
--(void)addButtonConstraints {
-    self.button.translatesAutoresizingMaskIntoConstraints = NO;
+-(void)addConstraintsToButton:(UIButton *)button {
+    button.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [NSLayoutConstraint constraintWithItem:self.button
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:-5.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.button
-                                 attribute:NSLayoutAttributeBottomMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeBottomMargin
-                                multiplier:1.0
-                                  constant:-10.0].active = YES;
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button
+                                                          attribute:NSLayoutAttributeTrailingMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTrailingMargin
+                                                         multiplier:1.0
+                                                           constant:-5.0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button
+                                                          attribute:NSLayoutAttributeBottomMargin
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeBottomMargin
+                                                         multiplier:1.0
+                                                           constant:-10.0]];
 }
 
--(void)addTextFieldConstraints {
+-(void)addTextFieldConstraints:(UIButton *)button {
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
 
     [NSLayoutConstraint constraintWithItem:self.textField
@@ -446,7 +453,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [NSLayoutConstraint constraintWithItem:self.textField
                                  attribute:NSLayoutAttributeBottomMargin
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.button
+                                    toItem:button
                                  attribute:NSLayoutAttributeTopMargin
                                 multiplier:1.0
                                   constant:-10.0].active = YES;
@@ -460,14 +467,20 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self sendMessageToPet];
+    [self sendMessageToPet:nil];
     return YES;
 }
 
--(void)sendMessageToPet {
+-(void)sendMessageToPet:(id)sender {
+    NSArray<NSString *> *array = @[
+                                        @"Stop feeding me apples.",
+                                        @"Can I vomit in your shoes?",
+                                        @"I'm not listening to you.  I'm a cat."
+    ];
+
     if (self.textField.text.length > 0) {
-        self.petResponseLabel.text = self.petResponsesArray[self.currentPetResponseIndex];
-        self.currentPetResponseIndex = (self.currentPetResponseIndex + 1) % self.petResponsesArray.count;
+        self.petResponseLabel.text = array[self.currentPetResponseIndex];
+        self.currentPetResponseIndex = (self.currentPetResponseIndex + 1) % array.count;
 
         [self animatePetResponse];
 
@@ -496,11 +509,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addPetResponseLabel {
-    self.petResponsesArray = @[
-                               @"Stop feeding me Apples.",
-                               @"Can I vomit in your shoes?",
-                               @"I'm not listening to you.  I'm a cat"
-                               ];
     self.currentPetResponseIndex = 0;
     self.petResponseLabel = [[UILabel alloc] init];
     self.petResponseLabel.text = PetResponsePlaceholderString;
@@ -556,7 +564,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     else if (sender.state == UIGestureRecognizerStateChanged) {
         [self isLocationOverPet:[sender locationInView:self.view]];
         [self.petModel rubPetWithVelocity:[sender velocityInView:self.petImageView]];
-        self.petImageView.image = (self.petModel.isHappy) ? self.petModel.defaultImage : self.petModel.grumpyImage;
     }
 }
 
@@ -600,11 +607,9 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)runPetSimulation:(NSTimer *)timer {
     if (self.petModel.isSleeping) {
-        self.petImageView.image = self.petModel.sleepingImage;
         [self regenerateRestfulness:timer];
     }
     else {
-        self.petImageView.image = self.petModel.defaultImage;
         [self depleteRestfulness:timer];
     }
 }
@@ -680,10 +685,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [self.view layoutIfNeeded];
 }
 
--(void)keyboardDidShowOnScreen:(NSNotification *)NSNotification {
-
-}
-
 -(void)keyboardHidesOffScreen:(NSNotification *)notification {
     self.view.frame = CGRectMake(0,
                                  0,
@@ -691,10 +692,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
                                  self.view.frame.size.height);
 
     [self.view layoutIfNeeded];
-}
-
--(void)keyboardDidHideOffScreen:(NSNotification *)notification {
-
 }
 
 -(void)dismissKeyboard:(UITapGestureRecognizer *)sender {
@@ -761,6 +758,16 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
+
+-(void)loadImageWithNewRestfulness:(int)restfulness {
+    if (self.petModel.restfulness == 0 && restfulness == -1) {
+        self.petImageView.image = self.petModel.grumpyImage;
+    }
+    else {
+        self.petImageView.image = self.petModel.currentImage;
+    }
+}
+
 
 #pragma mark - ViewController helper functions
 
