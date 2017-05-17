@@ -19,7 +19,7 @@
     CGPoint oldCenter = sender.view.center;
 
     sender.view.center = CGPointMake(oldCenter.x + translationInView.x,
-                                   oldCenter.y + translationInView.y);
+                                     oldCenter.y + translationInView.y);
     [sender setTranslation:CGPointZero
                     inView:sender.view];
 }

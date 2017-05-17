@@ -13,6 +13,7 @@
 		117233231ECCDE64007BBD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117233211ECCDE64007BBD86 /* Main.storyboard */; };
 		117233251ECCDE64007BBD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 117233241ECCDE64007BBD86 /* Assets.xcassets */; };
 		117233281ECCDE64007BBD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117233261ECCDE64007BBD86 /* LaunchScreen.storyboard */; };
+		117233311ECCE3B8007BBD86 /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117233301ECCE3B8007BBD86 /* MyScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		117233241ECCDE64007BBD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		117233271ECCDE64007BBD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		117233291ECCDE64007BBD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1172332F1ECCE3B8007BBD86 /* MyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
+		117233301ECCE3B8007BBD86 /* MyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				1172331E1ECCDE64007BBD86 /* ViewController.h */,
 				1172331F1ECCDE64007BBD86 /* ViewController.m */,
 				117233211ECCDE64007BBD86 /* Main.storyboard */,
+				1172332F1ECCE3B8007BBD86 /* MyScrollView.h */,
+				117233301ECCE3B8007BBD86 /* MyScrollView.m */,
 				117233241ECCDE64007BBD86 /* Assets.xcassets */,
 				117233261ECCDE64007BBD86 /* LaunchScreen.storyboard */,
 				117233291ECCDE64007BBD86 /* Info.plist */,
@@ -151,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				117233201ECCDE64007BBD86 /* ViewController.m in Sources */,
+				117233311ECCE3B8007BBD86 /* MyScrollView.m in Sources */,
 				1172331D1ECCDE64007BBD86 /* AppDelegate.m in Sources */,
 				1172331A1ECCDE64007BBD86 /* main.m in Sources */,
 			);
