@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="SOV-TG-KAy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,6 +40,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-98.400000000000006" y="123.68815592203899"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="nNw-X6-AD1">
+            <objects>
+                <viewController id="SOV-TG-KAy" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BrE-tr-rCw"/>
+                        <viewControllerLayoutGuide type="bottom" id="386-kr-9N6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="09a-3z-Qe4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dp-8k-JnR">
+                                <rect key="frame" x="-1" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="SOV-TG-KAy" id="x2A-DU-QPw"/>
+                                    <outletCollection property="gestureRecognizers" destination="VS3-GB-Z1X" appends="YES" id="yQ6-fq-3RR"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="386-kr-9N6" firstAttribute="top" secondItem="7dp-8k-JnR" secondAttribute="bottom" id="2jq-2g-LdG"/>
+                            <constraint firstItem="7dp-8k-JnR" firstAttribute="top" secondItem="09a-3z-Qe4" secondAttribute="top" id="K3h-dm-H2o"/>
+                            <constraint firstItem="7dp-8k-JnR" firstAttribute="leading" secondItem="09a-3z-Qe4" secondAttribute="leading" id="Zi2-GM-baE"/>
+                            <constraint firstAttribute="trailing" secondItem="7dp-8k-JnR" secondAttribute="trailing" id="vm1-xN-NTX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pinchGR" destination="VS3-GB-Z1X" id="p2K-2U-CnP"/>
+                        <outlet property="scrollView" destination="7dp-8k-JnR" id="bVT-Jt-MF4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ca5-GH-2MZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="VS3-GB-Z1X"/>
+            </objects>
+            <point key="canvasLocation" x="653.60000000000002" y="124.58770614692655"/>
         </scene>
     </scenes>
 </document>

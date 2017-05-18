@@ -16,6 +16,7 @@
 		117233591ECCFF06007BBD86 /* Lighthouse-in-Field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233561ECCFF06007BBD86 /* Lighthouse-in-Field.jpg */; };
 		1172335A1ECCFF06007BBD86 /* Lighthouse-night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233571ECCFF06007BBD86 /* Lighthouse-night.jpg */; };
 		1172335B1ECCFF06007BBD86 /* Lighthouse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233581ECCFF06007BBD86 /* Lighthouse.jpg */; };
+		11884F101ECDCFAF00AB009F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11884F0F1ECDCFAE00AB009F /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		117233561ECCFF06007BBD86 /* Lighthouse-in-Field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-in-Field.jpg"; sourceTree = "<group>"; };
 		117233571ECCFF06007BBD86 /* Lighthouse-night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-night.jpg"; sourceTree = "<group>"; };
 		117233581ECCFF06007BBD86 /* Lighthouse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lighthouse.jpg; sourceTree = "<group>"; };
+		11884F0E1ECDCFAE00AB009F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		11884F0F1ECDCFAE00AB009F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				117233441ECCFD81007BBD86 /* ViewController.h */,
 				117233451ECCFD81007BBD86 /* ViewController.m */,
 				117233471ECCFD81007BBD86 /* Main.storyboard */,
+				11884F0E1ECDCFAE00AB009F /* DetailViewController.h */,
+				11884F0F1ECDCFAE00AB009F /* DetailViewController.m */,
 				117233551ECCFF06007BBD86 /* Images */,
 				1172334A1ECCFD81007BBD86 /* Assets.xcassets */,
 				1172334C1ECCFD81007BBD86 /* LaunchScreen.storyboard */,
@@ -173,6 +178,7 @@
 				117233461ECCFD81007BBD86 /* ViewController.m in Sources */,
 				117233431ECCFD81007BBD86 /* AppDelegate.m in Sources */,
 				117233401ECCFD81007BBD86 /* main.m in Sources */,
+				11884F101ECDCFAF00AB009F /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +333,7 @@
 				117233541ECCFD81007BBD86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
