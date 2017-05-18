@@ -40,7 +40,7 @@
 
     self.scrollView.delegate = self;
 
-    self.scrollView.minimumZoomScale = 0.5;
+    self.scrollView.minimumZoomScale = 0.25;
     self.scrollView.maximumZoomScale = 2.0;
 }
 

@@ -31,11 +31,14 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
 
-    [self.view bringSubviewToFront:self.pageControl];
     self.pageControl.userInteractionEnabled = YES;
-    
+
+    [self.pageControl addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(pageTapped:)]];
 
     [self addConstraintToImageViews];
+
+    [self.view bringSubviewToFront:self.pageControl];
 }
 
 
@@ -114,6 +117,26 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.pageControl.currentPage = (int) (self.scrollView.bounds.origin.x / self.view.bounds.size.width);
+}
+
+-(void)pageTapped:(UITapGestureRecognizer *)sender {
+    CGFloat locationX = [sender locationInView:sender.view].x;
+    CGFloat partitionSize = (int) sender.view.bounds.size.width / self.pageControl.numberOfPages;
+
+    self.pageControl.currentPage = (int) (locationX / partitionSize);
+
+    [UIView animateWithDuration:1
+                          delay:0
+         usingSpringWithDamping:1
+          initialSpringVelocity:0.1
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.scrollView.bounds = CGRectMake(self.scrollView.frame.size.width * self.pageControl.currentPage,
+                                                             self.scrollView.frame.origin.y,
+                                                             self.scrollView.frame.size.width,
+                                                             self.scrollView.frame.size.height);
+                     }
+                     completion:nil];
 }
 
 @end
