@@ -13,6 +13,9 @@
 		117233491ECCFD81007BBD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 117233471ECCFD81007BBD86 /* Main.storyboard */; };
 		1172334B1ECCFD81007BBD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1172334A1ECCFD81007BBD86 /* Assets.xcassets */; };
 		1172334E1ECCFD81007BBD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1172334C1ECCFD81007BBD86 /* LaunchScreen.storyboard */; };
+		117233591ECCFF06007BBD86 /* Lighthouse-in-Field.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233561ECCFF06007BBD86 /* Lighthouse-in-Field.jpg */; };
+		1172335A1ECCFF06007BBD86 /* Lighthouse-night.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233571ECCFF06007BBD86 /* Lighthouse-night.jpg */; };
+		1172335B1ECCFF06007BBD86 /* Lighthouse.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117233581ECCFF06007BBD86 /* Lighthouse.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		1172334A1ECCFD81007BBD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1172334D1ECCFD81007BBD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1172334F1ECCFD81007BBD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		117233561ECCFF06007BBD86 /* Lighthouse-in-Field.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-in-Field.jpg"; sourceTree = "<group>"; };
+		117233571ECCFF06007BBD86 /* Lighthouse-night.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lighthouse-night.jpg"; sourceTree = "<group>"; };
+		117233581ECCFF06007BBD86 /* Lighthouse.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lighthouse.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 				117233441ECCFD81007BBD86 /* ViewController.h */,
 				117233451ECCFD81007BBD86 /* ViewController.m */,
 				117233471ECCFD81007BBD86 /* Main.storyboard */,
+				117233551ECCFF06007BBD86 /* Images */,
 				1172334A1ECCFD81007BBD86 /* Assets.xcassets */,
 				1172334C1ECCFD81007BBD86 /* LaunchScreen.storyboard */,
 				1172334F1ECCFD81007BBD86 /* Info.plist */,
@@ -77,6 +84,16 @@
 				1172333F1ECCFD81007BBD86 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		117233551ECCFF06007BBD86 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				117233561ECCFF06007BBD86 /* Lighthouse-in-Field.jpg */,
+				117233571ECCFF06007BBD86 /* Lighthouse-night.jpg */,
+				117233581ECCFF06007BBD86 /* Lighthouse.jpg */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +156,10 @@
 			files = (
 				1172334E1ECCFD81007BBD86 /* LaunchScreen.storyboard in Resources */,
 				1172334B1ECCFD81007BBD86 /* Assets.xcassets in Resources */,
+				1172335A1ECCFF06007BBD86 /* Lighthouse-night.jpg in Resources */,
+				1172335B1ECCFF06007BBD86 /* Lighthouse.jpg in Resources */,
 				117233491ECCFD81007BBD86 /* Main.storyboard in Resources */,
+				117233591ECCFF06007BBD86 /* Lighthouse-in-Field.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
