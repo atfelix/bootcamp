@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic) UIPageControl *control;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageViewArray;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
 @end
 
@@ -29,6 +30,10 @@
 
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
+
+    [self.view bringSubviewToFront:self.pageControl];
+    self.pageControl.userInteractionEnabled = YES;
+    
 
     [self addConstraintToImageViews];
 }
@@ -105,6 +110,10 @@
     if ([segue.destinationViewController respondsToSelector:@selector(setImage:)]) {
         [segue.destinationViewController setImage:self.imageViewArray[index].image];
     }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.pageControl.currentPage = (int) (self.scrollView.bounds.origin.x / self.view.bounds.size.width);
 }
 
 @end
