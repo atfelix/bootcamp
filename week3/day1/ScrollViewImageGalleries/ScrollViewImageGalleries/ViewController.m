@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "DetailViewController.h"
+
 @interface ViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -44,9 +46,12 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
 
         imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.userInteractionEnabled = YES;
         imageView.clipsToBounds = YES;
 
         [self.imageViewArray addObject:imageView];
+        [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(handleTap:)]];
     }
 
     for (UIImageView* imageView in self.imageViewArray) {
@@ -85,6 +90,20 @@
 -(void)translatesAutoresizingMasksToConstraints {
     for (UIImageView *iv in self.imageViewArray) {
         iv.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+}
+
+-(void)handleTap:(UITapGestureRecognizer *)sender {
+    [self performSegueWithIdentifier:@"DetailSegue"
+                              sender:sender];
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITapGestureRecognizer *)sender {
+    int index = (int) ([sender locationInView:self.scrollView].x / self.view.bounds.size.width);
+
+    if ([segue.destinationViewController respondsToSelector:@selector(setImage:)]) {
+        [segue.destinationViewController setImage:self.imageViewArray[index].image];
     }
 }
 

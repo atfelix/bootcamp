@@ -10,4 +10,8 @@
 
 @interface DetailViewController : UIViewController
 
+@property (nonatomic) UIImage *image;
+
+-(instancetype)initWithImage:(UIImage *)image;
+
 @end
