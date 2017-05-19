@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGR;
+@property (nonatomic) CGFloat aspectRatio;
+@property (nonatomic) NSMutableArray<NSLayoutAnchor *> *anchorArray;
 
 @end
 
@@ -29,19 +31,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.anchorArray = [[NSMutableArray alloc] init];
+
     self.imageView = [[UIImageView alloc] initWithImage:self.image];
+
     [self.scrollView addSubview:self.imageView];
     self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.imageView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor].active = YES;
-    [self.imageView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor].active = YES;
-    [self.imageView.leftAnchor constraintEqualToAnchor:self.scrollView.leftAnchor].active = YES;
-    [self.imageView.rightAnchor constraintEqualToAnchor:self.scrollView.rightAnchor].active = YES;
     self.imageView.userInteractionEnabled = YES;
-
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.scrollView.delegate = self;
 
-    self.scrollView.minimumZoomScale = 0.25;
-    self.scrollView.maximumZoomScale = 2.0;
+    self.aspectRatio = [self getAspectRatio];
+    [self setImageViewFrameWithWidth:self.view.frame.size.width
+                           andHeight:self.view.frame.size.height];
+
+    self.scrollView.minimumZoomScale = 0.0;
+    self.scrollView.maximumZoomScale = 10.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,22 +55,36 @@
 }
 
 
--(void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"DetailSegue"]) {
-    }
-
-}
-
-
 #pragma mark UIScrollViewDelegate methods
 
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.imageView;
+}
+
+
+#pragma mark Aspect Ratio
+
+-(CGFloat)getAspectRatio {
+    return self.image.size.width / self.image.size.height;
+}
+
+-(void)setImageViewFrameWithWidth:(CGFloat)largeWidth andHeight:(CGFloat)largeHeight {
+    CGFloat width, height;
+
+    if (self.aspectRatio < 1) {
+        height = largeHeight;
+        width = height * self.aspectRatio;
+    }
+    else {
+        width = largeWidth;
+        height = width / self.aspectRatio;
+    }
+
+    [self.imageView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor].active = YES;
+    [self.imageView.leftAnchor constraintEqualToAnchor:self.scrollView.leftAnchor].active = YES;
+    [self.imageView.widthAnchor constraintEqualToAnchor:self.scrollView.widthAnchor].active = YES;
+    [self.imageView.heightAnchor constraintEqualToAnchor:self.scrollView.heightAnchor].active = YES;
 }
 
 @end

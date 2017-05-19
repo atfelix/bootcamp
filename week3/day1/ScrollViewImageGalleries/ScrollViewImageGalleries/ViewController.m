@@ -16,6 +16,7 @@
 @property (nonatomic) UIPageControl *control;
 @property (nonatomic) NSMutableArray<UIImageView *> *imageViewArray;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (nonatomic) NSMutableArray<NSString *> *imageNamesArray;
 
 @end
 
@@ -25,6 +26,7 @@
     [super viewDidLoad];
 
     self.imageViewArray = [[NSMutableArray alloc] init];
+    self.imageNamesArray = [@[@"Lighthouse-in-Field.jpg", @"Lighthouse-night.jpg", @"Lighthouse.jpg"] mutableCopy];
 
     [self createImageViews];
 
@@ -49,7 +51,7 @@
 
 -(void)createImageViews {
 
-    for (NSString *name in @[@"Lighthouse-in-Field.jpg", @"Lighthouse-night.jpg", @"Lighthouse.jpg"]) {
+    for (NSString *name in self.imageNamesArray) {
 
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
 
