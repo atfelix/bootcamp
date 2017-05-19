@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11A23DCF1ECF726A002A123A /* TodoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A23DCE1ECF726A002A123A /* TodoManager.m */; };
 		11ACDC921ECB4A030096623B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDC911ECB4A030096623B /* main.m */; };
 		11ACDC951ECB4A030096623B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDC941ECB4A030096623B /* AppDelegate.m */; };
 		11ACDC981ECB4A030096623B /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ACDC971ECB4A030096623B /* MasterViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11A23DCD1ECF726A002A123A /* TodoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoManager.h; sourceTree = "<group>"; };
+		11A23DCE1ECF726A002A123A /* TodoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoManager.m; sourceTree = "<group>"; };
 		11ACDC8D1ECB4A030096623B /* EveryDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11ACDC911ECB4A030096623B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		11ACDC931ECB4A030096623B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,13 +77,15 @@
 				11ACDC941ECB4A030096623B /* AppDelegate.m */,
 				11ACDC961ECB4A030096623B /* MasterViewController.h */,
 				11ACDC971ECB4A030096623B /* MasterViewController.m */,
+				11ACDCD61ECB7C190096623B /* AddTodoItemViewController.h */,
+				11ACDCD71ECB7C190096623B /* AddTodoItemViewController.m */,
 				11ACDCAD1ECB4F140096623B /* TodoTableViewCell.h */,
 				11ACDCAE1ECB4F140096623B /* TodoTableViewCell.m */,
 				11ACDC991ECB4A030096623B /* DetailViewController.h */,
 				11ACDC9A1ECB4A030096623B /* DetailViewController.m */,
 				11ACDC9C1ECB4A030096623B /* Main.storyboard */,
-				11ACDCD61ECB7C190096623B /* AddTodoItemViewController.h */,
-				11ACDCD71ECB7C190096623B /* AddTodoItemViewController.m */,
+				11A23DCD1ECF726A002A123A /* TodoManager.h */,
+				11A23DCE1ECF726A002A123A /* TodoManager.m */,
 				11ACDCAA1ECB4B960096623B /* TodoObject.h */,
 				11ACDCAB1ECB4B960096623B /* TodoObject.m */,
 				11ACDC9F1ECB4A030096623B /* Assets.xcassets */,
@@ -171,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11ACDC951ECB4A030096623B /* AppDelegate.m in Sources */,
+				11A23DCF1ECF726A002A123A /* TodoManager.m in Sources */,
 				11ACDCD81ECB7C190096623B /* AddTodoItemViewController.m in Sources */,
 				11ACDCAF1ECB4F140096623B /* TodoTableViewCell.m in Sources */,
 				11ACDC981ECB4A030096623B /* MasterViewController.m in Sources */,
@@ -331,6 +337,7 @@
 				11ACDCA91ECB4A030096623B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

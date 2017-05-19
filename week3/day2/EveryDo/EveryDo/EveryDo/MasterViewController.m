@@ -11,6 +11,7 @@
 #import "AddTodoItemViewController.h"
 #import "DetailViewController.h"
 #import "TodoTableViewCell.h"
+#import "TodoManager.h"
 #import "TodoObject.h"
 
 #define PrioritySegmentedControlIndex 0
@@ -20,17 +21,12 @@
 
 @property (nonatomic) NSMutableArray<NSMutableArray *> *todoObjects;
 @property (nonatomic) NSArray<NSString *> *sectionHeaders;
+@property (nonatomic) TodoManager *manager;
 
 @end
 
 @implementation MasterViewController
 
--(NSMutableArray *)todoObjects {
-    if (!_todoObjects) {
-        _todoObjects = [[NSMutableArray alloc] init];
-    }
-    return _todoObjects;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +39,7 @@
     [self.view addGestureRecognizer:swipeGR];
 
     self.sectionHeaders = @[@"Outstanding Tasks", @"Completed Tasks"];
+    self.manager = [[TodoManager alloc] initWithSectionCapacity:self.sectionHeaders.count];
 
     for (int i = 0; i < self.sectionHeaders.count; i++) {
         [self.todoObjects addObject:[[NSMutableArray alloc] init]];
