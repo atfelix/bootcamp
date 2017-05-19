@@ -45,7 +45,7 @@
     [self setImageViewFrameWithWidth:self.view.frame.size.width
                            andHeight:self.view.frame.size.height];
 
-    self.scrollView.minimumZoomScale = 0.0;
+    self.scrollView.minimumZoomScale = 1.0;
     self.scrollView.maximumZoomScale = 10.0;
 }
 
