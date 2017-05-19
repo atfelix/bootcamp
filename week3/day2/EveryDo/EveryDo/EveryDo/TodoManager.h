@@ -14,6 +14,21 @@
 
 @property (nonatomic) NSMutableArray<NSMutableArray<TodoObject *> *> *todoCollection;
 
--(instancetype)initWithSectionCapacity:(NSInteger)count;
+-(instancetype)initWithSections:(NSArray *)sectionHeaders;
+
+-(NSInteger)numberOfSections;
+-(NSInteger)numberOfElementsInSection:(NSInteger)section;
+-(NSInteger)sectionCount:(NSInteger)section;
+-(NSString *)getSectionHeaderFromSection:(NSInteger)section;
+
+-(TodoObject *)todoObjectAtIndexPath:(NSIndexPath *)indexPath;
+
+-(void)sortByPriority;
+-(void)sortByDeadline;
+
+-(void)addTodoObject:(TodoObject *)todo;
+-(void)removeTodoObjectAtIndexPaths:(NSIndexPath *)indexPath;
+-(void)moveTodoObjectFromIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
+-(void)markTodoObjectAsCompleteAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

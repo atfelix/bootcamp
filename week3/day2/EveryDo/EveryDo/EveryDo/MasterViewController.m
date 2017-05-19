@@ -38,12 +38,7 @@
     swipeGR.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeGR];
 
-    self.sectionHeaders = @[@"Outstanding Tasks", @"Completed Tasks"];
-    self.manager = [[TodoManager alloc] initWithSectionCapacity:self.sectionHeaders.count];
-
-    for (int i = 0; i < self.sectionHeaders.count; i++) {
-        [self.todoObjects addObject:[[NSMutableArray alloc] init]];
-    }
+    self.manager = [[TodoManager alloc] initWithSections:@[@"Outstanding Tasks", @"Completed Tasks"]];
 }
 
 
@@ -75,10 +70,11 @@
 
 #pragma mark - Segues
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        TodoObject *object = self.todoObjects[indexPath.section][indexPath.row];
+        TodoObject *object = [self.manager todoObjectAtIndexPath:indexPath];
         DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         [controller setDetailItem:object];
     }
@@ -87,18 +83,19 @@
 
 #pragma mark - Table View
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.sectionHeaders.count;
+    return [self.manager numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.todoObjects[section].count;
+    return [self.manager numberOfElementsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoTableViewCell" forIndexPath:indexPath];
-    cell.todoObject = self.todoObjects[indexPath.section][indexPath.row];
+    cell.todoObject = [self.manager todoObjectAtIndexPath:indexPath];
     [cell updateDisplay];
     return cell;
 }
@@ -112,7 +109,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.todoObjects[indexPath.section] removeObjectAtIndex:indexPath.row];
+        [self.manager removeTodoObjectAtIndexPaths:indexPath];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -128,10 +125,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    TodoObject *todo = [self.todoObjects[sourceIndexPath.section] objectAtIndex:sourceIndexPath.row];
-    [self.todoObjects[sourceIndexPath.section] removeObjectAtIndex:sourceIndexPath.row];
-    [self.todoObjects[destinationIndexPath.section] insertObject:todo
-                                                         atIndex:destinationIndexPath.row];
+    [self.manager moveTodoObjectFromIndexPath:sourceIndexPath
+                                  toIndexPath:destinationIndexPath];
     [self.tableView reloadData];
 }
 
@@ -140,7 +135,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.sectionHeaders[section];
+    return [self.manager getSectionHeaderFromSection:section];
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
@@ -152,7 +147,7 @@
                                        inSection:proposedDestinationIndexPath.section];
     }
     else if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
-        indexPath = [NSIndexPath indexPathForRow:self.todoObjects[sourceIndexPath.section].count - 1
+        indexPath = [NSIndexPath indexPathForRow:[self.manager sectionCount:sourceIndexPath.section] - 1
                                        inSection:sourceIndexPath.section];
     }
     else {
@@ -163,39 +158,6 @@
 }
 
 #pragma mark - Utility Functions
-
--(void)sortByPriority {
-    for (NSMutableArray *array in self.todoObjects) {
-        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
-            return (NSComparisonResult)((a.priorityNumber < b.priorityNumber)
-                                        - (b.priorityNumber < a.priorityNumber));
-        }];
-    }
-}
-
--(void)sortByDeadline {
-    for (NSMutableArray *array in self.todoObjects) {
-        [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
-            return [a.deadlineDate compare:b.deadlineDate];
-        }];
-    }
-}
-
-- (IBAction)sort:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == PrioritySegmentedControlIndex) {
-        [self sortByPriority];
-    }
-    else if (sender.selectedSegmentIndex == DeadlineSegmentedControlIndex) {
-        [self sortByDeadline];
-    }
-    [self.tableView reloadData];
-}
-
--(void)saveTodoItem:(TodoObject *)todo {
-    [self.todoObjects[0] insertObject:todo
-                              atIndex:0];
-    [self.tableView reloadData];
-}
 
 -(void)handleSwipe:(UISwipeGestureRecognizer *)sender {
 
@@ -212,13 +174,30 @@
             return;
         }
 
-        [self.todoObjects[0] removeObjectAtIndex:indexPath.row];
-
-        [self.todoObjects[1] addObject:cell.todoObject];
-        cell.todoObject.done = YES;
+        [self.manager markTodoObjectAsCompleteAtIndexPath:indexPath];
 
         [self.tableView reloadData];
     }
+}
+
+- (IBAction)sort:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == PrioritySegmentedControlIndex) {
+        [self.manager sortByPriority];
+    }
+    else if (sender.selectedSegmentIndex == DeadlineSegmentedControlIndex) {
+        [self.manager sortByDeadline];
+    }
+    [self.tableView reloadData];
+}
+
+
+
+#pragma mark AddTodoItemDelegate methods
+
+
+-(void)saveTodoItem:(TodoObject *)todo {
+    [self.manager addTodoObject:todo];
+    [self.tableView reloadData];
 }
 
 
