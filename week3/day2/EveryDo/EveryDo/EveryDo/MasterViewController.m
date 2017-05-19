@@ -41,7 +41,6 @@
                                                                                   action:@selector(handleSwipe:)];
     swipeGR.direction = UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeGR];
-    self.tableView.delegate = self;
 
     self.sectionHeaders = @[@"Outstanding Tasks", @"Completed Tasks"];
 
@@ -182,6 +181,9 @@
 -(void)sortByDeadline {
     for (NSMutableArray *array in self.todoObjects) {
         [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
+            if ([a.deadlineDate compare:b.deadlineDate] == NSOrderedSame) {
+                return [a.deadlineTime compare:b.deadlineTime];
+            }
             return [a.deadlineDate compare:b.deadlineDate];
         }];
     }
