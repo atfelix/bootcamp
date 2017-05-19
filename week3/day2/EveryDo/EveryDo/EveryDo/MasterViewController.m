@@ -181,9 +181,6 @@
 -(void)sortByDeadline {
     for (NSMutableArray *array in self.todoObjects) {
         [array sortUsingComparator:^NSComparisonResult(TodoObject *a, TodoObject *b) {
-            if ([a.deadlineDate compare:b.deadlineDate] == NSOrderedSame) {
-                return [a.deadlineTime compare:b.deadlineTime];
-            }
             return [a.deadlineDate compare:b.deadlineDate];
         }];
     }

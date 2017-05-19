@@ -16,7 +16,6 @@
 @property (nonatomic, assign, getter=isDone) BOOL done;
 @property (nonatomic) NSDate *dateCreated;
 @property (nonatomic) NSDate *deadlineDate;
-@property (nonatomic) NSDate *deadlineTime;
 
 -(instancetype)initWithTitle:(NSString *)titleString andDescription:(NSString *)descriptionString andPriorityNumber:(NSInteger)priorityNumber andDeadlineDate:(NSDate *)date andDeadlineTime:(NSDate *)time;
 

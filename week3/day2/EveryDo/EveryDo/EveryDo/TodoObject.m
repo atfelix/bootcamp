@@ -19,8 +19,8 @@
         _priorityNumber = priorityNumber;
         _done = NO;
         _dateCreated = [NSDate date];
-        _deadlineDate = date;
-        _deadlineTime = time;
+        _deadlineDate = [TodoObject dateMergedFromDate:date
+                                               andTime:time];
     }
     return self;
 }
@@ -32,5 +32,19 @@
                andDeadlineDate:[NSDate date]
                andDeadlineTime:[NSDate distantFuture]];
 }
+
++(NSDate *)dateMergedFromDate:(NSDate *)date andTime:(NSDate *)time {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *timeComponents = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond
+                                                   fromDate:time];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
+                                                   fromDate:date];
+    dateComponents.hour = timeComponents.hour;
+    dateComponents.minute = timeComponents.minute;
+    dateComponents.second = timeComponents.second;
+
+    return [calendar dateFromComponents:dateComponents];
+}
+
 
 @end

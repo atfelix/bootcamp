@@ -42,7 +42,7 @@
         self.priorityLabel.text = [NSString stringWithFormat:@"%@", @(self.detailItem.priorityNumber)];
         self.dateCreatedLabel.text = [dateFormatter stringFromDate:self.detailItem.dateCreated];
         self.deadlineDateLabel.text = [dateFormatter stringFromDate:self.detailItem.deadlineDate];
-        self.deadlineTimeLabel.text = [timeFormatter stringFromDate:self.detailItem.deadlineTime];
+        self.deadlineTimeLabel.text = [timeFormatter stringFromDate:self.detailItem.deadlineDate];
     }
 }
 
