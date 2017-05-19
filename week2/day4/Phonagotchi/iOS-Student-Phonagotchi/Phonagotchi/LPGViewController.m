@@ -335,7 +335,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [self animateProgessView:timer];
 
     if ([self.petModel isFullyDepleted]) {
-        [self makePetSleep];
+        [self postMakePetSleepNotification];
     }
 }
 
@@ -344,7 +344,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     [self animateProgessView:timer];
 
     if (self.petModel.isFullyRested) {
-        [self wakePet];
+        [self postWakeUpNotification];
     }
 }
 
@@ -486,7 +486,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
         [self animatePetResponse];
 
         self.textField.text = @"";
-        [self wakePet];
+        [self postWakeUpNotification];
     }
     [self.textField resignFirstResponder];
 }
@@ -560,10 +560,10 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)rubPet:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        [self wakePet];
+        [self postWakeUpNotification];
     }
     else if (sender.state == UIGestureRecognizerStateChanged) {
-        [self wakePet];
+        [self postWakeUpNotification];
         [self isLocationOverPet:[sender locationInView:self.view]];
         [self.petModel rubPetWithVelocity:[sender velocityInView:self.petImageView]];
     }
@@ -580,32 +580,25 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
         [self animateFeedingAppleDown:location];
     }
     else if (sender.state == UIGestureRecognizerStateBegan) {
-        [self wakePet];
+        [self postWakeUpNotification];
     }
     else if (sender.state == UIGestureRecognizerStateChanged) {
         self.feedingAppleImageView.center = location;
     }
     else if (sender.state == UIGestureRecognizerStateEnded) {
-        [self wakePet];
+        [self postWakeUpNotification];
         ([self isLocationOverPet:location]) ? [self animateFeedPet] : [self animateFeedingAppleDown:location];
     }
 }
 
 -(void)petMakesNoise:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded) {
-        [self wakePet];
+        [self postWakeUpNotification];
         self.petModel.happy = YES;
         AudioServicesPlaySystemSound(ChooChooSound);
     }
 }
 
--(void)wakePet {
-    [self changePetStateWithSleepingBool:NO];
-}
-
--(void)makePetSleep {
-    [self changePetStateWithSleepingBool:YES];
-}
 
 -(void)changePetStateWithSleepingBool:(BOOL)isSleeping {
     self.petModel.sleeping = isSleeping;
@@ -713,7 +706,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (event.subtype == UIEventSubtypeMotionShake) {
-        [self wakePet];
+        [self postWakeUpNotification];
     }
 
     if ([super respondsToSelector:@selector(motionEnded:withEvent:)] ) {
@@ -788,6 +781,17 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     }
     self.petImageView.image = self.petModel.currentImage;
 }
+
+-(void)postWakeUpNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"WakePetNotification"
+                                                        object:self];
+}
+
+-(void)postMakePetSleepNotification {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MakePetSleepNotification"
+                                                        object:self];
+}
+
 
 
 #pragma mark - ViewController helper functions

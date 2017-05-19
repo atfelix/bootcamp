@@ -42,6 +42,7 @@ static NSString *DefaultImageNameString = @"default.png";
         _appleImage = [UIImage imageNamed:AppleImageNameString];
         _bucketImage = [UIImage imageNamed:BucketImageNameString];
         _currentImage = _defaultImage;
+        [self registerNotifications];
     }
     return self;
 }
@@ -94,6 +95,25 @@ static NSString *DefaultImageNameString = @"default.png";
 
 -(BOOL)isFullyDepleted {
     return self.restfulness == 0;
+}
+
+-(void)registerNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(wakePet)
+                                                 name:@"WakePetNotification"
+                                               object:self.delegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(makePetSleep)
+                                                 name:@"MakePetSleepNotification"
+                                               object:self.delegate];
+}
+
+-(void)wakePet {
+    self.sleeping = NO;
+}
+
+-(void)makePetSleep {
+    self.sleeping = YES;
 }
 
 @end
