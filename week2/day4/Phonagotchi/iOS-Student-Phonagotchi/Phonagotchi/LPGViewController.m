@@ -57,6 +57,7 @@
 static NSString *RestfulnessLabelText = @"Restfulness";
 static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
+
 @interface LPGViewController () <UIGestureRecognizerDelegate, UITextFieldDelegate, PetDelegate>
 
 @property (nonatomic) LPGPetModel *petModel;
@@ -761,8 +762,21 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    if (![gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]
+        && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return NO;
+    }
+    else if (![gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]
+             && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
 }
+
+
+#pragma mark PetDelegate Method
 
 -(void)loadImageWithNewRestfulness:(int)restfulness {
     if (self.petModel.restfulness == 0 && restfulness == -1) {
