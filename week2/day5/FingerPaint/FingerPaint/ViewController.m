@@ -8,15 +8,18 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+#import "DrawView.h"
 
+@interface ViewController () <DrawViewDelegate>
+
+@property (weak, nonatomic) IBOutlet DrawView *drawView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.drawView.delegate = self;
 }
 
 
@@ -25,5 +28,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark Draw View Delegate methods
+
+
+-(UIColor *)currentStrokeColor {
+    return [UIColor purpleColor];
+}
 
 @end

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DrawViewDelegate <NSObject>
+
+-(UIColor *)currentStrokeColor;
+
+@end
+
 @interface DrawView : UIView
+
+@property (nonatomic) id<DrawViewDelegate> delegate;
 
 @end
