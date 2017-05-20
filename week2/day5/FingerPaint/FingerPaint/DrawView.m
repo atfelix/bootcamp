@@ -13,21 +13,17 @@
 @interface DrawView ()
 
 @property (nonatomic) NSMutableArray *lines;
+@property (nonatomic) NSMutableArray *lineColors;
+@property (nonatomic) UIBezierPath *currentBezierPath;
 
 @end
 
 @implementation DrawView
 
 - (void)drawRect:(CGRect)rect {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(context, 1.0);
-
-    for (LineSegment *lineSegment in self.lines) {
-        CGContextSetStrokeColorWithColor(context,
-                                         [lineSegment lineColor].CGColor);
-        CGContextMoveToPoint(context, lineSegment.start.x, lineSegment.start.y);
-        CGContextAddLineToPoint(context, lineSegment.end.x, lineSegment.end.y);
-        CGContextStrokePath(context);
+    for (LineSegment *line in self.lines) {
+        UIBezierPath *path = [[UIBezierPath alloc] init];
+        [self stroke:path forLine:line];
     }
 }
 
@@ -38,20 +34,41 @@
     return _lines;
 }
 
+-(NSMutableArray *)lineColors {
+    if (!_lineColors) {
+        _lineColors = [[NSMutableArray alloc] init];
+    }
+    return _lineColors;
+}
+
 
 #pragma mark Touches methods
 
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
     UITouch *touch = touches.anyObject;
     CGPoint first = [touch previousLocationInView:self];
     CGPoint second = [touch locationInView:self];
     LineSegment *line = [[LineSegment alloc] initWithStart:first
                                                     andEnd:second
                                                   andColor:[self.delegate currentStrokeColor]];
-
     [self.lines addObject:line];
     [self setNeedsDisplay];
+
+}
+
+
+#pragma mark Utility Functions
+
+-(void)stroke:(UIBezierPath *)path forLine:(LineSegment *)line {
+    path.lineWidth = 10.0;
+    path.lineCapStyle = kCGLineCapRound;
+    path.lineJoinStyle = kCGLineJoinRound;
+    [line.lineColor setStroke];
+    [path moveToPoint:line.start];
+    [path addLineToPoint:line.end];
+    [path stroke];
 }
 
 
