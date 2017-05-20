@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *lines;
 @property (nonatomic) NSMutableArray *lineColors;
 @property (nonatomic) UIBezierPath *currentBezierPath;
+@property (nonatomic) CGFloat lastTimestamp;
 
 @end
 
@@ -23,7 +24,7 @@
 - (void)drawRect:(CGRect)rect {
     for (LineSegment *line in self.lines) {
         UIBezierPath *path = [[UIBezierPath alloc] init];
-        [self stroke:path forLine:line];
+        [DrawView stroke:path forLine:line];
     }
 }
 
@@ -45,6 +46,10 @@
 #pragma mark Touches methods
 
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    self.lastTimestamp = [touches.anyObject timestamp];
+}
+
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 
     UITouch *touch = touches.anyObject;
@@ -52,23 +57,43 @@
     CGPoint second = [touch locationInView:self];
     LineSegment *line = [[LineSegment alloc] initWithStart:first
                                                     andEnd:second
-                                                  andColor:[self.delegate currentStrokeColor]];
+                                                  andColor:[self.delegate currentStrokeColor]
+                                              andLineWidth:[self calculateVelocityOfTouch:touch]];
     [self.lines addObject:line];
+    self.lastTimestamp = [touch timestamp];
     [self setNeedsDisplay];
+}
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    self.lastTimestamp = 0;
 }
 
 
 #pragma mark Utility Functions
 
--(void)stroke:(UIBezierPath *)path forLine:(LineSegment *)line {
-    path.lineWidth = 10.0;
-    path.lineCapStyle = kCGLineCapRound;
+
++(void)stroke:(UIBezierPath *)path forLine:(LineSegment *)line {
+    path.lineCapStyle = kCGLineCapSquare;
     path.lineJoinStyle = kCGLineJoinRound;
+
+    path.lineWidth = line.lineWidth;
     [line.lineColor setStroke];
+
     [path moveToPoint:line.start];
     [path addLineToPoint:line.end];
     [path stroke];
+}
+
++(CGFloat)calculateVelocityFrom:(CGPoint)here to:(CGPoint)there overTime:(CGFloat)time {
+    return pow(((there.x - here.x) * (there.x - here.x) + (there.y - here.y) * (there.y - here.y)) / time, 0.2);
+}
+
+-(CGFloat)calculateVelocityOfTouch:(UITouch *)touch {
+    CGPoint previousLocation = [touch previousLocationInView:self];
+    CGPoint location = [touch locationInView:self];
+    CGFloat timeDelta = [touch timestamp] - self.lastTimestamp;
+
+    return [DrawView calculateVelocityFrom:previousLocation to:location overTime:timeDelta];
 }
 
 
