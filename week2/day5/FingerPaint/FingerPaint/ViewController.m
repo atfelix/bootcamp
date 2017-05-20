@@ -13,6 +13,7 @@
 @interface ViewController () <DrawViewDelegate>
 
 @property (weak, nonatomic) IBOutlet DrawView *drawView;
+@property (nonatomic) UIColor *currentStrokeColor;
 @end
 
 @implementation ViewController
@@ -20,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.drawView.delegate = self;
+    [self.view sendSubviewToBack:self.drawView];
+    self.currentStrokeColor = [UIColor redColor];
 }
 
 
@@ -32,8 +35,8 @@
 #pragma mark Draw View Delegate methods
 
 
--(UIColor *)currentStrokeColor {
-    return [UIColor purpleColor];
+- (IBAction)buttonTapped:(UIButton *)sender {
+    self.currentStrokeColor = sender.currentTitleColor;
 }
 
 @end

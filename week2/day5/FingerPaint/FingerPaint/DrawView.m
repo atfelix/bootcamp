@@ -20,11 +20,11 @@
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(context,
-                                     [self.delegate currentStrokeColor].CGColor);
     CGContextSetLineWidth(context, 1.0);
 
     for (LineSegment *lineSegment in self.lines) {
+        CGContextSetStrokeColorWithColor(context,
+                                         [lineSegment lineColor].CGColor);
         CGContextMoveToPoint(context, lineSegment.start.x, lineSegment.start.y);
         CGContextAddLineToPoint(context, lineSegment.end.x, lineSegment.end.y);
         CGContextStrokePath(context);
@@ -47,7 +47,8 @@
     CGPoint first = [touch previousLocationInView:self];
     CGPoint second = [touch locationInView:self];
     LineSegment *line = [[LineSegment alloc] initWithStart:first
-                                                    andEnd:second];
+                                                    andEnd:second
+                                                  andColor:[self.delegate currentStrokeColor]];
 
     [self.lines addObject:line];
     [self setNeedsDisplay];

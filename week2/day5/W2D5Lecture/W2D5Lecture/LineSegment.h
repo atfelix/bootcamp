@@ -12,7 +12,8 @@
 
 @property (nonatomic, assign) CGPoint start;
 @property (nonatomic, assign) CGPoint end;
+@property (nonatomic) UIColor *lineColor;
 
--(instancetype)initWithStart:(CGPoint) start andEnd: (CGPoint) end;
+-(instancetype)initWithStart:(CGPoint) start andEnd:(CGPoint)end andColor:(UIColor *)color;
 
 @end
