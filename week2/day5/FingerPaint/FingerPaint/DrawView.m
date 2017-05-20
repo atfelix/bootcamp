@@ -63,19 +63,17 @@
     if (self.editingMode == DrawViewDrawMode) {
         self.lastTimestamp = [touches.anyObject timestamp];
     }
-    else if (self.editingMode == DrawViewEraseMode) {
-    }
     else if (self.editingMode == DrawViewTextMode) {
+        
     }
 }
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (self.editingMode == DrawViewDrawMode) {
-        [self addToLinesThisTouch:touches.anyObject];
+        [self addTouchToLines:touches.anyObject];
     }
     else if (self.editingMode == DrawViewEraseMode) {
-    }
-    else if (self.editingMode == DrawViewTextMode) {
+        [self removeLineAtLocation:[touches.anyObject locationInView:self]];
     }
 }
 
@@ -83,16 +81,13 @@
     if (self.editingMode == DrawViewDrawMode) {
         self.lastTimestamp = 0;
     }
-    else if (self.editingMode == DrawViewEraseMode) {
-    }
-    else if (self.editingMode == DrawViewTextMode) {
-    }
 }
 
 
 #pragma mark Utility Functions
 
--(void)addToLinesThisTouch:(UITouch *)touch{
+
+-(void)addTouchToLines:(UITouch *)touch{
     CGPoint first = [touch previousLocationInView:self];
     CGPoint second = [touch locationInView:self];
     LineSegment *line = [[LineSegment alloc] initWithStart:first
@@ -105,8 +100,55 @@
 }
 
 
+-(void)removeLineAtLocation:(CGPoint)location {
+    NSMutableArray *intersectingLineIndices = [[NSMutableArray alloc] init];
+
+    for (int i = (int)self.lines.count - 1; i >= 0; i--) {
+        if ([DrawView location:location intersectsLineSegment:self.lines[i]]) {
+            [intersectingLineIndices addObject:@(i)];
+        }
+    }
+
+    for (NSNumber *i in intersectingLineIndices) {
+        [self.lines removeObjectAtIndex:[i unsignedIntegerValue]];
+    }
+    [self setNeedsDisplay];
+}
+
++(BOOL)location:(CGPoint)location intersectsLineSegment:(LineSegment *)line {
+    CGFloat currentX = line.start.x, currentY = line.start.y;
+
+    CGFloat deltaX, deltaY;
+    CGFloat lambda = 0;
+
+    if (fabs(line.start.x - line.start.y) < 0.00001){
+        deltaX = 0;
+        deltaY = 0.05;
+    }
+    else {
+        CGFloat slope = (line.start.y - line.end.y) / (line.start.x - line.end.x);
+        deltaX = 0.05;
+        deltaY = slope * 0.05;
+    }
+
+    while (lambda <= 1) {
+        if ([DrawView distanceFrom:location to:CGPointMake(currentX, currentY)] < 30.0) {
+            return YES;
+        }
+        lambda += 0.5;
+        currentX += lambda * deltaX;
+        currentY += lambda * deltaY;
+    }
+    return NO;
+}
+
++(CGFloat)distanceFrom:(CGPoint)here to:(CGPoint)there {
+    return sqrt((here.x - there.x) * (here.x - there.x) + (here.y - there.y) * (here.y - there.y));
+}
+
+
 +(void)stroke:(UIBezierPath *)path forLine:(LineSegment *)line {
-    path.lineCapStyle = kCGLineCapSquare;
+    path.lineCapStyle = kCGLineCapRound;
     path.lineJoinStyle = kCGLineJoinRound;
 
     path.lineWidth = line.lineWidth;
@@ -118,6 +160,7 @@
 }
 
 +(CGFloat)calculateVelocityFrom:(CGPoint)here to:(CGPoint)there overTime:(CGFloat)time {
+    return (fabs(there.x - here.x) + fabs(there.y - here.y)) / 20.0;
     return pow(((there.x - here.x) * (there.x - here.x) + (there.y - here.y) * (there.y - here.y)) / time, 0.2);
 }
 
@@ -128,6 +171,10 @@
 
     return [DrawView calculateVelocityFrom:previousLocation to:location overTime:timeDelta];
 }
+
+
+#pragma mark Notification Center logic
+
 
 -(void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self
