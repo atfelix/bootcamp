@@ -39,4 +39,15 @@
     self.currentStrokeColor = sender.currentTitleColor;
 }
 
+
+#pragma mark Notification related methods
+
+
+- (IBAction)handleTap:(UISegmentedControl *)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeEditingModeNotification"
+                                                        object:self
+                                                      userInfo:@{@"SegmentedControlObjectSelectedIndex":@(sender.selectedSegmentIndex)}];
+}
+
+
 @end

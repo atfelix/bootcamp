@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, DrawViewEditingMode) {
+    DrawViewDrawMode,
+    DrawViewEraseMode,
+    DrawViewTextMode
+};
+
 @protocol DrawViewDelegate <NSObject>
 
 -(UIColor *)currentStrokeColor;
