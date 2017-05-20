@@ -24,6 +24,7 @@
 
 #pragma mark Animation Times
 
+
 #define MinimumPressDuration (0.15)
 #define ProgressViewAnimationDurationTime (1)
 #define PetResponseAnimationDurationTime (3)
@@ -41,14 +42,13 @@
 #pragma mark Other Macros
 
 
-#define PointsBelowScreen (100)
-
+#define FallingAppleFinalYPoint (100)
 #define AccelerationDueToGravity (9.8)
 #define SpeedUpTimeFactor (10.0)
-
 #define ChooChooSound ((1 << 10) - 1)
-
 #define NumberOfTapsRequiredToMakeNoise (2)
+#define BucketImageWidthAnchorAspectRatio (0.3)
+#define AppleToBucketImageApsectRatio (0.6)
 
 
 #pragma mark Static NSStrings
@@ -117,7 +117,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.petImageView.image = [UIImage imageNamed:self.petModel.currentImageName];
     self.petImageView.userInteractionEnabled = YES;
 
@@ -127,21 +126,9 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addPetImageViewConstraints {
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.petImageView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.petImageView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.petImageView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
+    [self.petImageView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;
 }
 
 
@@ -165,7 +152,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)addAppleView {
     self.appleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.petModel.appleImageName]];
-    self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appleImageView.userInteractionEnabled = YES;
 
     [self.bucketImageView addSubview:self.appleImageView];
@@ -175,7 +161,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)addFeedingAppleView {
     self.feedingAppleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.petModel.appleImageName]];
-    self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.feedingAppleImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.feedingAppleImageView];
@@ -187,97 +172,30 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addFeedingAppleImageViewConstraints {
-    [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.appleImageView
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                 attribute:NSLayoutAttributeHeight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.feedingAppleImageView
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                 attribute:NSLayoutAttributeCenterX
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.appleImageView
-                                 attribute:NSLayoutAttributeCenterX
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.feedingAppleImageView
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.appleImageView
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [self.view layoutIfNeeded];
+    self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.feedingAppleImageView.widthAnchor constraintEqualToAnchor:self.appleImageView.widthAnchor].active = YES;
+    [self.feedingAppleImageView.heightAnchor constraintEqualToAnchor:self.appleImageView.heightAnchor].active = YES;
+    [self.feedingAppleImageView.centerXAnchor constraintEqualToAnchor:self.appleImageView.centerXAnchor].active = YES;
+    [self.feedingAppleImageView.centerYAnchor constraintEqualToAnchor:self.appleImageView.centerYAnchor].active = YES;
 }
 
 -(void)addBucketImageViewConstraints {
-    [NSLayoutConstraint constraintWithItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                multiplier:1.0
-                                  constant:10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeBottomMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeBottomMargin
-                                multiplier:1.0
-                                  constant:-10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:0.3
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeHeight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
+    self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.bucketImageView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:10.0].active = YES;
+    [self.bucketImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-10.0].active = YES;
+    [self.bucketImageView.widthAnchor constraintEqualToAnchor:self.view.widthAnchor
+                                                   multiplier:BucketImageWidthAnchorAspectRatio
+                                                     constant:0.0].active = YES;
+    [self.bucketImageView.heightAnchor constraintEqualToAnchor:self.bucketImageView.widthAnchor].active=YES;
 }
 
 -(void)addAppleImageViewConstraints {
-    [NSLayoutConstraint constraintWithItem:self.appleImageView
-                                 attribute:NSLayoutAttributeCenterX
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeCenterX
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.appleImageView
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.appleImageView
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:0.6
-                                  constant:0.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.appleImageView
-                                 attribute:NSLayoutAttributeHeight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.appleImageView
-                                 attribute:NSLayoutAttributeWidth
-                                multiplier:1.0
-                                  constant:0.0].active = YES;
+    self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.appleImageView.centerXAnchor constraintEqualToAnchor:self.bucketImageView.centerXAnchor].active = YES;
+    [self.appleImageView.centerYAnchor constraintEqualToAnchor:self.bucketImageView.centerYAnchor].active = YES;
+    [self.appleImageView.widthAnchor constraintEqualToAnchor:self.bucketImageView.widthAnchor
+                                                  multiplier:AppleToBucketImageApsectRatio].active = YES;
+    [self.appleImageView.heightAnchor constraintEqualToAnchor:self.appleImageView.widthAnchor].active = YES;
 }
 
 
@@ -301,23 +219,9 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addConstraintsToLabel:(UILabel *)label {
-
     label.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                          attribute:NSLayoutAttributeLeadingMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeadingMargin
-                                                         multiplier:1.0
-                                                           constant:0.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:label
-                                                          attribute:NSLayoutAttributeBottomMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.petImageView
-                                                          attribute:NSLayoutAttributeTopMargin
-                                                         multiplier:1.0
-                                                           constant:-20.0]];
-
+    [label.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:10.0].active = YES;
+    [label.bottomAnchor constraintEqualToAnchor:self.petImageView.topAnchor constant:-20.0].active = YES;
 }
 
 -(void)addRestfulnessTimer {
@@ -340,7 +244,9 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)regenerateRestfulness:(NSTimer *)timer {
-    self.petModel.restfulness += [[timer userInfo][@(AnimationDurationTimeDictionaryKey)] intValue] * [[timer userInfo][@(SleepingRegenerationRateDictionaryKey)] intValue];
+    int animationDuration = [[timer userInfo][@(AnimationDurationTimeDictionaryKey)] intValue];
+    int sleepRegenerationRate = [[timer userInfo][@(SleepingRegenerationRateDictionaryKey)] intValue];
+    self.petModel.restfulness += animationDuration * sleepRegenerationRate;
     [self animateProgessView:timer];
 
     if (self.petModel.isFullyRested) {
@@ -349,7 +255,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addProgressViewNextToLabel:(UILabel *)label {
-
     self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     self.progressView.progressTintColor = [UIColor blueColor];
     [self.progressView setProgress:[self.petModel getAlertness]
@@ -360,29 +265,10 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addConstraintsToProgressView:(UIProgressView *)progressView nextToLabel:(UILabel *)label {
-
     progressView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
-                                                          attribute:NSLayoutAttributeLeadingMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:label
-                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                         multiplier:1.0
-                                                           constant:20.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
-                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                         multiplier:1.0
-                                                           constant:-5.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:progressView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:label
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0
-                                                           constant:0.0]];
+    [progressView.leadingAnchor constraintEqualToAnchor:label.trailingAnchor constant:20.0].active = YES;
+    [progressView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10.0].active = YES;
+    [progressView.centerYAnchor constraintEqualToAnchor:label.centerYAnchor].active = YES;
 }
 
 
@@ -399,7 +285,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button setTitle:@"Send"
             forState:UIControlStateNormal];
-
     [button addTarget:self
                action:@selector(sendMessageToPet:)
      forControlEvents:UIControlEventTouchUpInside];
@@ -411,7 +296,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addTextFieldOnTopOfButton:(UIButton *)button {
-
     self.textField = [[UITextField alloc] init];
     self.textField.placeholder = @"Send message";
     self.textField.textAlignment = NSTextAlignmentRight;
@@ -424,47 +308,15 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)addConstraintsToButton:(UIButton *)button {
     button.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button
-                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailingMargin
-                                                         multiplier:1.0
-                                                           constant:-5.0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button
-                                                          attribute:NSLayoutAttributeBottomMargin
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeBottomMargin
-                                                         multiplier:1.0
-                                                           constant:-10.0]];
+    [button.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-5.0].active = YES;
+    [button.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-10.0].active = YES;
 }
 
 -(void)addTextFieldConstraints:(UIButton *)button {
     self.textField.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [NSLayoutConstraint constraintWithItem:self.textField
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:-5.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.textField
-                                 attribute:NSLayoutAttributeBottomMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:button
-                                 attribute:NSLayoutAttributeTopMargin
-                                multiplier:1.0
-                                  constant:-10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.textField
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.bucketImageView
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:20.0].active = YES;
+    [self.textField.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-5.0].active = YES;
+    [self.textField.bottomAnchor constraintEqualToAnchor:button.topAnchor constant:-10.0].active = YES;
+    [self.textField.leadingAnchor constraintEqualToAnchor:self.bucketImageView.trailingAnchor constant:20.0].active = YES;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -524,35 +376,10 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 
 -(void)addPetResponseLabelConstraints {
     self.petResponseLabel.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeTrailingMargin
-                                multiplier:1.0
-                                  constant:-10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
-                                 attribute:NSLayoutAttributeTopMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.petImageView
-                                 attribute:NSLayoutAttributeBottomMargin
-                                multiplier:1.0
-                                  constant:10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
-                                 attribute:NSLayoutAttributeLeadingMargin
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.view
-                                 attribute:NSLayoutAttributeLeading
-                                multiplier:1.0
-                                  constant:10.0].active = YES;
-    [NSLayoutConstraint constraintWithItem:self.petResponseLabel
-                                 attribute:NSLayoutAttributeHeight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:nil
-                                 attribute:NSLayoutAttributeNotAnAttribute
-                                multiplier:1.0
-                                  constant:40.0].active = YES;
+    [self.petResponseLabel.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10.0].active = YES;
+    [self.petResponseLabel.topAnchor constraintEqualToAnchor:self.petImageView.bottomAnchor].active = YES;
+    [self.petResponseLabel.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:10.0].active = YES;
+    [self.petResponseLabel.heightAnchor constraintEqualToConstant:20.0].active = YES;
 }
 
 #pragma mark - Communication with Pet Model
@@ -633,7 +460,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)animateFeedingAppleDown:(CGPoint)location {
 
     CGFloat top = location.y;
-    CGFloat bottom = self.view.bounds.size.height + PointsBelowScreen;
+    CGFloat bottom = self.view.bounds.size.height + FallingAppleFinalYPoint;
 
     NSTimeInterval duration = [self calculateTimeToFallWithHeight:bottom - top
                                                        andGravity:AccelerationDueToGravity] / SpeedUpTimeFactor;
@@ -793,7 +620,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 
-
 #pragma mark - ViewController helper functions
 
 
@@ -805,6 +631,5 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(double)calculateTimeToFallWithHeight:(CGFloat)height andGravity:(CGFloat)gravity {
     return sqrt(2.0 * height / gravity);
 }
-
 
 @end
