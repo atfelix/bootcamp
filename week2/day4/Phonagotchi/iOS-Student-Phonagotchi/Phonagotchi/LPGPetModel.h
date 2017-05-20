@@ -21,15 +21,15 @@
 @property (nonatomic, assign) int restfulness;
 @property (nonatomic, assign, readonly) int regenerationRate;
 
-@property (nonatomic) UIImage *appleImage;
-@property (nonatomic) UIImage *bucketImage;
+@property (nonatomic) NSString *appleImageName;
+@property (nonatomic) NSString *bucketImageName;
 
-@property (nonatomic) UIImage *sleepingImage;
-@property (nonatomic) UIImage *defaultImage;
-@property (nonatomic) UIImage *grumpyImage;
+@property (nonatomic) NSString *sleepingImageName;
+@property (nonatomic) NSString *defaultImageName;
+@property (nonatomic) NSString *grumpyImageName;
 
 
-@property (nonatomic) UIImage *currentImage;
+@property (nonatomic) NSString *currentImageName;
 
 @property (nonatomic, weak) id<PetDelegate> delegate;
 

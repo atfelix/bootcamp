@@ -118,7 +118,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)createPetImageView {
     self.petImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.petImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.petImageView.image = self.petModel.currentImage;
+    self.petImageView.image = [UIImage imageNamed:self.petModel.currentImageName];
     self.petImageView.userInteractionEnabled = YES;
 
     [self.view addSubview:self.petImageView];
@@ -154,7 +154,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addBasketView {
-    self.bucketImageView = [[UIImageView alloc] initWithImage:self.petModel.bucketImage];
+    self.bucketImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.petModel.bucketImageName]];
     self.bucketImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.bucketImageView.userInteractionEnabled = YES;
 
@@ -164,7 +164,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addAppleView {
-    self.appleImageView = [[UIImageView alloc] initWithImage:self.petModel.appleImage];
+    self.appleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.petModel.appleImageName]];
     self.appleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appleImageView.userInteractionEnabled = YES;
 
@@ -174,7 +174,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 }
 
 -(void)addFeedingAppleView {
-    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:self.petModel.appleImage];
+    self.feedingAppleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:self.petModel.appleImageName]];
     self.feedingAppleImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.feedingAppleImageView.userInteractionEnabled = YES;
 
@@ -779,7 +779,7 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
     else if (self.petModel.isSleeping) {
         self.petModel.happy = YES;
     }
-    self.petImageView.image = self.petModel.currentImage;
+    self.petImageView.image = [UIImage imageNamed:self.petModel.currentImageName];
 }
 
 -(void)postWakeUpNotification {

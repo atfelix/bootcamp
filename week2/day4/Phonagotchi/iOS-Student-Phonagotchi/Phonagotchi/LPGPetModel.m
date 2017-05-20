@@ -26,7 +26,7 @@ static NSString *DefaultImageNameString = @"default.png";
 
 @implementation LPGPetModel
 
-@synthesize currentImage = _currentImage;
+@synthesize currentImageName = _currentImageName;
 
 - (instancetype)init {
 
@@ -36,12 +36,12 @@ static NSString *DefaultImageNameString = @"default.png";
         _restfulness = InitialRestfulness;
         _sleeping = NO;
         _regenerationRate = SleepingRegenerationRate;
-        _defaultImage = [UIImage imageNamed:DefaultImageNameString];
-        _grumpyImage = [UIImage imageNamed:GrumpyImageNameString];
-        _sleepingImage = [UIImage imageNamed:SleepingImageNameString];
-        _appleImage = [UIImage imageNamed:AppleImageNameString];
-        _bucketImage = [UIImage imageNamed:BucketImageNameString];
-        _currentImage = _defaultImage;
+        _defaultImageName = DefaultImageNameString;
+        _grumpyImageName = GrumpyImageNameString;
+        _sleepingImageName = SleepingImageNameString;
+        _appleImageName = AppleImageNameString;
+        _bucketImageName = BucketImageNameString;
+        _currentImageName = _defaultImageName;
         [self registerNotifications];
     }
     return self;
@@ -53,7 +53,7 @@ static NSString *DefaultImageNameString = @"default.png";
 
 -(void)setRestfulness:(int)restfulness {
     if (restfulness == -1 && _restfulness == 0) {
-        self.currentImage = self.grumpyImage;
+        self.currentImageName = self.grumpyImageName;
     }
     else if (restfulness == 0) {
         _restfulness = 0;
@@ -73,13 +73,13 @@ static NSString *DefaultImageNameString = @"default.png";
     UIImage *image;
     
     if (self.isSleeping) {
-        image = self.sleepingImage;
+        image = [UIImage imageNamed:self.sleepingImageName];
     }
     else if (self.isHappy) {
-        image = self.defaultImage;
+        image = [UIImage imageNamed:self.defaultImageName];
     }
     else {
-        image = self.grumpyImage;
+        image = [UIImage imageNamed:self.grumpyImageName];
     }
     return image;
 }
