@@ -601,7 +601,6 @@ static NSString *PetResponsePlaceholderString = @"Pet Response Goes Here";
 -(void)loadImageWithNewRestfulness:(int)restfulness {
     if (self.petModel.restfulness == 0 && restfulness == -1) {
         self.petModel.happy = NO;
-        self.petModel.sleeping = NO;
     }
     else if (self.petModel.isSleeping) {
         self.petModel.happy = YES;

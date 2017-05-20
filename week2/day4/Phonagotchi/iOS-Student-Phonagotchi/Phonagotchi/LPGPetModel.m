@@ -77,20 +77,20 @@ static NSString *DefaultImageNameString = @"default.png";
     [self.delegate loadImageWithNewRestfulness:restfulness];
 }
 
--(UIImage *)currentImage {
+-(NSString *)currentImageName {
 
-    UIImage *image;
-    
+    NSString *imageName;
+
     if (self.isSleeping) {
-        image = [UIImage imageNamed:self.sleepingImageName];
+        imageName = self.sleepingImageName;
     }
     else if (self.isHappy) {
-        image = [UIImage imageNamed:self.defaultImageName];
+        imageName = self.defaultImageName;
     }
     else {
-        image = [UIImage imageNamed:self.grumpyImageName];
+        imageName = self.grumpyImageName;
     }
-    return image;
+    return imageName;
 }
 
 -(float)getAlertness {
