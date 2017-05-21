@@ -11,13 +11,14 @@
 #import "LineSegment.h"
 
 
-@interface DrawView ()
+@interface DrawView () <UITextViewDelegate>
 
 @property (nonatomic) NSMutableArray<LineSegment *> *lines;
 @property (nonatomic) NSMutableArray<UIColor *> *lineColors;
 @property (nonatomic) UIBezierPath *currentBezierPath;
 @property (nonatomic) CGFloat lastTimestamp;
 @property (nonatomic) DrawViewEditingMode editingMode;
+@property (nonatomic, assign, getter=isTextViewEditing) BOOL textViewEditing;
 
 @end
 
@@ -60,11 +61,30 @@
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = touches.anyObject;
+
     if (self.editingMode == DrawViewDrawMode) {
-        self.lastTimestamp = [touches.anyObject timestamp];
+        self.lastTimestamp = [touch timestamp];
+    }
+    else if (self.isTextViewEditing) {
+        [self endEditing:YES];
+        self.textViewEditing ^= YES;
     }
     else if (self.editingMode == DrawViewTextMode) {
-        
+        self.textViewEditing ^= YES;
+
+        CGPoint touchLocation = [touch locationInView:self];
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(touchLocation.x,
+                                                                            touchLocation.y,
+                                                                            100,
+                                                                            100)];
+
+        textView.layer.borderColor = [UIColor grayColor].CGColor;
+        textView.layer.borderWidth = 0.5;
+        textView.delegate = self;
+
+        [self addSubview:textView];
+        [textView becomeFirstResponder];
     }
 }
 
@@ -161,7 +181,6 @@
 
 +(CGFloat)calculateVelocityFrom:(CGPoint)here to:(CGPoint)there overTime:(CGFloat)time {
     return (fabs(there.x - here.x) + fabs(there.y - here.y)) / 20.0;
-    return pow(((there.x - here.x) * (there.x - here.x) + (there.y - here.y) * (there.y - here.y)) / time, 0.2);
 }
 
 -(CGFloat)calculateVelocityOfTouch:(UITouch *)touch {
@@ -185,6 +204,15 @@
 
 -(void)changeEditingMode:(NSNotification *)notification {
     self.editingMode = (DrawViewEditingMode)[notification.userInfo[@"SegmentedControlObjectSelectedIndex"] intValue];
+}
+
+
+#pragma mark UITextViewDelegate methods
+
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    textView.textColor = [self.delegate currentStrokeColor];
+    return YES;
 }
 
 
