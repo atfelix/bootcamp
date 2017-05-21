@@ -31,6 +31,7 @@
 		110E2D2F1ED1F835006C2164 /* elk falls-6.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D2A1ED1F835006C2164 /* elk falls-6.JPG */; };
 		110E2D341ED1FACE006C2164 /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E2D331ED1FACE006C2164 /* PhotoManager.m */; };
 		110E2D371ED1FADB006C2164 /* PhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E2D361ED1FADB006C2164 /* PhotoObject.m */; };
+		110E2D3A1ED23999006C2164 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E2D391ED23999006C2164 /* HeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		110E2D331ED1FACE006C2164 /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
 		110E2D351ED1FADB006C2164 /* PhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoObject.h; sourceTree = "<group>"; };
 		110E2D361ED1FADB006C2164 /* PhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoObject.m; sourceTree = "<group>"; };
+		110E2D381ED23999006C2164 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		110E2D391ED23999006C2164 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				110E2CF71ED1F436006C2164 /* AppDelegate.m */,
 				110E2CF91ED1F436006C2164 /* ViewController.h */,
 				110E2CFA1ED1F436006C2164 /* ViewController.m */,
+				110E2D381ED23999006C2164 /* HeaderView.h */,
+				110E2D391ED23999006C2164 /* HeaderView.m */,
 				110E2CFC1ED1F436006C2164 /* Main.storyboard */,
 				110E2D0A1ED1F6B9006C2164 /* PhotoCell.h */,
 				110E2D0B1ED1F6B9006C2164 /* PhotoCell.m */,
@@ -265,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110E2D3A1ED23999006C2164 /* HeaderView.m in Sources */,
 				110E2D0C1ED1F6B9006C2164 /* PhotoCell.m in Sources */,
 				110E2CFB1ED1F436006C2164 /* ViewController.m in Sources */,
 				110E2D341ED1FACE006C2164 /* PhotoManager.m in Sources */,

@@ -10,6 +10,7 @@
 
 #import "PhotoCell.h"
 #import "PhotoObject.h"
+#import "HeaderView.h"
 
 @interface PhotoManager ()
 
@@ -100,6 +101,20 @@
         return 0;
     }
     return [self.sectionCounts[section] integerValue];
+}
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    HeaderView *headerView;
+
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+
+        headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                        withReuseIdentifier:@"HeaderView"
+                                                               forIndexPath:indexPath];
+        headerView.sectionTitleLabel.text = self.sectionHeadings[indexPath.section];
+    }
+
+    return headerView;
 }
 
 

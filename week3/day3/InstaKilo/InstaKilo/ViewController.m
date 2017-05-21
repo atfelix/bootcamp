@@ -58,5 +58,11 @@
     return [self.manager numberOfSectionsInCollectionView:collectionView];
 }
 
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    return [self.manager collectionView:collectionView
+      viewForSupplementaryElementOfKind:kind
+                            atIndexPath:indexPath];
+}
+
 
 @end
