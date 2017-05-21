@@ -64,5 +64,9 @@
                             atIndexPath:indexPath];
 }
 
+- (IBAction)controlChanged:(UISegmentedControl *)sender {
+    [self.manager toggleSectionType:sender];
+    [self.collectionView reloadData];
+}
 
 @end

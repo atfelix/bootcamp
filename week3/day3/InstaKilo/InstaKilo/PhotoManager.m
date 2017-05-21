@@ -12,6 +12,9 @@
 #import "PhotoObject.h"
 #import "HeaderView.h"
 
+#define LocationSegmentedControlIndex 0
+#define SubjectSegmentedControlIndex 1
+
 @interface PhotoManager ()
 
 @property (nonatomic, assign, getter=isSortedByLocation) BOOL sortedByLocation;
@@ -134,9 +137,6 @@
 }
 
 -(void)populateSections {
-    _sectionHeadings = [[NSMutableArray alloc] init];
-    _sectionCounts = [[NSMutableArray alloc] init];
-
     if (self.isSortedByLocation) {
         [self populationSectionsForLocation];
     }
@@ -146,29 +146,26 @@
 }
 
 -(void)populationSectionsForLocation {
-    [self populationSectionsBasedOnSelector:@selector(photoTakenLocation)];
+    [self populationSectionsBasedOnProperty:self.isSortedByLocation withSortSelector:@selector(compareBasedOnLocation:) withSelector:@selector(photoTakenLocation)];
 }
 
 -(void)populationSectionsForSubject {
-    [self populationSectionsBasedOnSelector:@selector(photoSubject)];
+    [self populationSectionsBasedOnProperty:!self.isSortedByLocation withSortSelector:@selector(compareBasedOnSubject:) withSelector:@selector(photoSubject)];
 }
 
--(void)populationSectionsBasedOnSelector:(SEL)selector {
-    [self sortByLocation];
+-(void)populationSectionsBasedOnProperty:(BOOL)isAlreadySorted withSortSelector:(SEL)sortSelector withSelector:(SEL)selector {
+    _sectionHeadings = [[NSMutableArray alloc] init];
+    _sectionCounts = [[NSMutableArray alloc] init];
+
+    [self sortByProperty:isAlreadySorted withSelector:sortSelector];
 
     for (int i = 0; i < self.photoCollection.count; i++) {
         PhotoObject *photo = self.photoCollection[i];
-        if (i == 0) {
+        if (i == 0 || ![[photo performSelector:selector] isEqualToString:_sectionHeadings.lastObject]) {
             [_sectionHeadings addObject:[photo performSelector:selector]];
-            [_sectionCounts addObject:@(1)];
+            [_sectionCounts addObject:@(0)];
         }
-        else {
-            if (![photo.photoTakenLocation isEqualToString:_sectionHeadings.lastObject]){
-                [_sectionHeadings addObject:[photo performSelector:selector]];
-                [_sectionCounts addObject:@(0)];
-            }
-            _sectionCounts[_sectionCounts.count - 1] = @([_sectionCounts.lastObject integerValue] + 1);
-        }
+        _sectionCounts[_sectionCounts.count - 1] = @([_sectionCounts.lastObject integerValue] + 1);
     }
 }
 
@@ -196,6 +193,19 @@
 
 -(void)sortBySubject {
     [self sortByProperty:!self.isSortedByLocation withSelector:@selector(compareBasedOnSubject:)];
+}
+
+
+#pragma mark Segmented Control method
+
+-(void)toggleSectionType:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == LocationSegmentedControlIndex) {
+        [self populationSectionsForLocation];
+    }
+    else if (sender.selectedSegmentIndex == SubjectSegmentedControlIndex) {
+        [self populationSectionsForSubject];
+    }
+    self.sortedByLocation ^= YES;
 }
 
 @end

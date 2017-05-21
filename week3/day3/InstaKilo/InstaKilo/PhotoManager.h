@@ -20,5 +20,6 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView;
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+-(void)toggleSectionType:(UISegmentedControl *)sender;
 
 @end
