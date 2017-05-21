@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *sizeOfDinnerPartySlider;
 @property (weak, nonatomic) IBOutlet UITextField *amountTextField;
@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.amountTextField.delegate = self;
 }
 
 
@@ -32,10 +33,23 @@
 }
 
 - (IBAction)handleButtonTap:(UIButton *)sender {
+    [self calculateLabelValues:self.amountTextField withReplacementString:@"" andSliderValue:(int)self.sizeOfDinnerPartySlider.value];
+}
 
-    NSDecimalNumber *partySize = [[NSDecimalNumber alloc] initWithInt:(int)self.sizeOfDinnerPartySlider.value];
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    [self calculateLabelValues:textField withReplacementString:string andSliderValue:(int)self.sizeOfDinnerPartySlider.value];
+    return YES;
+}
 
-    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.amountTextField.text];
+-(void)calculateLabelValues:(UITextField *)textField withReplacementString:(NSString *)string andSliderValue:(int)value{
+
+    if (textField.text.length == 0 && string.length == 0) {
+        return;
+    }
+
+    NSDecimalNumber *partySize = [[NSDecimalNumber alloc] initWithInt:value];
+
+    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:[textField.text stringByAppendingString:string]];
     NSDecimalNumber *tip = amount;
 
     amount = [amount decimalNumberByDividingBy:partySize];
@@ -46,6 +60,10 @@
 
     self.paymentLabel.text = [numberFormatter stringFromNumber:amount];
     self.tipLabel.text = [numberFormatter stringFromNumber:tip];
+}
+
+- (IBAction)handleSlideChange:(UISlider *)sender {
+    [self calculateLabelValues:self.amountTextField withReplacementString:@"" andSliderValue:(int)sender.value];
 }
 
 @end
