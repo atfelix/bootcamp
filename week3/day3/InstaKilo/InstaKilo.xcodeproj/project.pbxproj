@@ -13,6 +13,23 @@
 		110E2CFE1ED1F436006C2164 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 110E2CFC1ED1F436006C2164 /* Main.storyboard */; };
 		110E2D001ED1F436006C2164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110E2CFF1ED1F436006C2164 /* Assets.xcassets */; };
 		110E2D031ED1F436006C2164 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D011ED1F436006C2164 /* LaunchScreen.storyboard */; };
+		110E2D0C1ED1F6B9006C2164 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 110E2D0B1ED1F6B9006C2164 /* PhotoCell.m */; };
+		110E2D131ED1F7BC006C2164 /* cathedral grove-0.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D0D1ED1F7BC006C2164 /* cathedral grove-0.JPG */; };
+		110E2D141ED1F7BC006C2164 /* cathedral grove-1.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D0E1ED1F7BC006C2164 /* cathedral grove-1.JPG */; };
+		110E2D151ED1F7BC006C2164 /* cathedral grove-2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D0F1ED1F7BC006C2164 /* cathedral grove-2.JPG */; };
+		110E2D161ED1F7BC006C2164 /* cathedral grove-3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D101ED1F7BC006C2164 /* cathedral grove-3.JPG */; };
+		110E2D171ED1F7BC006C2164 /* cathedral grove-4.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D111ED1F7BC006C2164 /* cathedral grove-4.JPG */; };
+		110E2D181ED1F7BC006C2164 /* cathedral grove-5.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D121ED1F7BC006C2164 /* cathedral grove-5.JPG */; };
+		110E2D201ED1F802006C2164 /* DSC03588.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D1B1ED1F802006C2164 /* DSC03588.JPG */; };
+		110E2D211ED1F802006C2164 /* DSC03589.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D1C1ED1F802006C2164 /* DSC03589.JPG */; };
+		110E2D221ED1F802006C2164 /* DSC03590.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D1D1ED1F802006C2164 /* DSC03590.JPG */; };
+		110E2D231ED1F802006C2164 /* DSC03591.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D1E1ED1F802006C2164 /* DSC03591.JPG */; };
+		110E2D241ED1F802006C2164 /* DSC03592.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D1F1ED1F802006C2164 /* DSC03592.JPG */; };
+		110E2D2B1ED1F835006C2164 /* elk falls-2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D261ED1F835006C2164 /* elk falls-2.JPG */; };
+		110E2D2C1ED1F835006C2164 /* elk falls-3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D271ED1F835006C2164 /* elk falls-3.JPG */; };
+		110E2D2D1ED1F835006C2164 /* elk falls-4.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D281ED1F835006C2164 /* elk falls-4.JPG */; };
+		110E2D2E1ED1F835006C2164 /* elk falls-5.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D291ED1F835006C2164 /* elk falls-5.JPG */; };
+		110E2D2F1ED1F835006C2164 /* elk falls-6.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 110E2D2A1ED1F835006C2164 /* elk falls-6.JPG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +43,24 @@
 		110E2CFF1ED1F436006C2164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		110E2D021ED1F436006C2164 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		110E2D041ED1F436006C2164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		110E2D0A1ED1F6B9006C2164 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		110E2D0B1ED1F6B9006C2164 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		110E2D0D1ED1F7BC006C2164 /* cathedral grove-0.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-0.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-0.JPG"; sourceTree = "<group>"; };
+		110E2D0E1ED1F7BC006C2164 /* cathedral grove-1.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-1.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-1.JPG"; sourceTree = "<group>"; };
+		110E2D0F1ED1F7BC006C2164 /* cathedral grove-2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-2.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-2.JPG"; sourceTree = "<group>"; };
+		110E2D101ED1F7BC006C2164 /* cathedral grove-3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-3.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-3.JPG"; sourceTree = "<group>"; };
+		110E2D111ED1F7BC006C2164 /* cathedral grove-4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-4.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-4.JPG"; sourceTree = "<group>"; };
+		110E2D121ED1F7BC006C2164 /* cathedral grove-5.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "cathedral grove-5.JPG"; path = "../../../../../../../../../photos/cathedral grove/cathedral grove-5.JPG"; sourceTree = "<group>"; };
+		110E2D1B1ED1F802006C2164 /* DSC03588.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DSC03588.JPG; path = ../../../../../../../../../photos/banff/DSC03588.JPG; sourceTree = "<group>"; };
+		110E2D1C1ED1F802006C2164 /* DSC03589.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DSC03589.JPG; path = ../../../../../../../../../photos/banff/DSC03589.JPG; sourceTree = "<group>"; };
+		110E2D1D1ED1F802006C2164 /* DSC03590.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DSC03590.JPG; path = ../../../../../../../../../photos/banff/DSC03590.JPG; sourceTree = "<group>"; };
+		110E2D1E1ED1F802006C2164 /* DSC03591.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DSC03591.JPG; path = ../../../../../../../../../photos/banff/DSC03591.JPG; sourceTree = "<group>"; };
+		110E2D1F1ED1F802006C2164 /* DSC03592.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DSC03592.JPG; path = ../../../../../../../../../photos/banff/DSC03592.JPG; sourceTree = "<group>"; };
+		110E2D261ED1F835006C2164 /* elk falls-2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "elk falls-2.JPG"; path = "../../../../../../../../../photos/elk falls/elk falls-2.JPG"; sourceTree = "<group>"; };
+		110E2D271ED1F835006C2164 /* elk falls-3.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "elk falls-3.JPG"; path = "../../../../../../../../../photos/elk falls/elk falls-3.JPG"; sourceTree = "<group>"; };
+		110E2D281ED1F835006C2164 /* elk falls-4.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "elk falls-4.JPG"; path = "../../../../../../../../../photos/elk falls/elk falls-4.JPG"; sourceTree = "<group>"; };
+		110E2D291ED1F835006C2164 /* elk falls-5.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "elk falls-5.JPG"; path = "../../../../../../../../../photos/elk falls/elk falls-5.JPG"; sourceTree = "<group>"; };
+		110E2D2A1ED1F835006C2164 /* elk falls-6.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "elk falls-6.JPG"; path = "../../../../../../../../../photos/elk falls/elk falls-6.JPG"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +98,12 @@
 				110E2CF91ED1F436006C2164 /* ViewController.h */,
 				110E2CFA1ED1F436006C2164 /* ViewController.m */,
 				110E2CFC1ED1F436006C2164 /* Main.storyboard */,
+				110E2D0A1ED1F6B9006C2164 /* PhotoCell.h */,
+				110E2D0B1ED1F6B9006C2164 /* PhotoCell.m */,
 				110E2CFF1ED1F436006C2164 /* Assets.xcassets */,
 				110E2D011ED1F436006C2164 /* LaunchScreen.storyboard */,
 				110E2D041ED1F436006C2164 /* Info.plist */,
+				110E2D191ED1F7CD006C2164 /* Images */,
 				110E2CF31ED1F436006C2164 /* Supporting Files */,
 			);
 			path = InstaKilo;
@@ -77,6 +115,53 @@
 				110E2CF41ED1F436006C2164 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		110E2D191ED1F7CD006C2164 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				110E2D301ED1F842006C2164 /* ElkFalls */,
+				110E2D251ED1F810006C2164 /* Banff */,
+				110E2D1A1ED1F7D5006C2164 /* CathedralGrove */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		110E2D1A1ED1F7D5006C2164 /* CathedralGrove */ = {
+			isa = PBXGroup;
+			children = (
+				110E2D0D1ED1F7BC006C2164 /* cathedral grove-0.JPG */,
+				110E2D0E1ED1F7BC006C2164 /* cathedral grove-1.JPG */,
+				110E2D0F1ED1F7BC006C2164 /* cathedral grove-2.JPG */,
+				110E2D101ED1F7BC006C2164 /* cathedral grove-3.JPG */,
+				110E2D111ED1F7BC006C2164 /* cathedral grove-4.JPG */,
+				110E2D121ED1F7BC006C2164 /* cathedral grove-5.JPG */,
+			);
+			name = CathedralGrove;
+			sourceTree = "<group>";
+		};
+		110E2D251ED1F810006C2164 /* Banff */ = {
+			isa = PBXGroup;
+			children = (
+				110E2D1B1ED1F802006C2164 /* DSC03588.JPG */,
+				110E2D1C1ED1F802006C2164 /* DSC03589.JPG */,
+				110E2D1D1ED1F802006C2164 /* DSC03590.JPG */,
+				110E2D1E1ED1F802006C2164 /* DSC03591.JPG */,
+				110E2D1F1ED1F802006C2164 /* DSC03592.JPG */,
+			);
+			name = Banff;
+			sourceTree = "<group>";
+		};
+		110E2D301ED1F842006C2164 /* ElkFalls */ = {
+			isa = PBXGroup;
+			children = (
+				110E2D261ED1F835006C2164 /* elk falls-2.JPG */,
+				110E2D271ED1F835006C2164 /* elk falls-3.JPG */,
+				110E2D281ED1F835006C2164 /* elk falls-4.JPG */,
+				110E2D291ED1F835006C2164 /* elk falls-5.JPG */,
+				110E2D2A1ED1F835006C2164 /* elk falls-6.JPG */,
+			);
+			name = ElkFalls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +222,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110E2D171ED1F7BC006C2164 /* cathedral grove-4.JPG in Resources */,
+				110E2D151ED1F7BC006C2164 /* cathedral grove-2.JPG in Resources */,
+				110E2D211ED1F802006C2164 /* DSC03589.JPG in Resources */,
+				110E2D231ED1F802006C2164 /* DSC03591.JPG in Resources */,
+				110E2D131ED1F7BC006C2164 /* cathedral grove-0.JPG in Resources */,
 				110E2D031ED1F436006C2164 /* LaunchScreen.storyboard in Resources */,
+				110E2D161ED1F7BC006C2164 /* cathedral grove-3.JPG in Resources */,
+				110E2D201ED1F802006C2164 /* DSC03588.JPG in Resources */,
+				110E2D241ED1F802006C2164 /* DSC03592.JPG in Resources */,
+				110E2D141ED1F7BC006C2164 /* cathedral grove-1.JPG in Resources */,
+				110E2D2D1ED1F835006C2164 /* elk falls-4.JPG in Resources */,
+				110E2D2B1ED1F835006C2164 /* elk falls-2.JPG in Resources */,
+				110E2D181ED1F7BC006C2164 /* cathedral grove-5.JPG in Resources */,
+				110E2D2C1ED1F835006C2164 /* elk falls-3.JPG in Resources */,
 				110E2D001ED1F436006C2164 /* Assets.xcassets in Resources */,
+				110E2D221ED1F802006C2164 /* DSC03590.JPG in Resources */,
+				110E2D2F1ED1F835006C2164 /* elk falls-6.JPG in Resources */,
+				110E2D2E1ED1F835006C2164 /* elk falls-5.JPG in Resources */,
 				110E2CFE1ED1F436006C2164 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				110E2D0C1ED1F6B9006C2164 /* PhotoCell.m in Sources */,
 				110E2CFB1ED1F436006C2164 /* ViewController.m in Sources */,
 				110E2CF81ED1F436006C2164 /* AppDelegate.m in Sources */,
 				110E2CF51ED1F436006C2164 /* main.m in Sources */,
@@ -307,6 +409,7 @@
 				110E2D091ED1F436006C2164 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
