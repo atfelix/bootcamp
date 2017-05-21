@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *sizeOfDinnerPartySlider;
 @property (weak, nonatomic) IBOutlet UITextField *amountTextField;
 @property (weak, nonatomic) IBOutlet UILabel *paymentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 
 @end
@@ -31,12 +32,20 @@
 }
 
 - (IBAction)handleButtonTap:(UIButton *)sender {
-    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.amountTextField.text];
+
     NSDecimalNumber *partySize = [[NSDecimalNumber alloc] initWithInt:(int)self.sizeOfDinnerPartySlider.value];
+
+    NSDecimalNumber *amount = [NSDecimalNumber decimalNumberWithString:self.amountTextField.text];
+    NSDecimalNumber *tip = amount;
+
     amount = [amount decimalNumberByDividingBy:partySize];
+    tip = [amount decimalNumberByMultiplyingBy:[[NSDecimalNumber alloc] initWithString:@"0.15"]];
+
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+
     self.paymentLabel.text = [numberFormatter stringFromNumber:amount];
+    self.tipLabel.text = [numberFormatter stringFromNumber:tip];
 }
 
 @end
