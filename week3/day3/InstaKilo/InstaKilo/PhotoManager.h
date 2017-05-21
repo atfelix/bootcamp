@@ -14,7 +14,7 @@
 
 @interface PhotoManager : NSObject
 
-@property (nonatomic, copy) NSMutableArray<PhotoObject *> *photoCollection;
+@property (nonatomic) NSMutableArray<PhotoObject *> *photoCollection;
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section;
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;

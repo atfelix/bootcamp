@@ -26,7 +26,9 @@
     self = [super init];
     if (self) {
         _photoCollection = [self initialPhotoCollection];
+        [self sortByProperty:NO withSelector:@selector(compareBasedOnLocation:)];
         _sortedByLocation = YES;
+        [self populateSections];
     }
     return self;
 }
@@ -50,7 +52,7 @@
                                                          andSubject:(arc4random_uniform(2)) ? @"Nature" : @"Wilderness"
                                                         andFilename:[NSString stringWithFormat:@"%@%@%@", cathedralGrove, @(i), fileExtension]]];
     }
-    return [collection copy];
+    return collection;
 }
 
 
@@ -80,9 +82,16 @@
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isSortedByLocation) {
+        [self sortByLocation];
+    }
+    else {
+        [self sortBySubject];
+    }
+
     PhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell"
                                                                 forIndexPath:indexPath];
-    cell.imageFilename = self.photoCollection[0].photoFilename;
+    cell.imageFilename = self.photoCollection[[self getIndexForIndexPath:indexPath]].photoFilename;
     return cell;
 }
 
@@ -97,6 +106,60 @@
 #pragma mark Utility methods
 
 
+-(NSInteger)getIndexForIndexPath:(NSIndexPath *)indexPath {
+    NSInteger index = 0;
+
+    for (int i = 0; i < indexPath.section; i++) {
+        index += [self.sectionCounts[i] integerValue];
+    }
+
+    index += indexPath.item;
+
+    return index;
+}
+
+-(void)populateSections {
+    _sectionHeadings = [[NSMutableArray alloc] init];
+    _sectionCounts = [[NSMutableArray alloc] init];
+
+    if (self.isSortedByLocation) {
+        [self populationSectionsForLocation];
+    }
+    else {
+        [self populationSectionsForSubject];
+    }
+}
+
+-(void)populationSectionsForLocation {
+    [self populationSectionsBasedOnSelector:@selector(photoTakenLocation)];
+}
+
+-(void)populationSectionsForSubject {
+    [self populationSectionsBasedOnSelector:@selector(photoSubject)];
+}
+
+-(void)populationSectionsBasedOnSelector:(SEL)selector {
+    [self sortByLocation];
+
+    for (int i = 0; i < self.photoCollection.count; i++) {
+        PhotoObject *photo = self.photoCollection[i];
+        if (i == 0) {
+            [_sectionHeadings addObject:[photo performSelector:selector]];
+            [_sectionCounts addObject:@(1)];
+        }
+        else {
+            if (![photo.photoTakenLocation isEqualToString:_sectionHeadings.lastObject]){
+                [_sectionHeadings addObject:[photo performSelector:selector]];
+                [_sectionCounts addObject:@(0)];
+            }
+            _sectionCounts[_sectionCounts.count - 1] = @([_sectionCounts.lastObject integerValue] + 1);
+        }
+    }
+}
+
+
+#pragma mark Sorting methods
+
 -(void)sortByProperty:(BOOL)isAlreadySortedOnProperty withSelector:(SEL)selector {
     if (isAlreadySortedOnProperty) {
         return;
@@ -107,7 +170,7 @@
         return;
     }
 
-    [self.photoCollection sortUsingComparator:^NSComparisonResult(PhotoObject *a, PhotoObject *b) {
+    [_photoCollection sortUsingComparator:^NSComparisonResult(PhotoObject *a, PhotoObject *b) {
         return (NSComparisonResult)[a performSelector:selector withObject:b];
     }];
 }

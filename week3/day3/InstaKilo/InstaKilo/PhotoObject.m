@@ -34,7 +34,7 @@
 }
 
 -(NSComparisonResult)compareBasedOnLocation:(PhotoObject *)otherPhotoObject {
-    return [self.photoSubject compare:otherPhotoObject.photoSubject];
+    return [self.photoTakenLocation compare:otherPhotoObject.photoTakenLocation];
 }
 
 @end
