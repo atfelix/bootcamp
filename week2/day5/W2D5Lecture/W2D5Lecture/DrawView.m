@@ -60,7 +60,8 @@
     CGPoint first = [touch previousLocationInView:self];
     CGPoint second = [touch locationInView:self];
     LineSegment *line = [[LineSegment alloc] initWithStart:first
-                                                    andEnd:second];
+                                                    andEnd:second
+                                                  andColor:[UIColor purpleColor]];
     [self.points addObject:line];
     NSLog(@"%@", self.points);
 
