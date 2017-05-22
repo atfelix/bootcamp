@@ -6,18 +6,19 @@
 //  Copyright © 2017 Adam Felix. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "StoryPartViewController.h"
 
 #import "StoryPartManager.h"
+#import "StoryPart.h"
 
-@interface ViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface StoryPartViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) StoryPartManager *manager;
 @property (weak, nonatomic) IBOutlet UIImageView *storyImageView;
 
 @end
 
-@implementation ViewController
+@implementation StoryPartViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,13 +48,39 @@
                      completion:nil];
 }
 
+- (IBAction)toggleRecord:(UIButton *)sender {
+    if (self.manager.storyPages[0].audioRecorder.isRecording) {
+        [self.manager.storyPages[0].audioRecorder stop];
+        [sender setTitle:@"Record Audio"
+                forState:UIControlStateNormal];
+    }
+    else {
+        [sender setTitle:@"Stop Recording"
+                forState:UIControlStateNormal];
+        [self.manager.storyPages[0].audioRecorder record];
+    }
+}
+
+- (IBAction)playRecording:(UITapGestureRecognizer *)sender {
+    if (!self.storyImageView.image) {
+        return;
+    }
+
+    if (self.manager.storyPages[0].audioPlayer.isPlaying) {
+        [self.manager.storyPages[0].audioPlayer stop];
+    }
+    else {
+        [self.manager.storyPages[0].audioPlayer play];
+        self.manager.storyPages[0].audioPlayer.currentTime = 0;
+    }
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     self.storyImageView.image = info[UIImagePickerControllerOriginalImage];
-    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
     [picker dismissViewControllerAnimated:YES
                                completion:nil];
 }

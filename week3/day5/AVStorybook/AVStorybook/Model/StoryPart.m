@@ -29,6 +29,21 @@
     return self;
 }
 
+
+#pragma mark Lazy Iniitialization
+
+
+-(AVAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        [self createAudioPlayer];
+    }
+    return _audioPlayer;
+}
+
+
+#pragma mark Utility methods
+
+
 -(void)createAudioPlayer {
     NSError *error = nil;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:_savedAudioURL
