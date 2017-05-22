@@ -8,12 +8,10 @@
 
 #import "StoryPartViewController.h"
 
-#import "StoryPartManager.h"
 #import "StoryPart.h"
 
 @interface StoryPartViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic) StoryPartManager *manager;
 @property (weak, nonatomic) IBOutlet UIImageView *storyImageView;
 
 @end
@@ -22,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.manager = [[StoryPartManager alloc] init];
+    self.storyPart = [[StoryPart alloc] initWithString:@"banana"];
 }
 
 
@@ -49,15 +47,15 @@
 }
 
 - (IBAction)toggleRecord:(UIButton *)sender {
-    if (self.manager.storyPages[0].audioRecorder.isRecording) {
-        [self.manager.storyPages[0].audioRecorder stop];
+    if (self.storyPart.audioRecorder.isRecording) {
+        [self.storyPart.audioRecorder stop];
         [sender setTitle:@"Record Audio"
                 forState:UIControlStateNormal];
     }
     else {
         [sender setTitle:@"Stop Recording"
                 forState:UIControlStateNormal];
-        [self.manager.storyPages[0].audioRecorder record];
+        [self.storyPart.audioRecorder record];
     }
 }
 
@@ -66,12 +64,12 @@
         return;
     }
 
-    if (self.manager.storyPages[0].audioPlayer.isPlaying) {
-        [self.manager.storyPages[0].audioPlayer stop];
+    if (self.storyPart.audioPlayer.isPlaying) {
+        [self.storyPart.audioPlayer stop];
     }
     else {
-        [self.manager.storyPages[0].audioPlayer play];
-        self.manager.storyPages[0].audioPlayer.currentTime = 0;
+        [self.storyPart.audioPlayer play];
+        self.storyPart.audioPlayer.currentTime = 0;
     }
 }
 

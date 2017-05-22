@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "StoryPart.h"
+
 @interface StoryPartViewController : UIViewController
 
+@property (nonatomic) StoryPart *storyPart;
 
 @end
-
