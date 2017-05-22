@@ -24,7 +24,6 @@
                                                                             NSUserDomainMask,
                                                                             YES) firstObject];
         _savedAudioURL = [NSURL fileURLWithPath:[documentsDirectory stringByAppendingPathComponent:string]];
-        [self createAudioPlayer];
         [self createAudioRecorder];
     }
     return self;
@@ -54,7 +53,7 @@
 }
 
 -(void)logError:(NSError *)error withMessage:(NSString *)string {
-    if (error) {
+    if (error != nil) {
         NSLog(@"%@", string);
     }
 }

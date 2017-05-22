@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class StoryPart;
+
 @interface StoryPartManager : NSObject
+
+@property (nonatomic, copy) NSMutableArray<StoryPart *> *storyPages;
 
 @end
