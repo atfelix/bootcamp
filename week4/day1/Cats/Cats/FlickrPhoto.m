@@ -8,6 +8,8 @@
 
 #import "FlickrPhoto.h"
 
+#import "FlickrAPI.h"
+
 @interface FlickrPhoto ()
 
 @end
@@ -43,6 +45,16 @@
                                  self.server,
                                  self.photoId,
                                  self.secret]];
+}
+
+-(UIImage *)image {
+    if (!_image) {
+        [FlickrAPI loadImage:self
+           completionHandler:^(UIImage *image) {
+               _image = image;
+           }];
+    }
+    return _image;
 }
 
 @end

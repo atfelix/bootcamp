@@ -6,7 +6,7 @@
 //  Copyright © 2017 Adam Felix. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface FlickrPhoto : NSObject
 
@@ -15,6 +15,7 @@
 @property (nonatomic) NSString *server;
 @property (nonatomic) NSString *secret;
 @property (nonatomic) NSString *title;
+@property (nonatomic) UIImage *image;
 
 -(instancetype)initWithInfo:(NSDictionary *)info;
 -(NSURL *)url;

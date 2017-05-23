@@ -30,16 +30,9 @@
     [FlickrAPI searchFor:@"cat"
        completionHandler:^(NSArray *searchResults) {
            self.photos = searchResults;
-
-           for (FlickrPhoto *photo in self.photos) {
-               [FlickrAPI loadImage:photo
-                  completionHandler:^(UIImage *image) {
-                      [self.images addObject:image];
-                      [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                          [self.collectionView reloadData];
-                  }];
+           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               [self.collectionView reloadData];
            }];
-           }
        }];
 }
 
@@ -52,10 +45,6 @@
 
 #pragma mark Utility methods
 
-
--(void)getPhotosBasedOn:(NSString *)searchQuery {
-
-}
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -71,7 +60,10 @@
     FlickrPhoto *photo = self.photos[indexPath.item];
     cell.photo = photo;
     cell.photoLabel.text = photo.title;
-    cell.photoImageView.image = self.images[indexPath.item];
+    cell.photoImageView.image = photo.image;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.collectionView reloadData];
+    }];
 
     return cell;
 }
