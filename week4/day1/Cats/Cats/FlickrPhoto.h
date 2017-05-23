@@ -8,6 +8,12 @@
 
 @import UIKit;
 
+@protocol FlickrPhotoDelegate <NSObject>
+
+-(void)reloadData;
+
+@end
+
 @interface FlickrPhoto : NSObject
 
 @property (nonatomic) NSString *photoId;
@@ -16,6 +22,7 @@
 @property (nonatomic) NSString *secret;
 @property (nonatomic) NSString *title;
 @property (nonatomic) UIImage *image;
+@property (nonatomic, weak) id<FlickrPhotoDelegate> delegate;
 
 -(instancetype)initWithInfo:(NSDictionary *)info;
 -(NSURL *)url;

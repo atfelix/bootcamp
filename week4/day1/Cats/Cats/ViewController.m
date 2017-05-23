@@ -12,10 +12,9 @@
 #import "FlickrPhoto.h"
 #import "FlickrPhotoViewCell.h"
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FlickrPhotoDelegate>
 
-@property (nonatomic) NSArray *photos;
-@property (nonatomic) NSMutableArray *images;
+@property (nonatomic) NSArray<FlickrPhoto *> *photos;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -26,7 +25,6 @@
     [super viewDidLoad];
 
     self.photos = [[NSMutableArray alloc] init];
-    self.images = [[NSMutableArray alloc] init];
     [FlickrAPI searchFor:@"cat"
        completionHandler:^(NSArray *searchResults) {
            self.photos = searchResults;
@@ -58,14 +56,19 @@
     FlickrPhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FlickrPhotoViewCell"
                                                                           forIndexPath:indexPath];
     FlickrPhoto *photo = self.photos[indexPath.item];
+    photo.delegate = self;
     cell.photo = photo;
     cell.photoLabel.text = photo.title;
     cell.photoImageView.image = photo.image;
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.collectionView reloadData];
-    }];
 
     return cell;
 }
+
+-(void)reloadData {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.collectionView reloadData];
+    }];
+}
+
 
 @end

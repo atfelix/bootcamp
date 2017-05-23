@@ -52,6 +52,7 @@
         [FlickrAPI loadImage:self
            completionHandler:^(UIImage *image) {
                _image = image;
+               [self.delegate reloadData];
            }];
     }
     return _image;
