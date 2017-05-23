@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 
+#import "FlickrAPI.h"
+
 @interface ViewController ()
+
+@property (nonatomic) NSArray *photos;
 
 @end
 
@@ -16,13 +20,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.photos = [[NSMutableArray alloc] init];
+    [FlickrAPI searchFor:@"cat"
+       completionHandler:^(NSArray *searchResults) {
+           NSLog(@"Found: %@", searchResults);
+           self.photos = searchResults;
+       }];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark Utility methods
+
+
+-(void)getPhotosBasedOn:(NSString *)searchQuery {
+
 }
 
 
