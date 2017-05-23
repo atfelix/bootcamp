@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.userInteractionEnabled = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {

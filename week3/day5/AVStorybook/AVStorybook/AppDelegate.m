@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[StorybookPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl
+    self.window.rootViewController = [[StorybookPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                                             navigationOrientation:UIPageViewControllerNavigationOrientationVertical
                                                                                           options:nil];
     [self.window makeKeyAndVisible];
