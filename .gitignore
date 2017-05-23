@@ -2,3 +2,4 @@
 *.swp
 /**/*.jpg
 /test/**/*.*
+/**/FLICKR_API_KEYS.h
