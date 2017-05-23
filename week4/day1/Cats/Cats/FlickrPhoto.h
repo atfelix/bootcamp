@@ -10,6 +10,12 @@
 
 @interface FlickrPhoto : NSObject
 
+@property (nonatomic) NSString *photoId;
+@property (nonatomic) NSString *farm;
+@property (nonatomic) NSString *server;
+@property (nonatomic) NSString *secret;
+@property (nonatomic) NSString *title;
+
 -(instancetype)initWithInfo:(NSDictionary *)info;
 -(NSURL *)url;
 

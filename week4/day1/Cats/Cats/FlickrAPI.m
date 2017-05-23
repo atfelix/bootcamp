@@ -66,6 +66,7 @@
                                                                  NSLog(@"Error: %@", error.localizedDescription);
                                                                  return;
                                                              }
+                                                             NSLog(@"Done");
                                                              complete([UIImage imageWithData:data]);
                                                          }];
     [task resume];

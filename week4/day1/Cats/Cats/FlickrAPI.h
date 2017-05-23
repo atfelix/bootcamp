@@ -10,9 +10,11 @@
 
 @import UIKit;
 
+@class FlickrPhoto;
+
 @interface FlickrAPI : NSObject
 
 +(void)searchFor:(NSString *)query completionHandler:(void(^)(NSArray *searchResults))complete;
-+(void)loadImage:(UIImage *)image completionHandler:(void(^)(UIImage *))complete;
++(void)loadImage:(FlickrPhoto *)photo completionHandler:(void(^)(UIImage *))complete;
 
 @end
