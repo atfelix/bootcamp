@@ -10,8 +10,16 @@
 
 #import "StoryPart.h"
 
+@protocol StoryPartDelegate <NSObject>
+
+-(void)deletePage:(UIButton *)sender;
+-(void)addPage:(UIButton *)sender;
+
+@end
+
 @interface StoryPartViewController : UIViewController
 
-@property (nonatomic) StoryPart *storyPart;
+@property (nonatomic, strong) StoryPart *storyPart;
+@property (nonatomic, weak) id<StoryPartDelegate> delegate;
 
 @end

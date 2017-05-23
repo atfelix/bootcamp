@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSURL *savedAudioURL;
 
 -(instancetype)initWithString:(NSString *)string;
 

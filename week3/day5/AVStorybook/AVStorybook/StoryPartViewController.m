@@ -20,7 +20,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.storyPart = [[StoryPart alloc] initWithString:@"banana"];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.storyImageView.image = self.storyPart.image;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
 }
 
 
@@ -60,7 +76,7 @@
 }
 
 - (IBAction)playRecording:(UITapGestureRecognizer *)sender {
-    if (!self.storyImageView.image) {
+    if (!self.storyPart.image) {
         return;
     }
 
@@ -73,12 +89,20 @@
     }
 }
 
+- (IBAction)deletePage:(UIButton *)sender {
+    [self.delegate deletePage:sender];
+}
+
+- (IBAction)addPage:(UIButton *)sender {
+    [self.delegate addPage:sender];
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    self.storyImageView.image = info[UIImagePickerControllerOriginalImage];
+    self.storyPart.image = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES
                                completion:nil];
 }

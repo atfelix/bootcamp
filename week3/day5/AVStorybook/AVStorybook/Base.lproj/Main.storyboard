@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CUu-hh-ZD0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Storybook Page View Controller-->
+        <scene sceneID="WIL-YG-eOP">
+            <objects>
+                <pageViewController storyboardIdentifier="StorybookPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="vertical" spineLocation="none" id="CUu-hh-ZD0" customClass="StorybookPageViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iim-dy-uX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-772" y="124"/>
+        </scene>
         <!--Story Part View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="StoryPartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoryPartViewController" id="BYZ-38-t0r" customClass="StoryPartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -52,6 +60,30 @@
                                     <action selector="toggleRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DJn-Ve-NWe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHH-6r-Vyh">
+                                <rect key="frame" x="309" y="20" width="66" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FYI-yg-mpe"/>
+                                </constraints>
+                                <state key="normal" title="Add Page">
+                                    <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ndl-1F-rpn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKn-Qc-aQR">
+                                <rect key="frame" x="1" y="20" width="83" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Zxy-7s-eSw"/>
+                                </constraints>
+                                <state key="normal" title="Delete Page">
+                                    <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deletePage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NAX-hn-6gs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -60,7 +92,11 @@
                             <constraint firstItem="IBj-fJ-yyB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="USi-tl-Zoi"/>
                             <constraint firstAttribute="trailing" secondItem="sSQ-hM-NwE" secondAttribute="trailing" id="V0Y-Hc-R9n"/>
                             <constraint firstItem="S3g-Yd-2Gx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bY7-Gp-DzO"/>
+                            <constraint firstItem="qHH-6r-Vyh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="d4F-aV-O3U"/>
+                            <constraint firstAttribute="trailing" secondItem="qHH-6r-Vyh" secondAttribute="trailing" id="eHW-O6-DvF"/>
                             <constraint firstAttribute="trailing" secondItem="IBj-fJ-yyB" secondAttribute="trailing" id="eNj-1w-PaV"/>
+                            <constraint firstItem="TKn-Qc-aQR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="j0w-cg-v1q"/>
+                            <constraint firstItem="TKn-Qc-aQR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nF8-tt-xJ3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sSQ-hM-NwE" secondAttribute="bottom" id="umW-T5-8Zw"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="S3g-Yd-2Gx" secondAttribute="bottom" id="vdm-og-Mz2"/>
                         </constraints>

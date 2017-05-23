@@ -15,6 +15,7 @@
 		11CD3C871ED3488E00409383 /* StoryPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD3C861ED3488E00409383 /* StoryPart.m */; };
 		11CD3C8B1ED348A900409383 /* StoryPartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD3C8A1ED348A900409383 /* StoryPartManager.m */; };
 		11CD3C8E1ED3707100409383 /* StoryPartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD3C8D1ED3707100409383 /* StoryPartViewController.m */; };
+		11CD3C911ED3846700409383 /* StorybookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CD3C901ED3846700409383 /* StorybookPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		11CD3C8A1ED348A900409383 /* StoryPartManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryPartManager.m; sourceTree = "<group>"; };
 		11CD3C8C1ED3707100409383 /* StoryPartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryPartViewController.h; sourceTree = "<group>"; };
 		11CD3C8D1ED3707100409383 /* StoryPartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryPartViewController.m; sourceTree = "<group>"; };
+		11CD3C8F1ED3846700409383 /* StorybookPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorybookPageViewController.h; sourceTree = "<group>"; };
+		11CD3C901ED3846700409383 /* StorybookPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorybookPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				11CD3C721ED31EDB00409383 /* AppDelegate.m */,
 				11CD3C8C1ED3707100409383 /* StoryPartViewController.h */,
 				11CD3C8D1ED3707100409383 /* StoryPartViewController.m */,
+				11CD3C8F1ED3846700409383 /* StorybookPageViewController.h */,
+				11CD3C901ED3846700409383 /* StorybookPageViewController.m */,
 				11CD3C771ED31EDB00409383 /* Main.storyboard */,
 				11CD3C7A1ED31EDB00409383 /* Assets.xcassets */,
 				11CD3C7C1ED31EDB00409383 /* LaunchScreen.storyboard */,
@@ -172,6 +177,7 @@
 				11CD3C871ED3488E00409383 /* StoryPart.m in Sources */,
 				11CD3C8B1ED348A900409383 /* StoryPartManager.m in Sources */,
 				11CD3C701ED31EDB00409383 /* main.m in Sources */,
+				11CD3C911ED3846700409383 /* StorybookPageViewController.m in Sources */,
 				11CD3C8E1ED3707100409383 /* StoryPartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

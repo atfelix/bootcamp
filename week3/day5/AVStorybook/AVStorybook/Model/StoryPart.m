@@ -10,8 +10,6 @@
 
 @interface StoryPart ()
 
-@property (nonatomic, strong) NSURL *savedAudioURL;
-
 @end
 
 @implementation StoryPart
@@ -71,6 +69,10 @@
     if (error != nil) {
         NSLog(@"%@", string);
     }
+}
+
+-(void)setImage:(UIImage *)image {
+    _image = image;
 }
 
 @end
