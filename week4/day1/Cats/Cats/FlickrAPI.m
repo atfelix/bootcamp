@@ -59,4 +59,16 @@
    [task resume];
 }
 
++(void)loadImage:(FlickrPhoto *)photo completionHandler:(void (^)(UIImage *))complete {
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:photo.url
+                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                             if (error) {
+                                                                 NSLog(@"Error: %@", error.localizedDescription);
+                                                                 return;
+                                                             }
+                                                             complete([UIImage imageWithData:data]);
+                                                         }];
+    [task resume];
+}
+
 @end

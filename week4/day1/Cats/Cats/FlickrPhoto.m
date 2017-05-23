@@ -40,4 +40,12 @@
     return desc;
 }
 
+-(NSURL *)url {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
+                                 self.farm,
+                                 self.server,
+                                 self.photoId,
+                                 self.secret]];
+}
+
 @end

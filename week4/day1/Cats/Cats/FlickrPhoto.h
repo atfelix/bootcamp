@@ -11,5 +11,6 @@
 @interface FlickrPhoto : NSObject
 
 -(instancetype)initWithInfo:(NSDictionary *)info;
+-(NSURL *)url;
 
 @end

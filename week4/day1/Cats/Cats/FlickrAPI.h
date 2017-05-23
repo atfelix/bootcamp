@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@import UIKit;
+
 @interface FlickrAPI : NSObject
 
 +(void)searchFor:(NSString *)query completionHandler:(void(^)(NSArray *searchResults))complete;
++(void)loadImage:(UIImage *)image completionHandler:(void(^)(UIImage *))complete;
 
 @end
