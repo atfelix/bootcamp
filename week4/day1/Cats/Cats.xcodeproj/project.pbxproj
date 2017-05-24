@@ -7,90 +7,138 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11B412261ED48634001DA043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412251ED48634001DA043 /* main.m */; };
-		11B412291ED48634001DA043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412281ED48634001DA043 /* AppDelegate.m */; };
-		11B4122C1ED48634001DA043 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4122B1ED48634001DA043 /* ViewController.m */; };
-		11B4122F1ED48634001DA043 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B4122D1ED48634001DA043 /* Main.storyboard */; };
-		11B412311ED48634001DA043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B412301ED48634001DA043 /* Assets.xcassets */; };
-		11B412341ED48634001DA043 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B412321ED48634001DA043 /* LaunchScreen.storyboard */; };
+		1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193ED501ED4FFBB004C5D60 /* DetailViewController.m */; };
+		11B4124D1ED48DB2001DA043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124C1ED48DB2001DA043 /* main.m */; };
+		11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124F1ED48DB2001DA043 /* AppDelegate.m */; };
+		11B412531ED48DB2001DA043 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412521ED48DB2001DA043 /* ViewController.m */; };
+		11B412561ED48DB2001DA043 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B412541ED48DB2001DA043 /* Main.storyboard */; };
+		11B412581ED48DB2001DA043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B412571ED48DB2001DA043 /* Assets.xcassets */; };
+		11B4125B1ED48DB2001DA043 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B412591ED48DB2001DA043 /* LaunchScreen.storyboard */; };
+		11B412651ED49A13001DA043 /* FlickrAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412641ED49A13001DA043 /* FlickrAPI.m */; };
+		11B412691ED49DB9001DA043 /* FlickrPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412681ED49DB9001DA043 /* FlickrPhoto.m */; };
+		11B4126D1ED4A85C001DA043 /* FlickrPhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */; };
+		11B91BBB1ED5269E0078BB94 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B91BBA1ED5269E0078BB94 /* SafariServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11B412211ED48634001DA043 /* Cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		11B412251ED48634001DA043 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		11B412271ED48634001DA043 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		11B412281ED48634001DA043 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		11B4122A1ED48634001DA043 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		11B4122B1ED48634001DA043 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		11B4122E1ED48634001DA043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		11B412301ED48634001DA043 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		11B412331ED48634001DA043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		11B412351ED48634001DA043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11B4123E1ED489F5001DA043 /* FLICKR_API_KEYS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLICKR_API_KEYS.h; path = Cats/FLICKR_API_KEYS.h; sourceTree = "<group>"; };
+		1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		1193ED501ED4FFBB004C5D60 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		11B412481ED48DB2001DA043 /* Cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B4124C1ED48DB2001DA043 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11B4124E1ED48DB2001DA043 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		11B4124F1ED48DB2001DA043 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		11B412511ED48DB2001DA043 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		11B412521ED48DB2001DA043 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		11B412551ED48DB2001DA043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11B412571ED48DB2001DA043 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11B4125A1ED48DB2001DA043 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11B4125C1ED48DB2001DA043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11B412621ED490E3001DA043 /* FLICKR_API_KEYS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLICKR_API_KEYS.h; sourceTree = "<group>"; };
+		11B412631ED49A13001DA043 /* FlickrAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPI.h; sourceTree = "<group>"; };
+		11B412641ED49A13001DA043 /* FlickrAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPI.m; sourceTree = "<group>"; };
+		11B412671ED49DB9001DA043 /* FlickrPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhoto.h; sourceTree = "<group>"; };
+		11B412681ED49DB9001DA043 /* FlickrPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhoto.m; sourceTree = "<group>"; };
+		11B4126B1ED4A85C001DA043 /* FlickrPhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotoViewCell.h; sourceTree = "<group>"; };
+		11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotoViewCell.m; sourceTree = "<group>"; };
+		11B91BBA1ED5269E0078BB94 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		11B4121E1ED48634001DA043 /* Frameworks */ = {
+		11B412451ED48DB2001DA043 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B91BBB1ED5269E0078BB94 /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11B412181ED48634001DA043 = {
+		11B4123F1ED48DB2001DA043 = {
 			isa = PBXGroup;
 			children = (
-				11B4123E1ED489F5001DA043 /* FLICKR_API_KEYS.h */,
-				11B412231ED48634001DA043 /* Cats */,
-				11B412221ED48634001DA043 /* Products */,
+				11B4124A1ED48DB2001DA043 /* Cats */,
+				11B412491ED48DB2001DA043 /* Products */,
+				11B91BB91ED5269E0078BB94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		11B412221ED48634001DA043 /* Products */ = {
+		11B412491ED48DB2001DA043 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11B412211ED48634001DA043 /* Cats.app */,
+				11B412481ED48DB2001DA043 /* Cats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		11B412231ED48634001DA043 /* Cats */ = {
+		11B4124A1ED48DB2001DA043 /* Cats */ = {
 			isa = PBXGroup;
 			children = (
-				11B412271ED48634001DA043 /* AppDelegate.h */,
-				11B412281ED48634001DA043 /* AppDelegate.m */,
-				11B4122A1ED48634001DA043 /* ViewController.h */,
-				11B4122B1ED48634001DA043 /* ViewController.m */,
-				11B4122D1ED48634001DA043 /* Main.storyboard */,
-				11B412301ED48634001DA043 /* Assets.xcassets */,
-				11B412321ED48634001DA043 /* LaunchScreen.storyboard */,
-				11B412351ED48634001DA043 /* Info.plist */,
-				11B412241ED48634001DA043 /* Supporting Files */,
+				11B4124E1ED48DB2001DA043 /* AppDelegate.h */,
+				11B4124F1ED48DB2001DA043 /* AppDelegate.m */,
+				11B412511ED48DB2001DA043 /* ViewController.h */,
+				11B412521ED48DB2001DA043 /* ViewController.m */,
+				11B412541ED48DB2001DA043 /* Main.storyboard */,
+				1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */,
+				1193ED501ED4FFBB004C5D60 /* DetailViewController.m */,
+				11B4126B1ED4A85C001DA043 /* FlickrPhotoViewCell.h */,
+				11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */,
+				11B412571ED48DB2001DA043 /* Assets.xcassets */,
+				11B412591ED48DB2001DA043 /* LaunchScreen.storyboard */,
+				11B4125C1ED48DB2001DA043 /* Info.plist */,
+				11B4126A1ED49DBF001DA043 /* Model */,
+				11B4124B1ED48DB2001DA043 /* Supporting Files */,
+				11B412661ED49B01001DA043 /* FlickrAPI */,
 			);
 			path = Cats;
 			sourceTree = "<group>";
 		};
-		11B412241ED48634001DA043 /* Supporting Files */ = {
+		11B4124B1ED48DB2001DA043 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				11B412251ED48634001DA043 /* main.m */,
+				11B4124C1ED48DB2001DA043 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11B412661ED49B01001DA043 /* FlickrAPI */ = {
+			isa = PBXGroup;
+			children = (
+				11B412631ED49A13001DA043 /* FlickrAPI.h */,
+				11B412641ED49A13001DA043 /* FlickrAPI.m */,
+				11B412621ED490E3001DA043 /* FLICKR_API_KEYS.h */,
+			);
+			name = FlickrAPI;
+			sourceTree = "<group>";
+		};
+		11B4126A1ED49DBF001DA043 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11B412671ED49DB9001DA043 /* FlickrPhoto.h */,
+				11B412681ED49DB9001DA043 /* FlickrPhoto.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		11B91BB91ED5269E0078BB94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11B91BBA1ED5269E0078BB94 /* SafariServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11B412201ED48634001DA043 /* Cats */ = {
+		11B412471ED48DB2001DA043 /* Cats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11B412381ED48634001DA043 /* Build configuration list for PBXNativeTarget "Cats" */;
+			buildConfigurationList = 11B4125F1ED48DB2001DA043 /* Build configuration list for PBXNativeTarget "Cats" */;
 			buildPhases = (
-				11B4121D1ED48634001DA043 /* Sources */,
-				11B4121E1ED48634001DA043 /* Frameworks */,
-				11B4121F1ED48634001DA043 /* Resources */,
+				11B412441ED48DB2001DA043 /* Sources */,
+				11B412451ED48DB2001DA043 /* Frameworks */,
+				11B412461ED48DB2001DA043 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -98,25 +146,25 @@
 			);
 			name = Cats;
 			productName = Cats;
-			productReference = 11B412211ED48634001DA043 /* Cats.app */;
+			productReference = 11B412481ED48DB2001DA043 /* Cats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		11B412191ED48634001DA043 /* Project object */ = {
+		11B412401ED48DB2001DA043 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Adam Felix";
 				TargetAttributes = {
-					11B412201ED48634001DA043 = {
+					11B412471ED48DB2001DA043 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 11B4121C1ED48634001DA043 /* Build configuration list for PBXProject "Cats" */;
+			buildConfigurationList = 11B412431ED48DB2001DA043 /* Build configuration list for PBXProject "Cats" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -124,55 +172,59 @@
 				en,
 				Base,
 			);
-			mainGroup = 11B412181ED48634001DA043;
-			productRefGroup = 11B412221ED48634001DA043 /* Products */;
+			mainGroup = 11B4123F1ED48DB2001DA043;
+			productRefGroup = 11B412491ED48DB2001DA043 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11B412201ED48634001DA043 /* Cats */,
+				11B412471ED48DB2001DA043 /* Cats */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		11B4121F1ED48634001DA043 /* Resources */ = {
+		11B412461ED48DB2001DA043 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11B412341ED48634001DA043 /* LaunchScreen.storyboard in Resources */,
-				11B412311ED48634001DA043 /* Assets.xcassets in Resources */,
-				11B4122F1ED48634001DA043 /* Main.storyboard in Resources */,
+				11B4125B1ED48DB2001DA043 /* LaunchScreen.storyboard in Resources */,
+				11B412581ED48DB2001DA043 /* Assets.xcassets in Resources */,
+				11B412561ED48DB2001DA043 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		11B4121D1ED48634001DA043 /* Sources */ = {
+		11B412441ED48DB2001DA043 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11B4122C1ED48634001DA043 /* ViewController.m in Sources */,
-				11B412291ED48634001DA043 /* AppDelegate.m in Sources */,
-				11B412261ED48634001DA043 /* main.m in Sources */,
+				11B412531ED48DB2001DA043 /* ViewController.m in Sources */,
+				11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */,
+				11B4126D1ED4A85C001DA043 /* FlickrPhotoViewCell.m in Sources */,
+				11B4124D1ED48DB2001DA043 /* main.m in Sources */,
+				11B412691ED49DB9001DA043 /* FlickrPhoto.m in Sources */,
+				11B412651ED49A13001DA043 /* FlickrAPI.m in Sources */,
+				1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		11B4122D1ED48634001DA043 /* Main.storyboard */ = {
+		11B412541ED48DB2001DA043 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				11B4122E1ED48634001DA043 /* Base */,
+				11B412551ED48DB2001DA043 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		11B412321ED48634001DA043 /* LaunchScreen.storyboard */ = {
+		11B412591ED48DB2001DA043 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				11B412331ED48634001DA043 /* Base */,
+				11B4125A1ED48DB2001DA043 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -180,7 +232,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		11B412361ED48634001DA043 /* Debug */ = {
+		11B4125D1ED48DB2001DA043 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -227,7 +279,7 @@
 			};
 			name = Debug;
 		};
-		11B412371ED48634001DA043 /* Release */ = {
+		11B4125E1ED48DB2001DA043 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -268,7 +320,7 @@
 			};
 			name = Release;
 		};
-		11B412391ED48634001DA043 /* Debug */ = {
+		11B412601ED48DB2001DA043 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -279,7 +331,6 @@
 			};
 			name = Debug;
 		};
-		11B4123A1ED48634001DA043 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -293,25 +344,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		11B4121C1ED48634001DA043 /* Build configuration list for PBXProject "Cats" */ = {
+		11B412431ED48DB2001DA043 /* Build configuration list for PBXProject "Cats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				11B412361ED48634001DA043 /* Debug */,
-				11B412371ED48634001DA043 /* Release */,
+				11B4125D1ED48DB2001DA043 /* Debug */,
+				11B4125E1ED48DB2001DA043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11B412381ED48634001DA043 /* Build configuration list for PBXNativeTarget "Cats" */ = {
+		11B4125F1ED48DB2001DA043 /* Build configuration list for PBXNativeTarget "Cats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				11B412391ED48634001DA043 /* Debug */,
-				11B4123A1ED48634001DA043 /* Release */,
+				11B412601ED48DB2001DA043 /* Debug */,
+				11B412611ED48DB2001DA043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 11B412191ED48634001DA043 /* Project object */;
+	rootObject = 11B412401ED48DB2001DA043 /* Project object */;
 }

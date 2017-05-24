@@ -8,11 +8,15 @@
 
 #import "ViewController.h"
 
-#import "FLICKR_API_KEYS.h"
+#import "DetailViewController.h"
+#import "FlickrAPI.h"
+#import "FlickrPhoto.h"
+#import "FlickrPhotoViewCell.h"
 
-@interface ViewController ()
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FlickrPhotoDelegate>
 
-@property (nonatomic) NSMutableArray *catPhotos;
+@property (nonatomic) NSArray<FlickrPhoto *> *photos;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -20,7 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getPhotosBasedOnSearchParameter:@"cats"];
+
+    self.photos = [[NSMutableArray alloc] init];
+    [FlickrAPI searchFor:@"cat"
+       completionHandler:^(NSArray *searchResults) {
+           self.photos = searchResults;
+           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               [self.collectionView reloadData];
+           }];
+       }];
 }
 
 
@@ -30,14 +42,48 @@
 }
 
 
-#pragma mark Utility Methods
+#pragma mark Utility methods
 
 
--(void)getPhotosBasedOnSearchParameter:(NSString *)searchQuery {
-    NSString *baseURLString = @"https://api.flickr.com/services/rest/";
-    NSString *flickrMethodName = @"flickr.photos.search"
-    
-
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.photos.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    FlickrPhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FlickrPhotoViewCell"
+                                                                          forIndexPath:indexPath];
+    FlickrPhoto *photo = self.photos[indexPath.item];
+    photo.delegate = self;
+    cell.photo = photo;
+    cell.photoLabel.text = photo.title;
+    cell.photoImageView.image = photo.image;
+
+    return cell;
+}
+
+-(void)reloadData {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.collectionView reloadData];
+    }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if (![segue.identifier isEqualToString:@"DetailViewSegue"]) {
+        return;
+    }
+
+    NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].lastObject;
+    FlickrPhotoViewCell *cell = (FlickrPhotoViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+    if ([segue.destinationViewController respondsToSelector:@selector(setPhoto:)]) {
+        [segue.destinationViewController setPhoto:cell.photo];
+    }
+}
+
 
 @end
