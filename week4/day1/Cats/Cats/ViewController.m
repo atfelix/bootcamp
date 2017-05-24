@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
+#import "DetailViewController.h"
 #import "FlickrAPI.h"
 #import "FlickrPhoto.h"
 #import "FlickrPhotoViewCell.h"
@@ -68,6 +69,20 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [self.collectionView reloadData];
     }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if (![segue.identifier isEqualToString:@"DetailViewSegue"]) {
+        return;
+    }
+
+    NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].lastObject;
+    FlickrPhotoViewCell *cell = (FlickrPhotoViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+    if ([segue.destinationViewController respondsToSelector:@selector(setPhoto:)]) {
+        [segue.destinationViewController setPhoto:cell.photo];
+    }
 }
 
 

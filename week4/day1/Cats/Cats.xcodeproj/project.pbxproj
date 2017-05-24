@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193ED501ED4FFBB004C5D60 /* DetailViewController.m */; };
 		11B4124D1ED48DB2001DA043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124C1ED48DB2001DA043 /* main.m */; };
 		11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124F1ED48DB2001DA043 /* AppDelegate.m */; };
 		11B412531ED48DB2001DA043 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412521ED48DB2001DA043 /* ViewController.m */; };
@@ -16,9 +17,12 @@
 		11B412651ED49A13001DA043 /* FlickrAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412641ED49A13001DA043 /* FlickrAPI.m */; };
 		11B412691ED49DB9001DA043 /* FlickrPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B412681ED49DB9001DA043 /* FlickrPhoto.m */; };
 		11B4126D1ED4A85C001DA043 /* FlickrPhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */; };
+		11B91BBB1ED5269E0078BB94 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B91BBA1ED5269E0078BB94 /* SafariServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		1193ED501ED4FFBB004C5D60 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		11B412481ED48DB2001DA043 /* Cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B4124C1ED48DB2001DA043 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		11B4124E1ED48DB2001DA043 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -36,6 +40,7 @@
 		11B412681ED49DB9001DA043 /* FlickrPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhoto.m; sourceTree = "<group>"; };
 		11B4126B1ED4A85C001DA043 /* FlickrPhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotoViewCell.h; sourceTree = "<group>"; };
 		11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotoViewCell.m; sourceTree = "<group>"; };
+		11B91BBA1ED5269E0078BB94 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B91BBB1ED5269E0078BB94 /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +60,7 @@
 			children = (
 				11B4124A1ED48DB2001DA043 /* Cats */,
 				11B412491ED48DB2001DA043 /* Products */,
+				11B91BB91ED5269E0078BB94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +80,8 @@
 				11B412511ED48DB2001DA043 /* ViewController.h */,
 				11B412521ED48DB2001DA043 /* ViewController.m */,
 				11B412541ED48DB2001DA043 /* Main.storyboard */,
+				1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */,
+				1193ED501ED4FFBB004C5D60 /* DetailViewController.m */,
 				11B4126B1ED4A85C001DA043 /* FlickrPhotoViewCell.h */,
 				11B4126C1ED4A85C001DA043 /* FlickrPhotoViewCell.m */,
 				11B412571ED48DB2001DA043 /* Assets.xcassets */,
@@ -110,6 +119,14 @@
 				11B412681ED49DB9001DA043 /* FlickrPhoto.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		11B91BB91ED5269E0078BB94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11B91BBA1ED5269E0078BB94 /* SafariServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +206,7 @@
 				11B4124D1ED48DB2001DA043 /* main.m in Sources */,
 				11B412691ED49DB9001DA043 /* FlickrPhoto.m in Sources */,
 				11B412651ED49A13001DA043 /* FlickrAPI.m in Sources */,
+				1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

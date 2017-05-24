@@ -14,6 +14,7 @@
 @implementation FlickrAPI
 
 +(void)searchFor:(NSString *)query completionHandler:(void (^)(NSArray *))complete {
+
     NSString *baseURLString = @"https://api.flickr.com/services/rest/";
     NSString *methodString = @"?method=flickr.photos.search";
     NSString *formatString = @"&format=json";
@@ -62,13 +63,62 @@
 +(void)loadImage:(FlickrPhoto *)photo completionHandler:(void (^)(UIImage *))complete {
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:photo.url
                                                          completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
                                                              if (error) {
                                                                  NSLog(@"Error: %@", error.localizedDescription);
                                                                  return;
                                                              }
-                                                             NSLog(@"Done");
+                                                             
                                                              complete([UIImage imageWithData:data]);
                                                          }];
+    [task resume];
+}
+
++(void)getInfoForPhoto:(FlickrPhoto *)photo completionHandler:(void (^)(NSArray *, NSURL *))complete{
+    NSString *baseURLString = @"https://api.flickr.com/services/rest/";
+    NSString *methodString = @"?method=flickr.photos.getInfo";
+    NSString *formatString = @"&format=json";
+    NSString *nocallbackString = @"&nojsoncallback=1";
+    NSString *apiKeyString = [NSString stringWithFormat:@"&api_key=%@", API_KEY];
+    NSString *secretString = [NSString stringWithFormat:@"&secret=%@", photo.secret];
+    NSString *photoIdString = [NSString stringWithFormat:@"&photo_id=%@", photo.photoId];
+
+    NSString *queryURLString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",
+                                baseURLString,
+                                methodString,
+                                formatString,
+                                nocallbackString,
+                                apiKeyString,
+                                secretString,
+                                photoIdString];
+
+    NSURL *queryURL = [NSURL URLWithString:queryURLString];
+  
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:queryURL
+                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                             if (error) {
+                                                                 NSLog(@"Error: %@", error.localizedDescription);
+                                                                 return;
+                                                             }
+
+                                                             NSError *jsonError = nil;
+                                                             NSDictionary *queryResults = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                                          options:0
+                                                                                                                            error:&jsonError];
+
+                                                             if (jsonError) {
+                                                                 NSLog(@"JSON Error: %@", jsonError.localizedDescription);
+                                                                 return;
+                                                             }
+
+                                                             NSMutableArray *tagsFound = [[NSMutableArray alloc] init];
+
+                                                             for (NSDictionary *tagInfo in queryResults[@"photo"][@"tags"][@"tag"]) {
+                                                                 [tagsFound addObject:tagInfo[@"raw"]];
+                                                             }
+                                                             complete(tagsFound, [NSURL URLWithString:queryResults[@"photo"][@"urls"][@"url"][0][@"_content"]]);
+                                                         }
+                              ];
     [task resume];
 }
 

@@ -54,7 +54,7 @@
                                         <connections>
                                             <outlet property="photoImageView" destination="zfN-RK-Uh6" id="Bvk-E6-Dc5"/>
                                             <outlet property="photoLabel" destination="rOw-hD-qOk" id="Vqr-Sy-NRz"/>
-                                            <segue destination="4eS-Vo-tdi" kind="show" id="BAp-ME-vTb"/>
+                                            <segue destination="4eS-Vo-tdi" kind="show" identifier="DetailViewSegue" id="BAp-ME-vTb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="1484" y="-47.226386806596707"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="3nu-t9-TBz">
             <objects>
-                <viewController id="4eS-Vo-tdi" sceneMemberID="viewController">
+                <viewController id="4eS-Vo-tdi" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hvo-9F-5oH"/>
                         <viewControllerLayoutGuide type="bottom" id="jNe-pG-Wex"/>
@@ -92,12 +92,46 @@
                     <view key="view" contentMode="scaleToFill" id="PdT-Pn-HNo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b79-lW-WIE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="264"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlg-R8-Fg0">
+                                <rect key="frame" x="0.0" y="359" width="375" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xaN-Yv-sfd">
+                                <rect key="frame" x="0.0" y="444" width="375" height="139"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2S-GY-ZCy">
+                                <rect key="frame" x="172" y="617" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Web"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="4eS-Vo-tdi" eventType="touchUpInside" id="kYk-Ud-ja6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="b79-lW-WIE" id="sZ4-yA-0UA"/>
+                        <outlet property="textView" destination="xaN-Yv-sfd" id="eTr-Cf-6Ju"/>
+                        <outlet property="titleLabel" destination="Zlg-R8-Fg0" id="hcu-aL-oVh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLa-aT-iuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199.1999999999998" y="-47.226386806596707"/>
+            <point key="canvasLocation" x="2373.5999999999999" y="-47.226386806596707"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UN2-a8-FBZ">
