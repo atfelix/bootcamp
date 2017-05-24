@@ -20,5 +20,6 @@
 +(void)getInfoForPhoto:(FlickrPhoto *)photo completionHandler:(void (^)(NSArray *searchResults, NSURL *url))complete;
 +(void)getGeoLocationForPhoto:(FlickrPhoto *)photo completionHandler:(void(^)(CLLocation *location))complete;
 +(void)getPhotosForGeoLocation:(CLLocation *)location completionHandler:(void(^)(NSArray *searchResults))complete;
++(void)getGeoLocationsForPhotos:(NSArray *)photos completionHandler:(void(^)(NSArray *))complete;
 
 @end

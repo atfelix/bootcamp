@@ -57,7 +57,8 @@
                                                              NSMutableArray *photosFound = [[NSMutableArray alloc] init];
 
                                                              for (NSDictionary *photoInfo in queryResults[@"photos"][@"photo"]) {
-                                                                 [photosFound addObject:[[FlickrPhoto alloc] initWithInfo:photoInfo]];
+                                                                 FlickrPhoto *photo = [[FlickrPhoto alloc] initWithInfo:photoInfo];
+                                                                 [photosFound addObject:photo];
                                                              }
                                                              complete(photosFound);
                                                          }
@@ -171,7 +172,7 @@
     [task resume];
 }
 
-+(void)getPhotosForGeoLocation:(CLLocation *)location completionHandler:(void (^)(NSArray *))complete {
++(void)getPhotosForGeoLocation:(CLLocation *)location completionHandler:(void(^)(NSArray *))complete {
     NSString *baseURLString = @"https://api.flickr.com/services/rest/";
     NSString *methodString = @"?method=flickr.photos.search";
     NSString *formatString = @"&format=json";
@@ -222,6 +223,10 @@
                                                          }
                               ];
     [task resume];
+}
+
++(void)getGeoLocationsForPhotos:(NSArray *)photos completionHandler:(void(^)(NSArray *))complete {
+    
 }
 
 @end

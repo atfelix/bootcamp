@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		116675091ED62A6C00537286 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116675081ED62A6C00537286 /* CoreLocation.framework */; };
+		1166750C1ED631AC00537286 /* ShowAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1166750B1ED631AC00537286 /* ShowAllViewController.m */; };
 		1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193ED501ED4FFBB004C5D60 /* DetailViewController.m */; };
 		11B4124D1ED48DB2001DA043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124C1ED48DB2001DA043 /* main.m */; };
 		11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124F1ED48DB2001DA043 /* AppDelegate.m */; };
@@ -26,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		116675081ED62A6C00537286 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1166750A1ED631AC00537286 /* ShowAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowAllViewController.h; path = ../ShowAllViewController.h; sourceTree = "<group>"; };
+		1166750B1ED631AC00537286 /* ShowAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowAllViewController.m; path = ../ShowAllViewController.m; sourceTree = "<group>"; };
 		1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		1193ED501ED4FFBB004C5D60 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		11B412481ED48DB2001DA043 /* Cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +95,8 @@
 				11B412511ED48DB2001DA043 /* ViewController.h */,
 				11B412521ED48DB2001DA043 /* ViewController.m */,
 				11B412541ED48DB2001DA043 /* Main.storyboard */,
+				1166750A1ED631AC00537286 /* ShowAllViewController.h */,
+				1166750B1ED631AC00537286 /* ShowAllViewController.m */,
 				11BEBAB51ED6101600B37E8D /* SearchViewController.h */,
 				11BEBAB61ED6101600B37E8D /* SearchViewController.m */,
 				1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */,
@@ -219,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B412531ED48DB2001DA043 /* ViewController.m in Sources */,
+				1166750C1ED631AC00537286 /* ShowAllViewController.m in Sources */,
 				11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */,
 				11B4126D1ED4A85C001DA043 /* FlickrPhotoViewCell.m in Sources */,
 				11BEBAB41ED5F5DD00B37E8D /* MapViewController.m in Sources */,

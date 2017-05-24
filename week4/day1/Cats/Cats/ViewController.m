@@ -13,6 +13,7 @@
 #import "FlickrPhoto.h"
 #import "FlickrPhotoViewCell.h"
 #import "SearchViewController.h"
+#import "ShowAllViewController.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, FlickrPhotoDelegate, SearchProtocol>
 
@@ -114,6 +115,29 @@
                [self.collectionView reloadData];
            }];
        }];
+}
+
+- (IBAction)showAllButtonTapped:(UIBarButtonItem *)sender {
+
+    ShowAllViewController *showAllVC = [[ShowAllViewController alloc] init];
+    showAllVC.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+
+    for (FlickrPhoto *photo in self.photos) {
+
+        MKPointAnnotation *pin = [[MKPointAnnotation alloc] init];
+        pin.title = photo.title;
+        [FlickrAPI getGeoLocationForPhoto:photo
+                        completionHandler:^(CLLocation *location) {
+                            photo.location = location;
+                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                pin.coordinate = location.coordinate;
+                            }];
+                        }];
+        [showAllVC.mapView addAnnotation:pin];
+    }
+
+    [self.navigationController pushViewController:showAllVC
+                                         animated:YES];
 }
 
 - (IBAction)switchChanged:(UISwitch *)sender {
