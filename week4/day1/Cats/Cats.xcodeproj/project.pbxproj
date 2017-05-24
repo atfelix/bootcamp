@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		116675091ED62A6C00537286 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 116675081ED62A6C00537286 /* CoreLocation.framework */; };
 		1193ED511ED4FFBB004C5D60 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193ED501ED4FFBB004C5D60 /* DetailViewController.m */; };
 		11B4124D1ED48DB2001DA043 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124C1ED48DB2001DA043 /* main.m */; };
 		11B412501ED48DB2001DA043 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B4124F1ED48DB2001DA043 /* AppDelegate.m */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		116675081ED62A6C00537286 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1193ED4F1ED4FFBB004C5D60 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		1193ED501ED4FFBB004C5D60 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		11B412481ED48DB2001DA043 /* Cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116675091ED62A6C00537286 /* CoreLocation.framework in Frameworks */,
 				11B6B0EB1ED5B9B300663578 /* MapKit.framework in Frameworks */,
 				11B91BBB1ED5269E0078BB94 /* SafariServices.framework in Frameworks */,
 			);
@@ -137,6 +140,7 @@
 		11B91BB91ED5269E0078BB94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				116675081ED62A6C00537286 /* CoreLocation.framework */,
 				11B6B0EA1ED5B9B300663578 /* MapKit.framework */,
 				11B91BBA1ED5269E0078BB94 /* SafariServices.framework */,
 			);

@@ -57,9 +57,19 @@
 */
 
 -(void)addTextViewText {
+    if (self.tags.count == 0) {
+        self.textView.text = @"NO TAGS";
+        return;
+    }
+
     NSMutableString *string = [self.tags[0] mutableCopy];
 
-    for (NSString *x in [self.tags subarrayWithRange:NSMakeRange(1, self.tags.count - 2)]) {
+    if (self.tags.count < 2) {
+        self.textView.text = string;
+        return;
+    }
+
+    for (NSString *x in [self.tags subarrayWithRange:NSMakeRange(1, MAX(self.tags.count - 2, 0))]) {
         [string appendFormat:@", %@", x];
     }
 

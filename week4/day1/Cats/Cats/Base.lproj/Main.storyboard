@@ -74,14 +74,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="MjW-jz-8tE">
                         <nil key="title"/>
-                        <switch key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="JUM-cV-m4H">
-                            <rect key="frame" x="162" y="7" width="51" height="31"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </switch>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="6mu-5c-VkR">
+                        <barButtonItem key="leftBarButtonItem" title="Search" id="6mu-5c-VkR">
                             <connections>
                                 <action selector="searchButtonTapped:" destination="BYZ-38-t0r" id="bll-hq-P2d"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="udb-Hi-KOY">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="4Rn-Eg-ode">
+                                <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="BL3-6J-9Nh"/>
+                                </connections>
+                            </switch>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -193,7 +198,7 @@
         <!--Map View Controller-->
         <scene sceneID="mbL-Lk-ziU">
             <objects>
-                <viewController id="It1-c2-Pa5" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="It1-c2-Pa5" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UtT-sE-Vbg"/>
                         <viewControllerLayoutGuide type="bottom" id="hWX-6D-3X4"/>
@@ -203,7 +208,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gcd-3n-d4N">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

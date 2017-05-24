@@ -171,4 +171,57 @@
     [task resume];
 }
 
++(void)getPhotosForGeoLocation:(CLLocation *)location completionHandler:(void (^)(NSArray *))complete {
+    NSString *baseURLString = @"https://api.flickr.com/services/rest/";
+    NSString *methodString = @"?method=flickr.photos.search";
+    NSString *formatString = @"&format=json";
+    NSString *hasGeoString = @"&has_geo=1";
+    NSString *extrasString = @"";
+    NSString *nocallbackString = @"&nojsoncallback=1";
+    NSString *apiKeyString = [NSString stringWithFormat:@"&api_key=%@", API_KEY];
+    NSString *latitudeString = [NSString stringWithFormat:@"lat=%@", @(location.coordinate.latitude)];
+    NSString *longitudeString = [NSString stringWithFormat:@"lon=%@", @(location.coordinate.longitude)];
+
+    NSString *queryURLString = [NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@",
+                                baseURLString,
+                                methodString,
+                                formatString,
+                                nocallbackString,
+                                apiKeyString,
+                                hasGeoString,
+                                extrasString,
+                                latitudeString,
+                                longitudeString];
+
+    NSURL *queryURL = [NSURL URLWithString:queryURLString];
+    NSLog(@"%@", queryURLString);
+
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:queryURL
+                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                             if (error) {
+                                                                 NSLog(@"Error: %@", error.localizedDescription);
+                                                                 return;
+                                                             }
+
+                                                             NSError *jsonError = nil;
+                                                             NSDictionary *queryResults = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                                          options:0
+                                                                                                                            error:&jsonError];
+
+                                                             if (jsonError) {
+                                                                 NSLog(@"JSON Error: %@", jsonError.localizedDescription);
+                                                                 return;
+                                                             }
+
+                                                             NSMutableArray *photosFound = [[NSMutableArray alloc] init];
+
+                                                             for (NSDictionary *photoInfo in queryResults[@"photos"][@"photo"]) {
+                                                                 [photosFound addObject:[[FlickrPhoto alloc] initWithInfo:photoInfo]];
+                                                             }
+                                                             complete(photosFound);
+                                                         }
+                              ];
+    [task resume];
+}
+
 @end

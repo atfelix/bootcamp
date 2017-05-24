@@ -14,11 +14,12 @@
 #import "FlickrPhotoViewCell.h"
 #import "SearchViewController.h"
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FlickrPhotoDelegate, SearchProtocol>
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, FlickrPhotoDelegate, SearchProtocol>
 
 @property (nonatomic) NSArray<FlickrPhoto *> *photos;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSString *currentSearchParameter;
+@property (nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -28,7 +29,15 @@
     [super viewDidLoad];
     self.photos = [[NSMutableArray alloc] init];
     self.currentSearchParameter = @"cat";
+    self.navigationItem.title = self.currentSearchParameter;
     [self searchFlickr];
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 50;
+    [self.locationManager startUpdatingLocation];
 }
 
 
@@ -93,6 +102,7 @@
 
 -(void)saveParameters:(NSString *)searchParameters {
     self.currentSearchParameter = searchParameters;
+    self.navigationItem.title = searchParameters;
     [self searchFlickr];
 }
 
@@ -105,5 +115,30 @@
            }];
        }];
 }
+
+- (IBAction)switchChanged:(UISwitch *)sender {
+    if (sender.on) {
+        [self.locationManager requestLocation];
+        [FlickrAPI getPhotosForGeoLocation:self.locationManager.location
+                         completionHandler:^(NSArray *searchResults) {
+                             self.photos = searchResults;
+                             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                 [self.collectionView reloadData];
+                                 self.navigationItem.title = @"Photos near you";
+                             }];
+                         }];
+    }
+    else {
+        [self searchFlickr];
+        self.navigationItem.title = self.currentSearchParameter;
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+}
+
 
 @end
