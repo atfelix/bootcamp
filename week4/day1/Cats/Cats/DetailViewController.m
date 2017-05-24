@@ -12,6 +12,7 @@
 
 #import "FlickrPhoto.h"
 #import "FlickrAPI.h"
+#import "MapViewController.h"
 
 @interface DetailViewController ()
 
@@ -68,6 +69,30 @@
 -(IBAction)buttonTapped:(UIButton *)sender {
     [self.navigationController pushViewController:[[SFSafariViewController alloc] initWithURL:self.photoURL]
                                          animated:YES];
+}
+
+-(IBAction)mapButtonTapped:(UIButton *)sender {
+    [FlickrAPI getGeoLocationForPhoto:self.photo completionHandler:^(CLLocation *location) {
+        self.photo.location = location;
+        NSLog(@"%@", self.photo.location);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            MKMapView *mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+            MKPointAnnotation *pin = [[MKPointAnnotation alloc] init];
+            pin.title = self.photo.title;
+            pin.coordinate = self.photo.location.coordinate;
+
+            [mapView addAnnotation:pin];
+            [mapView setRegion:MKCoordinateRegionMake(location.coordinate,
+                                                      MKCoordinateSpanMake(0.5f, 0.5f))
+                      animated:YES];
+
+            MapViewController *mapVC = [[MapViewController alloc] init];
+            mapVC.mapView = mapView;
+
+            [self.navigationController pushViewController:mapVC
+                                                 animated:YES];
+        }];
+    }];
 }
 
 @end

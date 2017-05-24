@@ -72,7 +72,18 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="37l-KZ-UQe" secondAttribute="bottom" id="z39-6o-K2n"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="MjW-jz-8tE"/>
+                    <navigationItem key="navigationItem" id="MjW-jz-8tE">
+                        <nil key="title"/>
+                        <switch key="titleView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="JUM-cV-m4H">
+                            <rect key="frame" x="162" y="7" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </switch>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="6mu-5c-VkR">
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="BYZ-38-t0r" id="bll-hq-P2d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="37l-KZ-UQe" id="lPL-FV-aRz"/>
                     </connections>
@@ -113,11 +124,19 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B2S-GY-ZCy">
-                                <rect key="frame" x="172" y="617" width="31" height="30"/>
+                                <rect key="frame" x="172" y="591" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Web"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="4eS-Vo-tdi" eventType="touchUpInside" id="kYk-Ud-ja6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g0-em-HRH">
+                                <rect key="frame" x="172" y="617" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Map"/>
+                                <connections>
+                                    <action selector="mapButtonTapped:" destination="4eS-Vo-tdi" eventType="touchUpInside" id="fRd-kd-4wj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -132,6 +151,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kLa-aT-iuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2373.5999999999999" y="-47.226386806596707"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="IA5-5s-cFK">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="RRu-M4-mSw" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IzP-fw-FTf"/>
+                        <viewControllerLayoutGuide type="bottom" id="UIZ-Rw-nHz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="blw-O8-slM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Parameters Go Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8nQ-PG-Sr6">
+                                <rect key="frame" x="0.0" y="77" width="375" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqa-uu-25l">
+                                <rect key="frame" x="170" y="168" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveSearchTerms:" destination="RRu-M4-mSw" eventType="touchUpInside" id="3zd-SY-iTq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="parameterTextField" destination="8nQ-PG-Sr6" id="93N-JA-D9Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lNf-Ry-tAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1484" y="681.40929535232385"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="mbL-Lk-ziU">
+            <objects>
+                <viewController id="It1-c2-Pa5" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UtT-sE-Vbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="hWX-6D-3X4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zNN-OF-By2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gcd-3n-d4N">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gcd-3n-d4N" secondAttribute="trailing" id="5HF-4P-eTl"/>
+                            <constraint firstItem="hWX-6D-3X4" firstAttribute="top" secondItem="gcd-3n-d4N" secondAttribute="bottom" id="Q5g-Ga-d5q"/>
+                            <constraint firstItem="gcd-3n-d4N" firstAttribute="leading" secondItem="zNN-OF-By2" secondAttribute="leading" id="Reb-x4-vgS"/>
+                            <constraint firstItem="gcd-3n-d4N" firstAttribute="top" secondItem="UtT-sE-Vbg" secondAttribute="bottom" id="XUf-Rp-iA1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="gcd-3n-d4N" id="ZwG-p2-0ea"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0TV-VE-AQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="683"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UN2-a8-FBZ">

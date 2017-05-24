@@ -7,6 +7,7 @@
 //
 
 @import UIKit;
+@import MapKit;
 
 @protocol FlickrPhotoDelegate <NSObject>
 
@@ -22,6 +23,7 @@
 @property (nonatomic) NSString *secret;
 @property (nonatomic) NSString *title;
 @property (nonatomic) UIImage *image;
+@property (nonatomic) CLLocation *location;
 @property (nonatomic, weak) id<FlickrPhotoDelegate> delegate;
 
 -(instancetype)initWithInfo:(NSDictionary *)info;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @import UIKit;
+@import MapKit;
 
 @class FlickrPhoto;
 
@@ -17,5 +18,6 @@
 +(void)searchFor:(NSString *)query completionHandler:(void(^)(NSArray *searchResults))complete;
 +(void)loadImage:(FlickrPhoto *)photo completionHandler:(void(^)(UIImage *))complete;
 +(void)getInfoForPhoto:(FlickrPhoto *)photo completionHandler:(void (^)(NSArray *, NSURL *))complete;
++(void)getGeoLocationForPhoto:(FlickrPhoto *)photo completionHandler:(void(^)(CLLocation *))complete;
 
 @end

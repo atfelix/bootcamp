@@ -12,11 +12,13 @@
 #import "FlickrAPI.h"
 #import "FlickrPhoto.h"
 #import "FlickrPhotoViewCell.h"
+#import "SearchViewController.h"
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FlickrPhotoDelegate>
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FlickrPhotoDelegate, SearchProtocol>
 
 @property (nonatomic) NSArray<FlickrPhoto *> *photos;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSString *currentSearchParameter;
 
 @end
 
@@ -24,15 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.photos = [[NSMutableArray alloc] init];
-    [FlickrAPI searchFor:@"cat"
-       completionHandler:^(NSArray *searchResults) {
-           self.photos = searchResults;
-           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-               [self.collectionView reloadData];
-           }];
-       }];
+    self.currentSearchParameter = @"cat";
+    [self searchFlickr];
 }
 
 
@@ -85,5 +81,29 @@
     }
 }
 
+- (IBAction)searchButtonTapped:(UIBarButtonItem *)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                         bundle:nil];
+    SearchViewController *searchVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"];
+    searchVC.delegate = self;
+    [self presentViewController:searchVC
+                       animated:YES
+                     completion:nil];
+}
+
+-(void)saveParameters:(NSString *)searchParameters {
+    self.currentSearchParameter = searchParameters;
+    [self searchFlickr];
+}
+
+-(void)searchFlickr {
+    [FlickrAPI searchFor:self.currentSearchParameter
+       completionHandler:^(NSArray *searchResults) {
+           self.photos = searchResults;
+           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               [self.collectionView reloadData];
+           }];
+       }];
+}
 
 @end
