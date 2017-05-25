@@ -7,41 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11193E9B1ED7872200346C82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11193E9A1ED7872200346C82 /* main.m */; };
-		11193E9E1ED7872200346C82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11193E9D1ED7872200346C82 /* AppDelegate.m */; };
-		11193EA11ED7872200346C82 /* EveryDoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11193E9F1ED7872200346C82 /* EveryDoCoreData.xcdatamodeld */; };
-		11193EA41ED7872200346C82 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11193EA31ED7872200346C82 /* MasterViewController.m */; };
-		11193EA71ED7872200346C82 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11193EA61ED7872200346C82 /* DetailViewController.m */; };
-		11193EAA1ED7872200346C82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11193EA81ED7872200346C82 /* Main.storyboard */; };
-		11193EAC1ED7872200346C82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11193EAB1ED7872200346C82 /* Assets.xcassets */; };
-		11193EAF1ED7872200346C82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11193EAD1ED7872200346C82 /* LaunchScreen.storyboard */; };
-		11193EBF1ED790AF00346C82 /* AddTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11193EBE1ED790AF00346C82 /* AddTodoViewController.m */; };
+		11B793CF1ED7A11700680AC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793CE1ED7A11700680AC8 /* main.m */; };
+		11B793D21ED7A11700680AC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D11ED7A11700680AC8 /* AppDelegate.m */; };
+		11B793D51ED7A11700680AC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D41ED7A11700680AC8 /* ViewController.m */; };
+		11B793D81ED7A11700680AC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B793D61ED7A11700680AC8 /* Main.storyboard */; };
+		11B793DB1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D91ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld */; };
+		11B793DD1ED7A11700680AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B793DC1ED7A11700680AC8 /* Assets.xcassets */; };
+		11B793E01ED7A11700680AC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B793DE1ED7A11700680AC8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11193E961ED7872200346C82 /* EveryDoCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDoCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		11193E9A1ED7872200346C82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		11193E9C1ED7872200346C82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		11193E9D1ED7872200346C82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		11193EA01ED7872200346C82 /* EveryDoCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EveryDoCoreData.xcdatamodel; sourceTree = "<group>"; };
-		11193EA21ED7872200346C82 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		11193EA31ED7872200346C82 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		11193EA51ED7872200346C82 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		11193EA61ED7872200346C82 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		11193EA91ED7872200346C82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		11193EAB1ED7872200346C82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		11193EAE1ED7872200346C82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		11193EB01ED7872200346C82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11193EB61ED7888900346C82 /* Todo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Todo+CoreDataClass.h"; path = "EveryDoCoreData/Todo+CoreDataClass.h"; sourceTree = "<group>"; };
-		11193EB71ED7888900346C82 /* Todo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Todo+CoreDataClass.m"; path = "EveryDoCoreData/Todo+CoreDataClass.m"; sourceTree = "<group>"; };
-		11193EB81ED7888900346C82 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Todo+CoreDataProperties.h"; path = "EveryDoCoreData/Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		11193EB91ED7888900346C82 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Todo+CoreDataProperties.m"; path = "EveryDoCoreData/Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		11193EBD1ED790AF00346C82 /* AddTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTodoViewController.h; sourceTree = "<group>"; };
-		11193EBE1ED790AF00346C82 /* AddTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTodoViewController.m; sourceTree = "<group>"; };
+		11B793CA1ED7A11700680AC8 /* EveryDoCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDoCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B793CE1ED7A11700680AC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11B793D01ED7A11700680AC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		11B793D11ED7A11700680AC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		11B793D31ED7A11700680AC8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		11B793D41ED7A11700680AC8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		11B793D71ED7A11700680AC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11B793DA1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EveryDoCoreData.xcdatamodel; sourceTree = "<group>"; };
+		11B793DC1ED7A11700680AC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11B793DF1ED7A11700680AC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		11B793E11ED7A11700680AC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11B793E71ED7A1DA00680AC8 /* Todo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataClass.h"; sourceTree = "<group>"; };
+		11B793E81ED7A1DA00680AC8 /* Todo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataClass.m"; sourceTree = "<group>"; };
+		11B793E91ED7A1DA00680AC8 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		11B793EA1ED7A1DA00680AC8 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		11193E931ED7872200346C82 /* Frameworks */ = {
+		11B793C71ED7A11700680AC8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,59 +45,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11193E8D1ED7872200346C82 = {
+		11B793C11ED7A11700680AC8 = {
 			isa = PBXGroup;
 			children = (
-				11193E981ED7872200346C82 /* EveryDoCoreData */,
-				11193E971ED7872200346C82 /* Products */,
+				11B793CC1ED7A11700680AC8 /* EveryDoCoreData */,
+				11B793CB1ED7A11700680AC8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		11193E971ED7872200346C82 /* Products */ = {
+		11B793CB1ED7A11700680AC8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11193E961ED7872200346C82 /* EveryDoCoreData.app */,
+				11B793CA1ED7A11700680AC8 /* EveryDoCoreData.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		11193E981ED7872200346C82 /* EveryDoCoreData */ = {
+		11B793CC1ED7A11700680AC8 /* EveryDoCoreData */ = {
 			isa = PBXGroup;
 			children = (
-				11193E9C1ED7872200346C82 /* AppDelegate.h */,
-				11193E9D1ED7872200346C82 /* AppDelegate.m */,
-				11193EA21ED7872200346C82 /* MasterViewController.h */,
-				11193EA31ED7872200346C82 /* MasterViewController.m */,
-				11193EA51ED7872200346C82 /* DetailViewController.h */,
-				11193EA61ED7872200346C82 /* DetailViewController.m */,
-				11193EA81ED7872200346C82 /* Main.storyboard */,
-				11193EBD1ED790AF00346C82 /* AddTodoViewController.h */,
-				11193EBE1ED790AF00346C82 /* AddTodoViewController.m */,
-				11193EAB1ED7872200346C82 /* Assets.xcassets */,
-				11193EAD1ED7872200346C82 /* LaunchScreen.storyboard */,
-				11193EB01ED7872200346C82 /* Info.plist */,
-				11193E9F1ED7872200346C82 /* EveryDoCoreData.xcdatamodeld */,
-				11193EBC1ED7889900346C82 /* CoreDataModel */,
-				11193E991ED7872200346C82 /* Supporting Files */,
+				11B793D01ED7A11700680AC8 /* AppDelegate.h */,
+				11B793D11ED7A11700680AC8 /* AppDelegate.m */,
+				11B793D31ED7A11700680AC8 /* ViewController.h */,
+				11B793D41ED7A11700680AC8 /* ViewController.m */,
+				11B793D61ED7A11700680AC8 /* Main.storyboard */,
+				11B793DC1ED7A11700680AC8 /* Assets.xcassets */,
+				11B793DE1ED7A11700680AC8 /* LaunchScreen.storyboard */,
+				11B793E11ED7A11700680AC8 /* Info.plist */,
+				11B793D91ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld */,
+				11B793ED1ED7A1E100680AC8 /* CoreDataModel */,
+				11B793CD1ED7A11700680AC8 /* Supporting Files */,
 			);
 			path = EveryDoCoreData;
 			sourceTree = "<group>";
 		};
-		11193E991ED7872200346C82 /* Supporting Files */ = {
+		11B793CD1ED7A11700680AC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				11193E9A1ED7872200346C82 /* main.m */,
+				11B793CE1ED7A11700680AC8 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		11193EBC1ED7889900346C82 /* CoreDataModel */ = {
+		11B793ED1ED7A1E100680AC8 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				11193EB61ED7888900346C82 /* Todo+CoreDataClass.h */,
-				11193EB71ED7888900346C82 /* Todo+CoreDataClass.m */,
-				11193EB81ED7888900346C82 /* Todo+CoreDataProperties.h */,
-				11193EB91ED7888900346C82 /* Todo+CoreDataProperties.m */,
+				11B793E71ED7A1DA00680AC8 /* Todo+CoreDataClass.h */,
+				11B793E81ED7A1DA00680AC8 /* Todo+CoreDataClass.m */,
+				11B793E91ED7A1DA00680AC8 /* Todo+CoreDataProperties.h */,
+				11B793EA1ED7A1DA00680AC8 /* Todo+CoreDataProperties.m */,
 			);
 			name = CoreDataModel;
 			path = ..;
@@ -112,13 +102,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11193E951ED7872200346C82 /* EveryDoCoreData */ = {
+		11B793C91ED7A11700680AC8 /* EveryDoCoreData */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11193EB31ED7872200346C82 /* Build configuration list for PBXNativeTarget "EveryDoCoreData" */;
+			buildConfigurationList = 11B793E41ED7A11700680AC8 /* Build configuration list for PBXNativeTarget "EveryDoCoreData" */;
 			buildPhases = (
-				11193E921ED7872200346C82 /* Sources */,
-				11193E931ED7872200346C82 /* Frameworks */,
-				11193E941ED7872200346C82 /* Resources */,
+				11B793C61ED7A11700680AC8 /* Sources */,
+				11B793C71ED7A11700680AC8 /* Frameworks */,
+				11B793C81ED7A11700680AC8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -126,25 +116,25 @@
 			);
 			name = EveryDoCoreData;
 			productName = EveryDoCoreData;
-			productReference = 11193E961ED7872200346C82 /* EveryDoCoreData.app */;
+			productReference = 11B793CA1ED7A11700680AC8 /* EveryDoCoreData.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		11193E8E1ED7872200346C82 /* Project object */ = {
+		11B793C21ED7A11700680AC8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Adam Felix";
 				TargetAttributes = {
-					11193E951ED7872200346C82 = {
+					11B793C91ED7A11700680AC8 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 11193E911ED7872200346C82 /* Build configuration list for PBXProject "EveryDoCoreData" */;
+			buildConfigurationList = 11B793C51ED7A11700680AC8 /* Build configuration list for PBXProject "EveryDoCoreData" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -152,58 +142,56 @@
 				en,
 				Base,
 			);
-			mainGroup = 11193E8D1ED7872200346C82;
-			productRefGroup = 11193E971ED7872200346C82 /* Products */;
+			mainGroup = 11B793C11ED7A11700680AC8;
+			productRefGroup = 11B793CB1ED7A11700680AC8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11193E951ED7872200346C82 /* EveryDoCoreData */,
+				11B793C91ED7A11700680AC8 /* EveryDoCoreData */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		11193E941ED7872200346C82 /* Resources */ = {
+		11B793C81ED7A11700680AC8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11193EAF1ED7872200346C82 /* LaunchScreen.storyboard in Resources */,
-				11193EAC1ED7872200346C82 /* Assets.xcassets in Resources */,
-				11193EAA1ED7872200346C82 /* Main.storyboard in Resources */,
+				11B793E01ED7A11700680AC8 /* LaunchScreen.storyboard in Resources */,
+				11B793DD1ED7A11700680AC8 /* Assets.xcassets in Resources */,
+				11B793D81ED7A11700680AC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		11193E921ED7872200346C82 /* Sources */ = {
+		11B793C61ED7A11700680AC8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11193EA71ED7872200346C82 /* DetailViewController.m in Sources */,
-				11193EA41ED7872200346C82 /* MasterViewController.m in Sources */,
-				11193E9E1ED7872200346C82 /* AppDelegate.m in Sources */,
-				11193E9B1ED7872200346C82 /* main.m in Sources */,
-				11193EBF1ED790AF00346C82 /* AddTodoViewController.m in Sources */,
-				11193EA11ED7872200346C82 /* EveryDoCoreData.xcdatamodeld in Sources */,
+				11B793D51ED7A11700680AC8 /* ViewController.m in Sources */,
+				11B793DB1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld in Sources */,
+				11B793D21ED7A11700680AC8 /* AppDelegate.m in Sources */,
+				11B793CF1ED7A11700680AC8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		11193EA81ED7872200346C82 /* Main.storyboard */ = {
+		11B793D61ED7A11700680AC8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				11193EA91ED7872200346C82 /* Base */,
+				11B793D71ED7A11700680AC8 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		11193EAD1ED7872200346C82 /* LaunchScreen.storyboard */ = {
+		11B793DE1ED7A11700680AC8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				11193EAE1ED7872200346C82 /* Base */,
+				11B793DF1ED7A11700680AC8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -211,7 +199,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		11193EB11ED7872200346C82 /* Debug */ = {
+		11B793E21ED7A11700680AC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -258,7 +246,7 @@
 			};
 			name = Debug;
 		};
-		11193EB21ED7872200346C82 /* Release */ = {
+		11B793E31ED7A11700680AC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -299,7 +287,7 @@
 			};
 			name = Release;
 		};
-		11193EB41ED7872200346C82 /* Debug */ = {
+		11B793E51ED7A11700680AC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -310,7 +298,7 @@
 			};
 			name = Debug;
 		};
-		11193EB51ED7872200346C82 /* Release */ = {
+		11B793E61ED7A11700680AC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -324,37 +312,37 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		11193E911ED7872200346C82 /* Build configuration list for PBXProject "EveryDoCoreData" */ = {
+		11B793C51ED7A11700680AC8 /* Build configuration list for PBXProject "EveryDoCoreData" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				11193EB11ED7872200346C82 /* Debug */,
-				11193EB21ED7872200346C82 /* Release */,
+				11B793E21ED7A11700680AC8 /* Debug */,
+				11B793E31ED7A11700680AC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11193EB31ED7872200346C82 /* Build configuration list for PBXNativeTarget "EveryDoCoreData" */ = {
+		11B793E41ED7A11700680AC8 /* Build configuration list for PBXNativeTarget "EveryDoCoreData" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				11193EB41ED7872200346C82 /* Debug */,
-				11193EB51ED7872200346C82 /* Release */,
+				11B793E51ED7A11700680AC8 /* Debug */,
+				11B793E61ED7A11700680AC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		11193E9F1ED7872200346C82 /* EveryDoCoreData.xcdatamodeld */ = {
+		11B793D91ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				11193EA01ED7872200346C82 /* EveryDoCoreData.xcdatamodel */,
+				11B793DA1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodel */,
 			);
-			currentVersion = 11193EA01ED7872200346C82 /* EveryDoCoreData.xcdatamodel */;
+			currentVersion = 11B793DA1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodel */;
 			path = EveryDoCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 11193E8E1ED7872200346C82 /* Project object */;
+	rootObject = 11B793C21ED7A11700680AC8 /* Project object */;
 }

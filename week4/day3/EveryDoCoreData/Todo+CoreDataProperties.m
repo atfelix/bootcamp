@@ -4,7 +4,6 @@
 //
 //  Created by atfelix on 2017-05-25.
 //  Copyright © 2017 Adam Felix. All rights reserved.
-//  This file was automatically generated and should not be edited.
 //
 
 #import "Todo+CoreDataProperties.h"
@@ -15,7 +14,9 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Todo"];
 }
 
-@dynamic isDone;
+@dynamic done;
+@dynamic dateCreated;
+@dynamic deadlineDate;
 @dynamic priorityNumber;
 @dynamic title;
 @dynamic todoDescription;
