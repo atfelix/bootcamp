@@ -14,6 +14,7 @@
 		11B793DB1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D91ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld */; };
 		11B793DD1ED7A11700680AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B793DC1ED7A11700680AC8 /* Assets.xcassets */; };
 		11B793E01ED7A11700680AC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B793DE1ED7A11700680AC8 /* LaunchScreen.storyboard */; };
+		11B793F01ED7A4D200680AC8 /* AddTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793EF1ED7A4D200680AC8 /* AddTodoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		11B793E81ED7A1DA00680AC8 /* Todo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataClass.m"; sourceTree = "<group>"; };
 		11B793E91ED7A1DA00680AC8 /* Todo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Todo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		11B793EA1ED7A1DA00680AC8 /* Todo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Todo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		11B793EE1ED7A4D200680AC8 /* AddTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTodoViewController.h; sourceTree = "<group>"; };
+		11B793EF1ED7A4D200680AC8 /* AddTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTodoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				11B793D31ED7A11700680AC8 /* ViewController.h */,
 				11B793D41ED7A11700680AC8 /* ViewController.m */,
 				11B793D61ED7A11700680AC8 /* Main.storyboard */,
+				11B793EE1ED7A4D200680AC8 /* AddTodoViewController.h */,
+				11B793EF1ED7A4D200680AC8 /* AddTodoViewController.m */,
 				11B793DC1ED7A11700680AC8 /* Assets.xcassets */,
 				11B793DE1ED7A11700680AC8 /* LaunchScreen.storyboard */,
 				11B793E11ED7A11700680AC8 /* Info.plist */,
@@ -171,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B793D51ED7A11700680AC8 /* ViewController.m in Sources */,
+				11B793F01ED7A4D200680AC8 /* AddTodoViewController.m in Sources */,
 				11B793DB1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld in Sources */,
 				11B793D21ED7A11700680AC8 /* AppDelegate.m in Sources */,
 				11B793CF1ED7A11700680AC8 /* main.m in Sources */,
