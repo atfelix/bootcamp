@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  EveryDo
+//  EveryDoCoreData
 //
-//  Created by atfelix on 2017-05-24.
+//  Created by atfelix on 2017-05-25.
 //  Copyright © 2017 Adam Felix. All rights reserved.
 //
 
