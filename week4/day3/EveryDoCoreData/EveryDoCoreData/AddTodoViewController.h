@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Todo+CoreDataClass.h"
+#import "Todo+CoreDataProperties.h"
+
+@protocol AddTodoViewControllerProtocol
+
+-(void)addTodoViewControllerDidSave;
+-(void)addTodoViewControllerDidCancel:(Todo *)courseToDelete;
+
+@end
+
 @interface AddTodoViewController : UIViewController
+
+@property (nonatomic, strong) Todo *todo;
+@property (nonatomic, weak) id<AddTodoViewControllerProtocol> delegate;
 
 @end
