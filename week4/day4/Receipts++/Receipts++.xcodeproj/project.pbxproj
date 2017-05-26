@@ -13,6 +13,7 @@
 		119FFD481ED8873A00F6E5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD461ED8873A00F6E5BC /* Main.storyboard */; };
 		119FFD4D1ED8873A00F6E5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD4C1ED8873A00F6E5BC /* Assets.xcassets */; };
 		119FFD501ED8873A00F6E5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD4E1ED8873A00F6E5BC /* LaunchScreen.storyboard */; };
+		119FFD661ED891F800F6E5BC /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119FFD651ED891F800F6E5BC /* AddReceiptViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		119FFD5C1ED88A8100F6E5BC /* Receipt+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataClass.m"; sourceTree = "<group>"; };
 		119FFD5D1ED88A8100F6E5BC /* Receipt+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+CoreDataProperties.h"; sourceTree = "<group>"; };
 		119FFD5E1ED88A8100F6E5BC /* Receipt+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataProperties.m"; sourceTree = "<group>"; };
+		119FFD641ED891F800F6E5BC /* AddReceiptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReceiptViewController.h; sourceTree = "<group>"; };
+		119FFD651ED891F800F6E5BC /* AddReceiptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReceiptViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				119FFD441ED8873A00F6E5BC /* ViewController.m */,
 				119FFD461ED8873A00F6E5BC /* Main.storyboard */,
 				119FFD4C1ED8873A00F6E5BC /* Assets.xcassets */,
+				119FFD641ED891F800F6E5BC /* AddReceiptViewController.h */,
+				119FFD651ED891F800F6E5BC /* AddReceiptViewController.m */,
 				119FFD4E1ED8873A00F6E5BC /* LaunchScreen.storyboard */,
 				119FFD511ED8873A00F6E5BC /* Info.plist */,
 				119FFD491ED8873A00F6E5BC /* Receipts__.xcdatamodeld */,
@@ -177,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				119FFD451ED8873A00F6E5BC /* ViewController.m in Sources */,
+				119FFD661ED891F800F6E5BC /* AddReceiptViewController.m in Sources */,
 				119FFD421ED8873A00F6E5BC /* AppDelegate.m in Sources */,
 				119FFD3F1ED8873A00F6E5BC /* main.m in Sources */,
 			);
