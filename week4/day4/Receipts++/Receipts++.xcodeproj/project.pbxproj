@@ -11,7 +11,6 @@
 		119FFD421ED8873A00F6E5BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119FFD411ED8873A00F6E5BC /* AppDelegate.m */; };
 		119FFD451ED8873A00F6E5BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 119FFD441ED8873A00F6E5BC /* ViewController.m */; };
 		119FFD481ED8873A00F6E5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD461ED8873A00F6E5BC /* Main.storyboard */; };
-		119FFD4B1ED8873A00F6E5BC /* Receipts__.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 119FFD491ED8873A00F6E5BC /* Receipts__.xcdatamodeld */; };
 		119FFD4D1ED8873A00F6E5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD4C1ED8873A00F6E5BC /* Assets.xcassets */; };
 		119FFD501ED8873A00F6E5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 119FFD4E1ED8873A00F6E5BC /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -28,6 +27,14 @@
 		119FFD4C1ED8873A00F6E5BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		119FFD4F1ED8873A00F6E5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		119FFD511ED8873A00F6E5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		119FFD571ED88A8100F6E5BC /* Tag+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+CoreDataClass.h"; sourceTree = "<group>"; };
+		119FFD581ED88A8100F6E5BC /* Tag+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+CoreDataClass.m"; sourceTree = "<group>"; };
+		119FFD591ED88A8100F6E5BC /* Tag+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+CoreDataProperties.h"; sourceTree = "<group>"; };
+		119FFD5A1ED88A8100F6E5BC /* Tag+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+CoreDataProperties.m"; sourceTree = "<group>"; };
+		119FFD5B1ED88A8100F6E5BC /* Receipt+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+CoreDataClass.h"; sourceTree = "<group>"; };
+		119FFD5C1ED88A8100F6E5BC /* Receipt+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataClass.m"; sourceTree = "<group>"; };
+		119FFD5D1ED88A8100F6E5BC /* Receipt+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+CoreDataProperties.h"; sourceTree = "<group>"; };
+		119FFD5E1ED88A8100F6E5BC /* Receipt+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +76,7 @@
 				119FFD4E1ED8873A00F6E5BC /* LaunchScreen.storyboard */,
 				119FFD511ED8873A00F6E5BC /* Info.plist */,
 				119FFD491ED8873A00F6E5BC /* Receipts__.xcdatamodeld */,
+				119FFD631ED88A8D00F6E5BC /* Model */,
 				119FFD3D1ED8873A00F6E5BC /* Supporting Files */,
 			);
 			path = "Receipts++";
@@ -80,6 +88,21 @@
 				119FFD3E1ED8873A00F6E5BC /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		119FFD631ED88A8D00F6E5BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				119FFD571ED88A8100F6E5BC /* Tag+CoreDataClass.h */,
+				119FFD581ED88A8100F6E5BC /* Tag+CoreDataClass.m */,
+				119FFD591ED88A8100F6E5BC /* Tag+CoreDataProperties.h */,
+				119FFD5A1ED88A8100F6E5BC /* Tag+CoreDataProperties.m */,
+				119FFD5B1ED88A8100F6E5BC /* Receipt+CoreDataClass.h */,
+				119FFD5C1ED88A8100F6E5BC /* Receipt+CoreDataClass.m */,
+				119FFD5D1ED88A8100F6E5BC /* Receipt+CoreDataProperties.h */,
+				119FFD5E1ED88A8100F6E5BC /* Receipt+CoreDataProperties.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +176,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				119FFD4B1ED8873A00F6E5BC /* Receipts__.xcdatamodeld in Sources */,
 				119FFD451ED8873A00F6E5BC /* ViewController.m in Sources */,
 				119FFD421ED8873A00F6E5BC /* AppDelegate.m in Sources */,
 				119FFD3F1ED8873A00F6E5BC /* main.m in Sources */,
