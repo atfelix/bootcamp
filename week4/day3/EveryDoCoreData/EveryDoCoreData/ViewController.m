@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "AddTodoViewController.h"
+#import "DisplayEditViewController.h"
 #import "TodoTableViewCell.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, AddTodoViewControllerProtocol>
@@ -41,6 +42,10 @@
         Todo *todo = (Todo *) [[Todo alloc] initWithContext:self.managedObjectContext];
         todoVC.todo = todo;
     }
+    else if ([segue.identifier isEqualToString:@"ShowDetailSegue"]) {
+        DisplayEditViewController *displayEditViewController = (DisplayEditViewController *)(segue.destinationViewController);
+        displayEditViewController.todo = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -60,7 +65,8 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.fetchedResultsController.sections[section].name;
+    //return self.fetchedResultsController.sections[section].name;
+    return (section) ? @"Completed Tasks" : @"Outstanding Tasks";
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,8 +141,8 @@
             break;
         case NSFetchedResultsChangeUpdate: {
             Todo *changedTodo = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-            cell.textLabel.text = changedTodo.title;
+            TodoTableViewCell *cell = (TodoTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+            cell.titleLabel.text = changedTodo.title;
         }
             break;
         case NSFetchedResultsChangeMove:

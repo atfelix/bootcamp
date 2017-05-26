@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11607C2D1ED7CCBF00308556 /* DisplayEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11607C2C1ED7CCBF00308556 /* DisplayEditViewController.m */; };
 		11B793CF1ED7A11700680AC8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793CE1ED7A11700680AC8 /* main.m */; };
 		11B793D21ED7A11700680AC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D11ED7A11700680AC8 /* AppDelegate.m */; };
 		11B793D51ED7A11700680AC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B793D41ED7A11700680AC8 /* ViewController.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11607C2B1ED7CCBF00308556 /* DisplayEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayEditViewController.h; sourceTree = "<group>"; };
+		11607C2C1ED7CCBF00308556 /* DisplayEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayEditViewController.m; sourceTree = "<group>"; };
 		11B793CA1ED7A11700680AC8 /* EveryDoCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EveryDoCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B793CE1ED7A11700680AC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		11B793D01ED7A11700680AC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				11B793F11ED7B6BF00680AC8 /* TodoTableViewCell.h */,
 				11B793F21ED7B6BF00680AC8 /* TodoTableViewCell.m */,
 				11B793D61ED7A11700680AC8 /* Main.storyboard */,
+				11607C2B1ED7CCBF00308556 /* DisplayEditViewController.h */,
+				11607C2C1ED7CCBF00308556 /* DisplayEditViewController.m */,
 				11B793EE1ED7A4D200680AC8 /* AddTodoViewController.h */,
 				11B793EF1ED7A4D200680AC8 /* AddTodoViewController.m */,
 				11B793DC1ED7A11700680AC8 /* Assets.xcassets */,
@@ -183,6 +188,7 @@
 				11B793D51ED7A11700680AC8 /* ViewController.m in Sources */,
 				11B793F31ED7B6BF00680AC8 /* TodoTableViewCell.m in Sources */,
 				11B793F01ED7A4D200680AC8 /* AddTodoViewController.m in Sources */,
+				11607C2D1ED7CCBF00308556 /* DisplayEditViewController.m in Sources */,
 				11B793DB1ED7A11700680AC8 /* EveryDoCoreData.xcdatamodeld in Sources */,
 				11B793D21ED7A11700680AC8 /* AppDelegate.m in Sources */,
 				11B793CF1ED7A11700680AC8 /* main.m in Sources */,
@@ -340,6 +346,7 @@
 				11B793E61ED7A11700680AC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

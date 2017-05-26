@@ -23,4 +23,6 @@
 @property (nonatomic, strong) Todo *todo;
 @property (nonatomic, weak) id<AddTodoViewControllerProtocol> delegate;
 
++(NSDate *)dateMergedFromDate:(NSDate *)date andTime:(NSDate *)time;
+
 @end
