@@ -8,7 +8,9 @@
 
 #import "AddReceiptViewController.h"
 
-@interface AddReceiptViewController ()
+@interface AddReceiptViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.allowsMultipleSelection = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +35,34 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddCell"
+                                                            forIndexPath:indexPath];
+    cell.textLabel.text = @[@"Personal", @"Family", @"Business"][indexPath.row];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+}
+
++(NSString *)getCellTitle:(NSIndexPath *)indexPath {
+    return @[@"Personal", @"Family", @"Business"][indexPath.row];
+}
 
 @end
