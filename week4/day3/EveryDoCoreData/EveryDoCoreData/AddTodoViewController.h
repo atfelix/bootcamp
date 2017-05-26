@@ -14,7 +14,7 @@
 @protocol AddTodoViewControllerProtocol
 
 -(void)addTodoViewControllerDidSave;
--(void)addTodoViewControllerDidCancel:(Todo *)courseToDelete;
+-(void)addTodoViewControllerDidCancel:(Todo *)todoToDelete;
 
 @end
 

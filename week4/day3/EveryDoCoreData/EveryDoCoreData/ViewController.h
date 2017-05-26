@@ -10,7 +10,7 @@
 
 @import CoreData;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController 
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
