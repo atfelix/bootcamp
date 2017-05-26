@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic) IBOutlet UITextField *priorityNumberField;
 
 @end
 
@@ -21,7 +22,9 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.titleField.text = self.todo.title;
+    self.descriptionField.text = self.todo.todoDescription;
+    self.priorityNumberField.text = [NSString stringWithFormat:@"%@", @(self.todo.priorityNumber)];
 }
 
 -(void)didReceiveMemoryWarning {
@@ -30,15 +33,18 @@
 }
 
 -(IBAction)cancel:(UIBarButtonItem *)sender {
+    [self.delegate addTodoViewControllerDidCancel:self.todo];
+}
+
+-(IBAction)save:(UIBarButtonItem *)sender {
     self.todo.title = self.titleField.text;
     self.todo.todoDescription = self.descriptionField.text;
     self.todo.dateCreated = [NSDate date];
     self.todo.deadlineDate = [AddTodoViewController dateMergedFromDate:self.datePicker.date
                                                                andTime:self.timePicker.date];
-    [self.delegate addTodoViewControllerDidCancel:self.todo];
-}
+    self.todo.done = NO;
+    self.todo.priorityNumber = [self.priorityNumberField.text intValue];
 
--(IBAction)save:(UIBarButtonItem *)sender {
     [self.delegate addTodoViewControllerDidSave];
 }
 
