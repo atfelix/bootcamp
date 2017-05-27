@@ -8,9 +8,14 @@
 
 #import "AddReceiptViewController.h"
 
+#import "AppDelegate.h"
+
 @interface AddReceiptViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *amountField;
+@property (weak, nonatomic) IBOutlet UITextField *descriptionField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
 
@@ -59,6 +64,32 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryNone;
+}
+
+- (IBAction)cancel:(UIButton *)sender {
+    [self.delegate addReceiptViewControllerDidCancel:self.receipt];
+}
+
+- (IBAction)save:(UIButton *)sender {
+    self.receipt.amount = [self.amountField.text doubleValue];
+    self.receipt.note = self.descriptionField.text;
+    self.receipt.timeStamp = self.datePicker.date;
+
+    NSMutableSet *tags = [[NSMutableSet alloc] init];
+
+    for (int i = 0; i < 3; i++) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i
+                                                                                         inSection:0]];
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            Tag *tag = (Tag *)[NSEntityDescription insertNewObjectForEntityForName:@"Tag"
+                                                            inManagedObjectContext:[self.delegate managedObjectContext]];
+            tag.tagName = cell.textLabel.text;
+            [tags addObject:tag];
+        }
+    }
+
+    self.receipt.tags = tags;
+    [self.delegate addReceiptViewControllerDidSave];
 }
 
 +(NSString *)getCellTitle:(NSIndexPath *)indexPath {

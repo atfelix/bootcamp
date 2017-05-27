@@ -148,11 +148,17 @@
                                 <rect key="frame" x="218" y="487" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="✅"/>
+                                <connections>
+                                    <action selector="save:" destination="OXp-Ul-4Zl" eventType="touchUpInside" id="3tE-Jg-WRD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wp-mm-nie">
                                 <rect key="frame" x="124" y="487" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="❎"/>
+                                <connections>
+                                    <action selector="cancel:" destination="OXp-Ul-4Zl" eventType="touchUpInside" id="Uu0-x9-sws"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -168,6 +174,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="amountField" destination="1Pt-c7-qpI" id="nhV-hu-PkU"/>
+                        <outlet property="datePicker" destination="jy6-Za-0vC" id="NEQ-0p-q2H"/>
+                        <outlet property="descriptionField" destination="I9C-Pg-e5N" id="x8k-3t-0Q1"/>
                         <outlet property="tableView" destination="ehn-59-4fw" id="uGR-KZ-Hav"/>
                     </connections>
                 </viewController>

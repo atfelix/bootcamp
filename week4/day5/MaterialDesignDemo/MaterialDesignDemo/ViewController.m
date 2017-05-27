@@ -9,14 +9,8 @@
 #import "ViewController.h"
 
 #import "MaterialButtons.h"
-#import "SDWebImage/UIImageView+WebCache.h"
-#import "SDWebImage/FLAnimatedImageView.h"
-#import "SDWebImage/FLAnimatedImageView+WebCache.h"
-#import "SDWebImage/UIView+WebCache.h"
 
 @interface ViewController ()
-
-@property (nonatomic, strong) FLAnimatedImageView *customImageView;
 
 @end
 
@@ -31,14 +25,9 @@
     [raisedButton addTarget:self
                      action:@selector(tapped:)
            forControlEvents:UIControlEventTouchUpInside];
-    [raisedButton setElevation:1000 forState:UIControlStateNormal];
+    [raisedButton setElevation:10 forState:UIControlStateNormal];
 
     [self.view addSubview:raisedButton];
-
-    [SDWebImageManager sharedManager].imageDownloader.username = @"httpwatch";
-    [SDWebImageManager sharedManager].imageDownloader.password = @"httpwatch01";
-
-
 }
 
 - (void)tapped:(id)sender {
