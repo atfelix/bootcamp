@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StorybookPageViewController : UIPageViewController
+@interface StorybookPageViewController : UIPageViewController<UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
 @end

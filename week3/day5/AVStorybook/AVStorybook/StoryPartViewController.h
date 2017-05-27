@@ -21,5 +21,6 @@
 
 @property (nonatomic, strong) StoryPart *storyPart;
 @property (nonatomic, weak) id<StoryPartDelegate> delegate;
+@property (nonatomic) NSUInteger index;
 
 @end

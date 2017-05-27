@@ -333,6 +333,7 @@
 				11CD3C841ED31EDB00409383 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

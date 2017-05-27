@@ -32,13 +32,6 @@
     self.storyImageView.image = self.storyPart.image;
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
 
 
 - (void)didReceiveMemoryWarning {

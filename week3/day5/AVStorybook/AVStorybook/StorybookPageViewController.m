@@ -11,10 +11,11 @@
 #import "StoryPart.h"
 #import "StoryPartViewController.h"
 
-@interface StorybookPageViewController () <UIPageViewControllerDelegate, UIPageViewControllerDataSource, StoryPartDelegate>
+@interface StorybookPageViewController () <StoryPartDelegate>
 
 @property (nonatomic) NSMutableArray *storyParts;
 @property (nonatomic) NSUInteger currentPageIndex;
+//@property (nonatomic) UIStoryboard *mainStoryBoard;
 
 @end
 
@@ -30,35 +31,29 @@
         [self.storyParts addObject:[[StoryPart alloc] initWithString:[NSString stringWithFormat:@"message%@.m4a",@(i)]]];
     }
 
-    self.currentPageIndex = 0;
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main"
-                                                         bundle:nil];
-    StoryPartViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"StoryPartViewController"];
-    initialViewController.storyPart = self.storyParts[self.currentPageIndex];
-    initialViewController.delegate = self;
-    [self setViewControllers:@[initialViewController]
+
+//    self.mainStoryBoard = [UIStoryboard storyboardWithName:@"Main"
+//                                                         bundle:nil];
+
+    StoryPartViewController *sbp = [self createViewControllerWithIndex:0];
+
+    [self setViewControllers:@[sbp]
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:NO
                   completion:nil];
-    [self.view addSubview:initialViewController.view];
+//    [self.view addSubview:sbp.view];
+
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (StoryPartViewController *)createViewControllerWithIndex:(NSUInteger)index {
+    StoryPartViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"StoryPartViewController"];
+    vc.index = index;
+    vc.delegate = self;
+    vc.storyPart = self.storyParts[index];
+    return vc;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 #pragma mark Lazy Instantiation
@@ -76,33 +71,34 @@
 
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    if (self.currentPageIndex <= 0) {
+    NSUInteger index = ((StoryPartViewController*)viewController).index;
+    if (index == 0) {
         return nil;
     }
 
-    self.currentPageIndex--;
-    return [self viewControllerAtIndex:self.currentPageIndex storyboard:viewController.storyboard];
+//    self.currentPageIndex--;
+    return [self createViewControllerWithIndex:index-1];
+//    return [self viewControllerAtIndex:self.currentPageIndex storyboard:viewController.storyboard];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    if (self.currentPageIndex >= self.storyParts.count - 1) {
+    NSUInteger index = ((StoryPartViewController*)viewController).index;
+    if (index >= self.storyParts.count-1) {
         return nil;
     }
-
-    self.currentPageIndex++;
-    return [self viewControllerAtIndex:self.currentPageIndex storyboard:viewController.storyboard];
+    return [self createViewControllerWithIndex:index+1];
 }
 
--(UIViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard {
-    if ((self.storyParts.count == 0) || (index >= self.storyParts.count)) {
-        return nil;
-    }
-
-    StoryPartViewController *storyPartVC = [storyboard instantiateViewControllerWithIdentifier:@"StoryPartViewController"];
-    storyPartVC.storyPart = self.storyParts[index];
-    storyPartVC.delegate = self;
-    return storyPartVC;
-}
+//-(UIViewController *)viewControllerAtIndex:(NSUInteger)index storyboard:(UIStoryboard *)storyboard {
+//    if ((self.storyParts.count == 0) || (index >= self.storyParts.count)) {
+//        return nil;
+//    }
+//
+//    StoryPartViewController *storyPartVC = [storyboard instantiateViewControllerWithIdentifier:@"StoryPartViewController"];
+//    storyPartVC.storyPart = self.storyParts[index];
+//    storyPartVC.delegate = self;
+//    return storyPartVC;
+//}
 
 
 #pragma mark StoryPartDelegate methods

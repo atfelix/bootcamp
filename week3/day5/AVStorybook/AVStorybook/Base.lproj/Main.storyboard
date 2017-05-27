@@ -12,7 +12,7 @@
         <!--Storybook Page View Controller-->
         <scene sceneID="WIL-YG-eOP">
             <objects>
-                <pageViewController storyboardIdentifier="StorybookPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" navigationOrientation="vertical" spineLocation="none" id="CUu-hh-ZD0" customClass="StorybookPageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="StorybookPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CUu-hh-ZD0" customClass="StorybookPageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iim-dy-uX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-772" y="124"/>
@@ -29,12 +29,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBj-fJ-yyB">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBj-fJ-yyB">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="hzb-n3-es9" appends="YES" id="MVc-3J-Csb"/>
-                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3g-Yd-2Gx">
                                 <rect key="frame" x="0.0" y="637" width="85" height="30"/>
@@ -106,11 +103,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="hzb-n3-es9">
-                    <connections>
-                        <action selector="playRecording:" destination="BYZ-38-t0r" id="rhV-ee-IvE"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
         </scene>
