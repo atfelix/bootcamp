@@ -13,6 +13,7 @@
 		11B42C601EE6F11900BF9661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11B42C5F1EE6F11900BF9661 /* Assets.xcassets */; };
 		11B42C631EE6F11900BF9661 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B42C611EE6F11900BF9661 /* LaunchScreen.storyboard */; };
 		11B42C6B1EE6F34900BF9661 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */; };
+		11B42C6D1EE705F300BF9661 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B42C6C1EE705F300BF9661 /* NewsItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		11B42C621EE6F11900BF9661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11B42C641EE6F11900BF9661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		11B42C6C1EE705F300BF9661 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				11B42C5A1EE6F11900BF9661 /* ViewController.swift */,
 				11B42C5C1EE6F11900BF9661 /* Main.storyboard */,
 				11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */,
+				11B42C6C1EE705F300BF9661 /* NewsItem.swift */,
 				11B42C5F1EE6F11900BF9661 /* Assets.xcassets */,
 				11B42C611EE6F11900BF9661 /* LaunchScreen.storyboard */,
 				11B42C641EE6F11900BF9661 /* Info.plist */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B42C5B1EE6F11900BF9661 /* ViewController.swift in Sources */,
+				11B42C6D1EE705F300BF9661 /* NewsItem.swift in Sources */,
 				11B42C591EE6F11900BF9661 /* AppDelegate.swift in Sources */,
 				11B42C6B1EE6F34900BF9661 /* NewsTableViewCell.swift in Sources */,
 			);
