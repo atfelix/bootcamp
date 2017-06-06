@@ -11,7 +11,19 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
+
+
     var headlines = [
+        NewsItem(category: .world, headline: "Climate change protests, divestments meet fossil fuels realities"),
+        NewsItem(category: .europe, headline: "Scotland's 'Yes' leader says independence vote is 'once in a lifetime'"),
+        NewsItem(category: .middleEast, headline: "Airstrikes boost Islamic State, FBI director warns more hostages possible"),
+        NewsItem(category: .africa, headline: "Nigeria says 70 dead in building collapse; questions S. Africa victim claim"),
+        NewsItem(category: .asiaPacific, headline: "Despite UN ruling, Japan seeks backing for whale hunting"),
+        NewsItem(category: .americas, headline: "Officials: FBI is tracking 100 Americans who fought alongside IS in Syria"),
+        NewsItem(category: .world, headline: "South Africa in $40 billion deal for Russian nuclear reactors"),
+        NewsItem(category: .europe, headline: "'One million babies' created by EU student exchanges"),
         NewsItem(category: .world, headline: "Climate change protests, divestments meet fossil fuels realities"),
         NewsItem(category: .europe, headline: "Scotland's 'Yes' leader says independence vote is 'once in a lifetime'"),
         NewsItem(category: .middleEast, headline: "Airstrikes boost Islamic State, FBI director warns more hostages possible"),
@@ -31,6 +43,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d"
+        dateLabel.text = dateFormatter.string(from: Date())
     }
 
     override func didReceiveMemoryWarning() {

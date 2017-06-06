@@ -23,8 +23,8 @@ struct NewsItem {
         switch category {
             case .world:         return UIColor.red
             case .americas:      return UIColor.blue
-            case .europe:        return UIColor.green
-            case .middleEast:    return UIColor.yellow
+            case .europe:        return UIColor.black
+            case .middleEast:    return UIColor.magenta
             case .africa:        return UIColor.orange
             case .asiaPacific:   return UIColor.purple
         }

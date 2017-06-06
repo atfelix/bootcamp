@@ -14,6 +14,7 @@
 		11B42C631EE6F11900BF9661 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B42C611EE6F11900BF9661 /* LaunchScreen.storyboard */; };
 		11B42C6B1EE6F34900BF9661 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */; };
 		11B42C6D1EE705F300BF9661 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B42C6C1EE705F300BF9661 /* NewsItem.swift */; };
+		11B42C6F1EE7101500BF9661 /* bg-header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11B42C6E1EE7101500BF9661 /* bg-header.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		11B42C641EE6F11900BF9661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		11B42C6C1EE705F300BF9661 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		11B42C6E1EE7101500BF9661 /* bg-header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-header.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				11B42C5C1EE6F11900BF9661 /* Main.storyboard */,
 				11B42C6A1EE6F34900BF9661 /* NewsTableViewCell.swift */,
 				11B42C6C1EE705F300BF9661 /* NewsItem.swift */,
+				11B42C6E1EE7101500BF9661 /* bg-header.jpg */,
 				11B42C5F1EE6F11900BF9661 /* Assets.xcassets */,
 				11B42C611EE6F11900BF9661 /* LaunchScreen.storyboard */,
 				11B42C641EE6F11900BF9661 /* Info.plist */,
@@ -132,6 +135,7 @@
 				11B42C631EE6F11900BF9661 /* LaunchScreen.storyboard in Resources */,
 				11B42C601EE6F11900BF9661 /* Assets.xcassets in Resources */,
 				11B42C5E1EE6F11900BF9661 /* Main.storyboard in Resources */,
+				11B42C6F1EE7101500BF9661 /* bg-header.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
