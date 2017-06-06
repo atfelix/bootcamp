@@ -61,8 +61,8 @@ class AuthenticateViewController: UIViewController, UITextFieldDelegate {
         }
 
         switch authType {
-            case .login: APIManager.loginUser(username: username, token: token)
-            case .signup: APIManager.signupUser(username: username, token: token)
+            case .login: APIManager.loginUser(username: username, password: token)
+            case .signup: APIManager.signupUser(username: username, password: token)
         }
     }
 
@@ -83,7 +83,7 @@ class AuthenticateViewController: UIViewController, UITextFieldDelegate {
 
 
     @IBAction func authenticate(_ sender: UIBarButtonItem) {
-        
+        authenticate(username: usernameField.text ?? "", token: passwordField.text ?? "")
         delegate.authenticate()
     }
 
