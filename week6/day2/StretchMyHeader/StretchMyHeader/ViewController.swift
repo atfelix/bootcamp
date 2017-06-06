@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
 
-
+    var kTableHeaderHeight: CGFloat = -1.0
     var headlines = [
         NewsItem(category: .world, headline: "Climate change protests, divestments meet fossil fuels realities"),
         NewsItem(category: .europe, headline: "Scotland's 'Yes' leader says independence vote is 'once in a lifetime'"),
@@ -40,6 +40,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+
+        kTableHeaderHeight = headerView.bounds.height
+
+        tableView.contentInset = UIEdgeInsetsMake(kTableHeaderHeight, 0, 0, 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -kTableHeaderHeight)
+        updateHeaderView()
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
@@ -74,5 +83,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.headlineLabel.text = newsItem.headline
 
         return cell
+    }
+
+    func updateHeaderView() {
+        var headerRect = CGRect(x: 0, y: -kTableHeaderHeight, width: tableView.bounds.width, height: kTableHeaderHeight)
+
+        if tableView.contentOffset.y < -kTableHeaderHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        headerView.frame = headerRect
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
     }
 }
