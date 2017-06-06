@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class MealTableViewController: UITableViewController {
+class MealTableViewController: UITableViewController, AuthenticateProtocol {
 
     var meals = [Meal]()
 
@@ -18,12 +18,20 @@ class MealTableViewController: UITableViewController {
 
         navigationItem.leftBarButtonItem = editButtonItem
 
+        let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthenticateViewController") as! AuthenticateViewController
+        authVC.delegate = self
+        self.present(authVC, animated: true)
+
         if let savedMeals = loadMeals() {
             meals += savedMeals
         }
         else {
             loadSampleMeals()
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -154,5 +162,17 @@ class MealTableViewController: UITableViewController {
 
     private func loadMeals() -> [Meal]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
+    }
+
+
+    // MARK: - Authenticate protocol methods
+
+
+    func authenticate() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+    func cancel() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

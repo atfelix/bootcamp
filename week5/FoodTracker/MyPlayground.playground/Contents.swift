@@ -2,30 +2,15 @@
 
 import UIKit
 
-let urlBase = URL(string: "http://159.203.243.24:8000/signup")!
-var request = URLRequest(url: urlBase)
-request.httpMethod = "POST"
+var components = URLComponents()
+components.scheme = "https"
+components.host = "159.203.243.24"
+components.port = 8000
+components.path = "/signup"
 
-let json: [String:Any] = ["username":"furious_potato_cake", "password":"1234"]
-let jsonData = try? JSONSerialization.data(withJSONObject: json, options:[])
-request.httpBody = jsonData
+let queryItemUsername = URLQueryItem(name: "username", value: "old_banana_bread_sucks")
+let queryItemPassword = URLQueryItem(name: "password", value: "1234")
 
+components.queryItems = [queryItemUsername, queryItemPassword]
 
-
-var response: [String: Any]
-
-let task = URLSession.shared.dataTask(with: request, completionHandler:{ (data, response, error) -> Void in
-    if error != nil {
-        print("error \(error)")
-    }
-    else if data != nil {
-        if let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
-            print("received data: \(str)")
-        }
-        else {
-            print("unable to convert")
-        }
-    }
-})
-
-task.resume()
+components.url
