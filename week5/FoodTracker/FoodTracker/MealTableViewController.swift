@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class MealTableViewController: UITableViewController, AuthenticateProtocol {
+class MealTableViewController: UITableViewController, SignupProtocol {
 
     var meals = [Meal]()
 
@@ -18,7 +18,7 @@ class MealTableViewController: UITableViewController, AuthenticateProtocol {
 
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthenticateViewController") as! AuthenticateViewController
+        let authVC = self.storyboard?.instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
         authVC.delegate = self
         self.present(authVC, animated: true)
 
@@ -168,11 +168,28 @@ class MealTableViewController: UITableViewController, AuthenticateProtocol {
     // MARK: - Authenticate protocol methods
 
 
-    func authenticate() {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+    func signup(username: String?, password: String?) {
+        var user = User.init()
+        APIManager.signupUser(username: username ?? "", password: password ?? "", user: user)
+
+        if user.username != nil {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
 
     func cancel() {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+
+    // MARK: - Validation methods
+
+
+    private class func isValidPassword(password: String) -> Bool {
+        return password.characters.count >= 4
+    }
+
+    private class func isValidUsername(username: String) -> Bool {
+        return username.characters.count > 0
     }
 }
