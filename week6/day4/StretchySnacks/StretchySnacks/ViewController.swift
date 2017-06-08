@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func plusButtonTapped(_ sender: UIButton) {
+        print("plus button tapped")
+    }
 }
-

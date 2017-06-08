@@ -23,8 +23,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KP0-3a-qcy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cr9-u0-5wM">
+                                        <rect key="frame" x="337" y="17" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="v6h-n0-Qn2"/>
+                                            <constraint firstAttribute="height" constant="30" id="vks-nI-IJM"/>
+                                        </constraints>
+                                        <state key="normal" title="➕"/>
+                                        <connections>
+                                            <action selector="plusButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gYo-Dg-C92"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="cr9-u0-5wM" firstAttribute="centerY" secondItem="KP0-3a-qcy" secondAttribute="centerY" id="4cz-ro-6ct"/>
+                                    <constraint firstAttribute="trailing" secondItem="cr9-u0-5wM" secondAttribute="trailing" constant="8" id="dNN-G3-sxL"/>
                                     <constraint firstAttribute="height" constant="64" id="tlK-Fc-RUL"/>
                                 </constraints>
                             </view>
