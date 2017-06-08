@@ -23,11 +23,6 @@ class ViewController: UIViewController {
         addStackView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         animateConstraints(sender, newConstant: (isStretched) ? 64 : 200)
         isStretched = !isStretched
@@ -36,7 +31,7 @@ class ViewController: UIViewController {
     private func addStackView() {
         let imageNames = ["oreos.png", "pizza_pockets.png", "pop_tarts.png", "popsicle.png", "ramen.png"]
         stackViewOriginalFrame = CGRect(x: 0, y: 50, width: view.bounds.width, height: 0)
-        stackViewStretchedFrame = CGRect(x: 0, y: 50, width: view.bounds.width, height: 200 - 50)
+        stackViewStretchedFrame = CGRect(x: 0, y: 70, width: view.bounds.width, height: 120)
         stackView = UIStackView(frame: stackViewOriginalFrame)
         stackView.distribution = .fillEqually
         for i in 0..<5 {
@@ -48,6 +43,7 @@ class ViewController: UIViewController {
     private func animateConstraints(_ sender: UIButton, newConstant: CGFloat) {
         self.stretchyHeaderHeightConstraint.constant = newConstant
         view.setNeedsUpdateConstraints()
+        changeSnackTitleConstraint()
 
         UIView.animate(withDuration: 1.3,
                        delay: 0.0,
@@ -63,5 +59,15 @@ class ViewController: UIViewController {
                        completion:nil)
     }
 
-
+    private func changeSnackTitleConstraint() {
+        for view in view.subviews {
+            for constraint in view.constraints {
+                if constraint.identifier == "centerYSnackTitle" {
+                    constraint.isActive = false
+                    constraint.constant -= (isStretched) ? -40 : 40
+                    constraint.isActive = true
+                }
+            }
+        }
+    }
 }
