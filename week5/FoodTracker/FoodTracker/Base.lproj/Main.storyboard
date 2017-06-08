@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ChO-9Q-z6J" id="jDp-Bx-pBd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNs-nc-wxy">
@@ -180,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="-700" y="122.78860569715144"/>
         </scene>
-        <!--Authenticate View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="0iz-SP-Pkd">
             <objects>
-                <viewController restorationIdentifier="AuthenticateViewController" storyboardIdentifier="AuthenticateViewController" id="Llp-sQ-dlb" customClass="AuthenticateViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="SignupViewController" storyboardIdentifier="SignupViewController" id="Llp-sQ-dlb" customClass="SignupViewController" customModule="FoodTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NcZ-Di-mUf"/>
                         <viewControllerLayoutGuide type="bottom" id="cxh-t6-J9l"/>
@@ -233,7 +233,7 @@
                                     <constraint firstAttribute="height" constant="60" id="LUd-7E-yZ7"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Authenticate" id="SOJ-aQ-03V">
+                                    <navigationItem title="Signup" id="SOJ-aQ-03V">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5bo-bG-LxP">
                                             <connections>
                                                 <action selector="cancel:" destination="Llp-sQ-dlb" id="3DV-Y6-5rH"/>

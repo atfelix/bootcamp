@@ -8,23 +8,18 @@
 
 import UIKit
 
-enum AuthenticationType {
-    case login, signup
-}
-
-protocol AuthenticateProtocol: class {
-    func authenticate() -> Void
+protocol SignupProtocol: class {
+    func signup(username: String?, password: String?) -> Void
     func cancel() -> Void
 }
 
-class AuthenticateViewController: UIViewController, UITextFieldDelegate {
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var authenticateButton: UIBarButtonItem!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var nameLabel: UINavigationBar!
-    weak var delegate: AuthenticateProtocol!
-    var authType: AuthenticationType = .signup
+    weak var delegate: SignupProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,62 +47,25 @@ class AuthenticateViewController: UIViewController, UITextFieldDelegate {
     */
 
 
-    // MARK: - Authenticate User and Password
-
-
-    func authenticate(username: String, token: String) {
-        if !isValidUsername(username: username) || !isValidToken(token: token) {
-            return
-        }
-
-        switch authType {
-            case .login: APIManager.loginUser(username: username, password: token)
-            case .signup: APIManager.signupUser(username: username, password: token)
-        }
-    }
-
-
-    // MARK: - Validate password
-
-
-    func isValidUsername(username: String) -> Bool {
-        return username.characters.count > 0
-    }
-
-    func isValidToken(token: String) -> Bool {
-        return token.characters.count >= 4
-    }
-
-
     // MARK: - Button actions
 
 
     @IBAction func authenticate(_ sender: UIBarButtonItem) {
-        authenticate(username: usernameField.text ?? "", token: passwordField.text ?? "")
-        delegate.authenticate()
+        delegate.signup(username: usernameField.text ?? "", password: passwordField.text ?? "")
     }
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         delegate.cancel()
     }
 
-
-    // MARK: - UITextField delegate methods
-
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        var returnValue = false
-
-        if textField === usernameField && isValidUsername(username: textField.text ?? "") {
+        if textField === usernameField {
             passwordField.becomeFirstResponder()
-            returnValue = true
         }
-        else if textField === passwordField && isValidToken(token: textField.text ?? "") {
+        else if textField === passwordField {
             textField.resignFirstResponder()
-            returnValue = true
+            delegate.signup(username: usernameField.text, password: textField.text)
         }
-
-        return returnValue
+        return true
     }
 }

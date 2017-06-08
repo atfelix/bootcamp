@@ -8,9 +8,13 @@
 
 import UIKit
 
+let kUserDefaultsUsername = "FoodTrackerUsername"
+let kUserDefaultsPassword = "FoodTrackerPassword"
+let kUserDefaultsToken = "FoodkTrackerToken"
+
 class APIManager: NSObject {
 
-    class func signupUser(username: String, password: String) {
+    class func signupUser(username: String, password: String, completionHandler: (User) -> Void) {
         var queryItems = [URLQueryItem]()
         queryItems.append(URLQueryItem(name: "username", value: username))
         queryItems.append(URLQueryItem(name: "password", value: password))
@@ -32,14 +36,17 @@ class APIManager: NSObject {
                 print(error?.localizedDescription ?? "NO DATA")
                 return
             }
-            print("STUFF")
 
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 
-            print("OTHER STUFF")
-
-            if let responseJSON = responseJSON as? [String:Any] {
+            if let responseJSON = responseJSON as? [String:[String:String]] {
+                print("RESPONSE OKAY")
                 print(responseJSON)
+
+                
+                UserDefaults.standard.set(user.username, forKey: kUserDefaultsUsername)
+                UserDefaults.standard.set(user.password, forKey: kUserDefaultsPassword)
+                UserDefaults.standard.set(user.token, forKey: kUserDefaultsToken)
             }
         })
 
@@ -59,5 +66,4 @@ class APIManager: NSObject {
         components.queryItems = queryItems ?? []
         return components.url
     }
-
 }
