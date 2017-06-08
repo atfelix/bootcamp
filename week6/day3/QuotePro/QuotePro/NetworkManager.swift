@@ -57,6 +57,8 @@ final class NetworkManager {
                 return
             }
 
+            print(String(data:data, encoding: .utf8) ?? "WTF?")
+
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
 
