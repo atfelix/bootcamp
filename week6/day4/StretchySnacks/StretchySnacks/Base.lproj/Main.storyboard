@@ -30,7 +30,8 @@
                                             <constraint firstAttribute="height" constant="30" id="3SM-eb-KGG"/>
                                             <constraint firstAttribute="width" constant="30" id="q2e-f7-vGD"/>
                                         </constraints>
-                                        <state key="normal" title="➕"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <state key="normal" title="＋"/>
                                         <connections>
                                             <action selector="plusButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gYo-Dg-C92"/>
                                         </connections>
@@ -53,6 +54,7 @@
                     </view>
                     <connections>
                         <outlet property="stretchyHeaderHeightConstraint" destination="tlK-Fc-RUL" id="I8J-Rg-sTS"/>
+                        <outlet property="stretchyNavigationBarView" destination="KP0-3a-qcy" id="BmK-Co-D4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

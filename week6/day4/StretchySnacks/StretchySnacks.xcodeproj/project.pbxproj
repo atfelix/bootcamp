@@ -12,6 +12,11 @@
 		1135EE5D1EE9942100870E2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE5B1EE9942100870E2D /* Main.storyboard */; };
 		1135EE5F1EE9942100870E2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE5E1EE9942100870E2D /* Assets.xcassets */; };
 		1135EE621EE9942100870E2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE601EE9942100870E2D /* LaunchScreen.storyboard */; };
+		1135EE6E1EE9AE9200870E2D /* oreos.png in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE691EE9AE9200870E2D /* oreos.png */; };
+		1135EE6F1EE9AE9200870E2D /* pizza_pockets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE6A1EE9AE9200870E2D /* pizza_pockets.png */; };
+		1135EE701EE9AE9200870E2D /* pop_tarts.png in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE6B1EE9AE9200870E2D /* pop_tarts.png */; };
+		1135EE711EE9AE9200870E2D /* popsicle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE6C1EE9AE9200870E2D /* popsicle.png */; };
+		1135EE721EE9AE9200870E2D /* ramen.png in Resources */ = {isa = PBXBuildFile; fileRef = 1135EE6D1EE9AE9200870E2D /* ramen.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		1135EE5E1EE9942100870E2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1135EE611EE9942100870E2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1135EE631EE9942100870E2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1135EE691EE9AE9200870E2D /* oreos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oreos.png; sourceTree = "<group>"; };
+		1135EE6A1EE9AE9200870E2D /* pizza_pockets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pizza_pockets.png; sourceTree = "<group>"; };
+		1135EE6B1EE9AE9200870E2D /* pop_tarts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_tarts.png; sourceTree = "<group>"; };
+		1135EE6C1EE9AE9200870E2D /* popsicle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popsicle.png; sourceTree = "<group>"; };
+		1135EE6D1EE9AE9200870E2D /* ramen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ramen.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,11 @@
 			children = (
 				1135EE571EE9942100870E2D /* AppDelegate.swift */,
 				1135EE591EE9942100870E2D /* ViewController.swift */,
+				1135EE691EE9AE9200870E2D /* oreos.png */,
+				1135EE6A1EE9AE9200870E2D /* pizza_pockets.png */,
+				1135EE6B1EE9AE9200870E2D /* pop_tarts.png */,
+				1135EE6C1EE9AE9200870E2D /* popsicle.png */,
+				1135EE6D1EE9AE9200870E2D /* ramen.png */,
 				1135EE5B1EE9942100870E2D /* Main.storyboard */,
 				1135EE5E1EE9942100870E2D /* Assets.xcassets */,
 				1135EE601EE9942100870E2D /* LaunchScreen.storyboard */,
@@ -123,9 +138,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1135EE6E1EE9AE9200870E2D /* oreos.png in Resources */,
 				1135EE621EE9942100870E2D /* LaunchScreen.storyboard in Resources */,
+				1135EE711EE9AE9200870E2D /* popsicle.png in Resources */,
+				1135EE701EE9AE9200870E2D /* pop_tarts.png in Resources */,
+				1135EE6F1EE9AE9200870E2D /* pizza_pockets.png in Resources */,
 				1135EE5F1EE9942100870E2D /* Assets.xcassets in Resources */,
 				1135EE5D1EE9942100870E2D /* Main.storyboard in Resources */,
+				1135EE721EE9AE9200870E2D /* ramen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

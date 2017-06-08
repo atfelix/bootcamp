@@ -11,12 +11,16 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var stretchyHeaderHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var stretchyNavigationBarView: UIView!
+    var stackView : UIStackView!
     var isStretched = false
+    private var stackViewOriginalFrame: CGRect!
+    private var stackViewStretchedFrame: CGRect!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print(stretchyHeaderHeightConstraint.constant)
+
+        addStackView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +33,18 @@ class ViewController: UIViewController {
         isStretched = !isStretched
     }
 
+    private func addStackView() {
+        let imageNames = ["oreos.png", "pizza_pockets.png", "pop_tarts.png", "popsicle.png", "ramen.png"]
+        stackViewOriginalFrame = CGRect(x: 0, y: 50, width: view.bounds.width, height: 0)
+        stackViewStretchedFrame = CGRect(x: 0, y: 50, width: view.bounds.width, height: 200 - 50)
+        stackView = UIStackView(frame: stackViewOriginalFrame)
+        stackView.distribution = .fillEqually
+        for i in 0..<5 {
+            stackView.addArrangedSubview(UIImageView(image: UIImage(named: imageNames[i])))
+        }
+        stretchyNavigationBarView.addSubview(stackView)
+    }
+
     private func animateConstraints(_ sender: UIButton, newConstant: CGFloat) {
         self.stretchyHeaderHeightConstraint.constant = newConstant
         view.setNeedsUpdateConstraints()
@@ -39,9 +55,13 @@ class ViewController: UIViewController {
                        initialSpringVelocity: 0.7,
                        options: [.curveEaseInOut],
                        animations: {
+
+                           self.stackView.frame = (self.isStretched) ? self.stackViewOriginalFrame : self.stackViewStretchedFrame
                            sender.transform = sender.transform.rotated(by: CGFloat.pi / 4)
                            self.view.layoutIfNeeded()
         },
-                       completion: nil)
+                       completion:nil)
     }
+
+
 }
