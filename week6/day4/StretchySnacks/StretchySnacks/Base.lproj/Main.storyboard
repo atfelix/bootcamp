@@ -27,8 +27,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cr9-u0-5wM">
                                         <rect key="frame" x="337" y="17" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="v6h-n0-Qn2"/>
-                                            <constraint firstAttribute="height" constant="30" id="vks-nI-IJM"/>
+                                            <constraint firstAttribute="height" constant="30" id="3SM-eb-KGG"/>
+                                            <constraint firstAttribute="width" constant="30" id="q2e-f7-vGD"/>
                                         </constraints>
                                         <state key="normal" title="➕"/>
                                         <connections>
@@ -38,8 +38,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="cr9-u0-5wM" firstAttribute="centerY" secondItem="KP0-3a-qcy" secondAttribute="centerY" id="4cz-ro-6ct"/>
-                                    <constraint firstAttribute="trailing" secondItem="cr9-u0-5wM" secondAttribute="trailing" constant="8" id="dNN-G3-sxL"/>
+                                    <constraint firstAttribute="trailing" secondItem="cr9-u0-5wM" secondAttribute="trailing" constant="8" id="8Ff-W2-dgw"/>
+                                    <constraint firstItem="cr9-u0-5wM" firstAttribute="top" secondItem="KP0-3a-qcy" secondAttribute="top" constant="17" id="p14-GK-pFD"/>
                                     <constraint firstAttribute="height" constant="64" id="tlK-Fc-RUL"/>
                                 </constraints>
                             </view>
@@ -51,6 +51,9 @@
                             <constraint firstAttribute="trailing" secondItem="KP0-3a-qcy" secondAttribute="trailing" id="bac-g2-psS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stretchyHeaderHeightConstraint" destination="tlK-Fc-RUL" id="I8J-Rg-sTS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var stretchyHeaderHeightConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,6 +23,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func plusButtonTapped(_ sender: UIButton) {
-        print("plus button tapped")
+        self.stretchyHeaderHeightConstraint.constant = 200
+        view.setNeedsUpdateConstraints()
+        UIView.animate(withDuration: 1.0) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
